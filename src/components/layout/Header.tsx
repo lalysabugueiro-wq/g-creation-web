@@ -17,7 +17,7 @@ const NAV = [
 
 // Weddings es un universo aparte: su propio menú, sin marcas ni empresas.
 const NAV_WEDDINGS = [
-  { href: "/bodas#historias", label: "Historias" },
+  { href: "/bodas#fotogramas", label: "Fotos" },
   { href: "/contacto?area=bodas", label: "Contacto" },
   { href: "/", label: "G-creatiON estudio" },
 ];

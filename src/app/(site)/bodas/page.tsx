@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
 import BudgetCTA from "@/components/sections/BudgetCTA";
-import { weddingDetails, weddings } from "@/lib/mock/seed";
+import { weddingDetails } from "@/lib/mock/seed";
 import { getSiteContent } from "@/lib/content/get";
 
 export const metadata: Metadata = {
@@ -122,43 +122,9 @@ export default async function BodasPage() {
         whatsappText="Hola G-creatiON, nos casamos y queremos pedir presupuesto. Fecha: … Lugar: …"
       />
 
-      {/* En color: historias reales */}
-      <section id="historias" className="px-5 py-24 md:px-12 md:py-32 lg:px-20">
-        <Reveal slow>
-          <p className="slate mb-4 text-accent">En color</p>
-          <h2 className="font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-none">Historias que ya contamos</h2>
-        </Reveal>
-
-        <div className="mt-16 space-y-24">
-          {weddings.map((w) => (
-            <article key={w.id}>
-              <Reveal slow>
-                <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-rose/50 pb-4">
-                  <h3 className="font-serif text-[clamp(2rem,3.6vw,3rem)] leading-none">{w.couple}</h3>
-                  <p className="slate text-muted">{w.place}</p>
-                </div>
-              </Reveal>
-              <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-                {w.images.map((img, i) => (
-                  <Reveal key={img.src} slow delay={(i % 4) * 0.05} className={i === 0 ? "col-span-2 row-span-2" : ""}>
-                    <div className={`relative overflow-hidden ${i === 0 ? "aspect-square" : "aspect-[4/5]"}`}>
-                      <Image
-                        src={img.src}
-                        alt={img.alt}
-                        fill
-                        sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
-                        className="object-cover"
-                      />
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* Detalles en color */}
-        <div className="mt-24 grid grid-cols-3 gap-3 md:grid-cols-6 md:gap-4">
+      {/* Detalles en color */}
+      <section className="px-5 py-20 md:px-12 md:py-28 lg:px-20">
+        <div className="grid grid-cols-3 gap-3 md:grid-cols-6 md:gap-4">
           {weddingDetails.map((d, i) => (
             <Reveal key={d.src} slow delay={i * 0.05}>
               <div className="relative aspect-[4/5] overflow-hidden">
@@ -173,7 +139,7 @@ export default async function BodasPage() {
       <section className="bg-surface px-5 py-28 text-center md:px-12 md:py-36 lg:px-20">
         <Reveal slow>
           <h2 className="mx-auto max-w-3xl font-serif text-[clamp(2.4rem,6vw,5rem)] leading-[1.05]">
-            ¿Os casáis? <em className="text-accent">Nosotros la guardamos.</em>
+            ¿Os casáis? <em className="text-accent">Queremos ser parte de ese día.</em>
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
