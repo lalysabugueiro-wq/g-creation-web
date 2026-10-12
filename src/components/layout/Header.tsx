@@ -7,12 +7,11 @@ import Wordmark from "@/components/ui/Wordmark";
 import { useContent } from "@/components/content/ContentProvider";
 
 const NAV = [
-  { href: "/#areas", label: "Qué hacemos" },
-  { href: "/#estudio", label: "Quiénes somos" },
   { href: "/bodas", label: "Weddings" },
   { href: "/sport", label: "Sport" },
   { href: "/eventos", label: "Eventos" },
-  { href: "/#donde", label: "Dónde" },
+  { href: "/marcas", label: "Marcas" },
+  { href: "/#estudio", label: "Nosotros" },
 ];
 
 // Weddings es un universo aparte: su propio menú, sin marcas ni empresas.
@@ -29,6 +28,13 @@ const NAV_EVENTOS = [
   { href: "/", label: "G-creatiON estudio" },
 ];
 
+// Marcas, igual.
+const NAV_MARCAS = [
+  { href: "/marcas#marcas", label: "Marcas" },
+  { href: "/contacto?area=marcas", label: "Contacto" },
+  { href: "/", label: "G-creatiON estudio" },
+];
+
 // Sport, igual: su propio menú.
 const NAV_SPORT = [
   { href: "/sport#historias", label: "Historias" },
@@ -41,19 +47,22 @@ export default function Header() {
   const onWeddings = pathname.startsWith("/bodas");
   const onSport = pathname.startsWith("/sport");
   const onEventos = pathname.startsWith("/eventos");
+  const onMarcas = pathname.startsWith("/marcas");
   // Sin foto de portada, /sport abre sobre naranja: el header pasa a tinta oscura.
   const { t } = useContent();
   const sportOnOrange = onSport && !t("sport.hero.image");
   const [open, setOpen] = useState(false);
-  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : onEventos ? NAV_EVENTOS : NAV;
+  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : onEventos ? NAV_EVENTOS : onMarcas ? NAV_MARCAS : NAV;
   const ctaHref = onWeddings
     ? "/contacto?area=bodas&motivo=presupuesto"
     : onSport
       ? "/contacto?area=sport&motivo=presupuesto"
       : onEventos
         ? "/contacto?area=eventos&motivo=presupuesto"
-        : "/contacto";
-  const ctaLabel = onWeddings || onSport || onEventos ? "Pedir presupuesto" : "Cuéntanos tu idea";
+        : onMarcas
+          ? "/contacto?area=marcas&motivo=presupuesto"
+          : "/contacto";
+  const ctaLabel = onWeddings || onSport || onEventos || onMarcas ? "Pedir presupuesto" : "Cuéntanos tu idea";
 
   return (
     <header className={`absolute inset-x-0 top-0 z-50 ${onWeddings ? "on-photo" : ""} ${sportOnOrange ? "text-bg" : "text-fg"}`}>
@@ -65,6 +74,7 @@ export default function Header() {
           )}
           {onSport && <span className={`poster ml-2 text-lg ${sportOnOrange ? "" : "text-muted"}`}>sport</span>}
           {onEventos && <span className="poster ml-2 text-lg text-muted">eventos</span>}
+          {onMarcas && <span className="poster ml-2 text-lg text-muted">marcas</span>}
         </Link>
 
         <nav className={`slate hidden items-center gap-9 lg:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>

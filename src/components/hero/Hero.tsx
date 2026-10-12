@@ -26,6 +26,13 @@ function Timecode() {
 }
 
 
+const UNIVERSE_LINKS = [
+  { href: "/bodas", label: "Weddings" },
+  { href: "/sport", label: "Sport" },
+  { href: "/eventos", label: "Eventos" },
+  { href: "/marcas", label: "Marcas" },
+];
+
 export default function Hero() {
   const rootRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -115,15 +122,17 @@ export default function Hero() {
             {t("home.hero.sub")}
           </p>
 
-          <div data-hero-fade className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/contacto"
-              className="slate group inline-flex items-center gap-3 bg-accent px-7 py-4 text-bg transition-transform duration-300 hover:-translate-y-0.5"
-            >
-              Cuéntanos tu idea
-              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
+          <nav data-hero-fade aria-label="Universos" className="flex flex-wrap items-center gap-2">
+            {UNIVERSE_LINKS.map((u) => (
+              <Link
+                key={u.href}
+                href={u.href}
+                className="slate border border-fg/30 px-4 py-3 text-fg transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-bg"
+              >
+                {u.label}
+              </Link>
+            ))}
+          </nav>
         </div>
 
         <div

@@ -28,6 +28,7 @@ export const SECTIONS = [
   "Cifras",
   "Página Sport",
   "Página Eventos",
+  "Página Marcas",
   "Textos legales",
   "Quiénes somos",
   "Filosofía",
@@ -53,7 +54,7 @@ export const FIELDS: Field[] = [
     label: "El texto debajo del titular",
     type: "textarea",
     default:
-      "Somos Guille y Laly, un estudio creativo y digital de Camprodon. Creamos fotografía, vídeo, webs y contenido para marcas, turismo, eventos, deporte y bodas.",
+      "Somos Guille y Laly, un estudio creativo y digital en Camprodon. Elige tu universo:",
   },
   {
     key: "home.hero.imageA",
@@ -62,7 +63,7 @@ export const FIELDS: Field[] = [
     help: "Se ve al cargar. Mejor horizontal y de buena calidad.",
     type: "image",
     maxWidth: 2400,
-    default: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2400&auto=format&fit=crop",
+    default: "/images/sport-btt-grupo-montana.jpg",
   },
   {
     key: "home.hero.imageB",
@@ -529,7 +530,11 @@ export const FIELDS: Field[] = [
     label: "Historias",
     help: "Una por renglón, así: Nombre — detalle",
     type: "lines",
-    default: L("Isard Atac Bike — Una carrera de montaña, de la salida a la meta", "Riera Racing — Competición"),
+    default: L(
+      "FEC Camprodon — Patinaje, fútbol y básquet",
+      "Isard Atac Bike — Una carrera de montaña, de la salida a la meta",
+      "Riera Racing — Competición"
+    ),
   },
   ...[
     "/images/sport-btt-grupo-montana.jpg",
@@ -567,6 +572,14 @@ export const FIELDS: Field[] = [
     default: "Conciertos, actos institucionales y eventos públicos.",
   },
   {
+    key: "eventos.clients",
+    section: "Página Eventos",
+    label: "Han confiado en nosotros",
+    help: "Uno por renglón, así: Nombre — detalle",
+    type: "lines",
+    default: L("Microclima — Conciertos", "Ajuntament de Camprodon — Actos institucionales"),
+  },
+  {
     key: "eventos.types",
     section: "Página Eventos",
     label: "Tipos de evento",
@@ -577,6 +590,38 @@ export const FIELDS: Field[] = [
       "Institucionales | Actos, presentaciones y aniversarios.",
       "Eventos públicos y políticos | Mítines, ruedas de prensa y campañas.",
       "Fiestas y ferias | El pueblo, la gente y lo que se queda."
+    ),
+  },
+
+  // --------------------------------------------------------- Página Marcas
+  {
+    key: "marcas.hero.title",
+    section: "Página Marcas",
+    label: "Titular",
+    help: "Una línea por renglón. La última sale en naranja.",
+    type: "lines",
+    default: L("Que tu marca", "se vea.", "Y se recuerde."),
+  },
+  {
+    key: "marcas.hero.sub",
+    section: "Página Marcas",
+    label: "Texto debajo del titular",
+    type: "text",
+    default: "Vídeo, reels, fotografía, webs y redes para marcas y negocios.",
+  },
+  {
+    key: "marcas.brands",
+    section: "Página Marcas",
+    label: "Marcas con las que trabajamos",
+    help: "Una por renglón, así: Nombre — qué hicimos",
+    type: "lines",
+    default: L(
+      "A'BRASA'M — Gastronomía, fuego y oficio",
+      "Els Ocells — Espacios y experiencias",
+      "Bastiments Aventura — Aventura y actividades",
+      "Visit Camprodon — Turismo",
+      "La Tienda de Juli — Diseño y fidelización",
+      "Benpolit — Automoción y detailing"
     ),
   },
 

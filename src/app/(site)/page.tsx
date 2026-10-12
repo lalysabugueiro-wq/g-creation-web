@@ -1,32 +1,22 @@
 import Hero from "@/components/hero/Hero";
-import TwoWorlds from "@/components/sections/TwoWorlds";
-import Philosophy from "@/components/sections/Philosophy";
+import Universes from "@/components/sections/Universes";
 import HowWeWork from "@/components/sections/HowWeWork";
-import WeddingsFeature from "@/components/sections/WeddingsFeature";
-import ServicesCredentials from "@/components/sections/ServicesCredentials";
-import WhyUs from "@/components/sections/WhyUs";
 import About from "@/components/sections/About";
-import Reviews from "@/components/sections/Reviews";
-import Gallery from "@/components/sections/Gallery";
+import Philosophy from "@/components/sections/Philosophy";
 import LocationHours from "@/components/sections/LocationHours";
 import FinalCTA from "@/components/sections/FinalCTA";
 
-// Orden (octubre 2026): primero las tres puertas y qué hace el estudio; el
-// bloque de Weddings va después, para que una marca o un hotel vea sus
-// servicios antes que la novia. Weddings sigue teniendo su puerta arriba.
+// Inicio (Laly, 2026-10-12): poco texto. Portada → los universos con foto para
+// que cada persona entre en lo que necesita → cómo trabajamos → quiénes somos
+// → filosofía → dónde → contacto. Lo detallado vive dentro de cada universo.
 export default function Home() {
   return (
     <main>
       <Hero />
-      <TwoWorlds />
-      <ServicesCredentials />
+      <Universes />
       <HowWeWork />
-      <WeddingsFeature />
-      <WhyUs />
       <About />
       <Philosophy />
-      <Reviews />
-      <Gallery />
       <LocationHours />
       <FinalCTA />
     </main>

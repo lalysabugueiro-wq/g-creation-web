@@ -13,7 +13,7 @@ export default function HowWeWork() {
 
   return (
     <section className="bg-surface px-5 py-24 md:px-12 md:py-32 lg:px-20">
-      <SectionHeading number="02" kicker="Cómo trabajamos" title={t("home.how.title")} />
+      <SectionHeading number="01" kicker="Cómo trabajamos" title={t("home.how.title")} />
 
       <ol className="mt-14 grid gap-px bg-fg/15 sm:grid-cols-2 lg:grid-cols-5">
         {steps.map((step, i) => (

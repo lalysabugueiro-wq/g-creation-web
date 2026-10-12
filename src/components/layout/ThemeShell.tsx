@@ -9,5 +9,8 @@ export default function ThemeShell({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
   const weddings = pathname.startsWith("/bodas");
   const live = pathname.startsWith("/eventos");
-  return <div className={weddings ? "theme-wed" : live ? "theme-live" : undefined}>{children}</div>;
+  const brand = pathname.startsWith("/marcas");
+  return (
+    <div className={weddings ? "theme-wed" : live ? "theme-live" : brand ? "theme-brand" : undefined}>{children}</div>
+  );
 }

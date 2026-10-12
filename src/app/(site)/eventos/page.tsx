@@ -41,6 +41,10 @@ export default async function EventosPage() {
       .map((l) => l.trim())
       .filter(Boolean);
   const title = lines("eventos.hero.title");
+  const clients = lines("eventos.clients").map((l) => {
+    const [name, ...rest] = l.split(/\s+[—–-]\s+/);
+    return { name: name.trim(), detail: rest.join(" ").trim() };
+  });
   const types = lines("eventos.types").map((l) => {
     const [name, ...rest] = l.split(/\s*\|\s*/);
     return { name: name.trim(), detail: rest.join(" ").trim() };
@@ -122,8 +126,25 @@ export default async function EventosPage() {
         </div>
       </section>
 
+      {/* Clientes */}
+      {clients.length > 0 && (
+        <section className="border-t border-fg/15 px-5 py-20 md:px-12 md:py-24 lg:px-20">
+          <Reveal>
+            <p className="slate mb-6 text-muted">Han confiado en nosotros</p>
+            <ul className="divide-y divide-fg/15 border-y border-fg/15">
+              {clients.map((c) => (
+                <li key={c.name} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-6">
+                  <p className="poster text-[clamp(1.8rem,3.2vw,2.6rem)]">{c.name}</p>
+                  {c.detail && <p className="text-muted">{c.detail}</p>}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </section>
+      )}
+
       {/* En una línea */}
-      <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
+      <section className="px-5 py-24 md:px-12 md:py-32 lg:px-20">
         <Reveal>
           <p className="poster max-w-5xl text-[clamp(2rem,5vw,4.4rem)]">
             Stories mientras pasa. <span className="text-accent">Resumen cuando termina.</span>

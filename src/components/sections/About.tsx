@@ -18,7 +18,7 @@ export default function About() {
   return (
     <section id="estudio" className="px-5 py-24 md:px-12 md:py-36 lg:px-20">
       <SectionHeading
-        number="03"
+        number="02"
         kicker="Quiénes somos"
         title={
           <>

@@ -188,3 +188,14 @@ html.lenis body {
   background: var(--color-bg);
   color: var(--color-fg);
 }
+
+/* Universo Marcas: papel claro, tinta negra y el naranja del estudio. */
+.theme-brand {
+  --color-bg: #f4f2ee;
+  --color-surface: #e9e6df;
+  --color-fg: #0b0b0c;
+  --color-paper: #0b0b0c;
+  --color-muted: #6b6862;
+  background: var(--color-bg);
+  color: var(--color-fg);
+}

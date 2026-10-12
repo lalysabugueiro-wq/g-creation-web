@@ -16,7 +16,7 @@ export default function LocationHours() {
   return (
     <section id="donde" className="px-5 py-24 md:px-12 md:py-36 lg:px-20">
       <SectionHeading
-        number="05"
+        number="03"
         kicker="Dónde"
         title={
           <>
