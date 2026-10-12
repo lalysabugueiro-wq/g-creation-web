@@ -14,7 +14,7 @@ import { useContent } from "@/components/content/ContentProvider";
 type Contact = "mail" | "telefono" | "whatsapp";
 const CONTACT_LABEL: Record<Contact, string> = { mail: "Email", telefono: "Teléfono", whatsapp: "WhatsApp" };
 
-export default function ContactForm({ initialArea }: { initialArea?: string }) {
+export default function ContactForm({ initialArea, budget = false }: { initialArea?: string; budget?: boolean }) {
   const C = useContent().contact;
   const startArea = areas.find((a) => a.id === (initialArea ?? "marcas")) ?? areas[0];
   const [form, setForm] = useState({
@@ -55,7 +55,7 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
       phone: form.phone.trim() || "No indicado",
       message: form.message,
       reason: area.name,
-      projectFormat: form.projectFormat,
+      projectFormat: budget ? `${form.projectFormat} · Pide presupuesto` : form.projectFormat,
       eventDate: form.eventDate,
       location: form.location,
       preferredContact: form.preferredContact,
@@ -67,7 +67,7 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
   };
 
   const brief = [
-    `Hola G-creatiON, soy ${form.name}.`,
+    `Hola G-creatiON, soy ${form.name}.${budget ? " Quiero pedir presupuesto." : ""}`,
     `Área: ${area.name} · Formato: ${form.projectFormat}`,
     form.eventDate ? `Cuándo: ${form.eventDate}` : null,
     form.location ? `Dónde: ${form.location}` : null,
@@ -118,6 +118,15 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
 
   return (
     <form onSubmit={submit} className="space-y-10">
+      {budget && (
+        <div className="border-l-2 border-accent pl-5">
+          <p className="slate text-accent">Pedir presupuesto</p>
+          <p className="mt-2 max-w-md leading-relaxed text-muted">
+            Cuéntanos qué necesitas, cuándo y dónde. Te respondemos con una propuesta: qué vamos a producir, cómo lo
+            vamos a contar y su presupuesto. Sin compromiso.
+          </p>
+        </div>
+      )}
       <fieldset>
         <legend className={label}>¿Qué quieres contar?</legend>
         <div className="grid gap-2 sm:grid-cols-2">
@@ -270,7 +279,7 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
         disabled={sending}
         className="slate group inline-flex items-center gap-3 bg-accent px-8 py-5 text-bg transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
       >
-        {sending ? "Enviando…" : "Enviar"}
+        {sending ? "Enviando…" : budget ? "Pedir presupuesto" : "Enviar"}
         <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
       </button>
     </form>

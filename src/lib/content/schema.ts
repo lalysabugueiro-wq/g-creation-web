@@ -455,16 +455,17 @@ export const FIELDS: Field[] = [
     section: "Página Sport",
     label: "Texto debajo del titular",
     type: "textarea",
-    default: "La preparación, la salida, la montaña, la llegada. Y lo que se siente cuando todo termina.",
+    default:
+      "Golf, bici, patinaje, básquet, fútbol, carreras. La preparación, el gesto, el equipo, la llegada. Y lo que se siente cuando todo termina.",
   },
   {
     key: "sport.hero.image",
     section: "Página Sport",
     label: "Foto de portada",
-    help: "Mejor horizontal, con acción o dron. Si está vacía, la portada se ve solo con tipografía.",
+    help: "Mejor horizontal, con acción o dron. Si la quitas, la portada se ve en naranja solo con tipografía.",
     type: "image",
     maxWidth: 2400,
-    default: "",
+    default: "/images/sport-celebracion-equipo.jpg",
   },
   {
     key: "sport.statement",
@@ -472,7 +473,7 @@ export const FIELDS: Field[] = [
     label: "Frase grande",
     help: "Dos renglones. El segundo sale en naranja.",
     type: "lines",
-    default: L("Una carrera dura unas horas.", "Lo que se vivió, mucho más."),
+    default: L("Un partido, una carrera, una exhibición.", "Lo que se vivió dura mucho más."),
   },
   {
     key: "sport.moments",
@@ -482,12 +483,12 @@ export const FIELDS: Field[] = [
     type: "lines",
     default: L(
       "La preparación",
-      "Los nervios de la salida",
+      "Los nervios antes de empezar",
+      "El gesto técnico",
       "El esfuerzo",
-      "La montaña",
-      "El barro",
-      "La llegada",
       "El equipo",
+      "La caída y la vuelta",
+      "La llegada",
       "La gente que anima"
     ),
   },
@@ -497,7 +498,7 @@ export const FIELDS: Field[] = [
     label: "Cómo lo contamos",
     type: "textarea",
     default:
-      "El dron no está para hacer paisajes bonitos: está para mostrar la escala del recorrido y lo pequeño que se ve un corredor frente a la montaña. Desde el suelo buscamos lo que no se ve desde arriba: la cara, las manos, el abrazo en meta.",
+      "Buscamos el instante que define el deporte: el swing, el salto, el balón que sale del pie, el abrazo en meta. Y cuando hay recorrido, el dron no está para hacer paisajes bonitos: está para mostrar la escala y lo pequeño que se ve un corredor frente a la montaña.",
   },
   {
     key: "sport.live",
@@ -505,7 +506,7 @@ export const FIELDS: Field[] = [
     label: "Durante y después",
     type: "textarea",
     default:
-      "Mantenemos viva la prueba mientras ocurre, con stories, reels y fotos para los participantes, y la cerramos con un resumen que se queda.",
+      "Mantenemos viva la competición mientras ocurre, con stories, reels y fotos para participantes, clubes y patrocinadores, y la cerramos con un resumen que se queda.",
   },
   {
     key: "sport.for",
@@ -513,7 +514,13 @@ export const FIELDS: Field[] = [
     label: "Para quién",
     help: "Uno por renglón.",
     type: "lines",
-    default: L("Carreras y pruebas de montaña", "Clubes y equipos", "Marcas deportivas", "Competición de motor"),
+    default: L(
+      "Clubes y escuelas deportivas",
+      "Torneos y competiciones",
+      "Carreras de montaña, BTT y trail",
+      "Marcas y patrocinadores",
+      "Deportistas"
+    ),
   },
   {
     key: "sport.stories",
@@ -523,18 +530,24 @@ export const FIELDS: Field[] = [
     type: "lines",
     default: L("Isard Atac Bike — Una carrera de montaña, de la salida a la meta", "Riera Racing — Competición"),
   },
-  ...[1, 2, 3, 4].map(
-    (n): Field => ({
-      key: `sport.gallery.${n}`,
+  ...[
+    "/images/sport-btt-grupo-montana.jpg",
+    "/images/sport-patinaje-trio.jpg",
+    "/images/sport-golf-buggies.jpg",
+    "/images/sport-ebike.jpg",
+    "/images/sport-bici-pueblo.jpg",
+  ].map(
+    (src, i): Field => ({
+      key: `sport.gallery.${i + 1}`,
       section: "Página Sport",
-      label: `Foto de la galería ${n}`,
-      help: "Opcional. Las fotos vacías no se muestran.",
+      label: `Foto de la galería ${i + 1}`,
+      help: "Las fotos vacías no se muestran.",
       type: "image",
       maxWidth: 1800,
-      default: "",
+      default: src,
     })
   ),
-  { key: "sport.cta", section: "Página Sport", label: "Pregunta final", type: "text", default: "¿Qué prueba tenemos que contar?" },
+  { key: "sport.cta", section: "Página Sport", label: "Pregunta final", type: "text", default: "¿Qué partido, carrera o torneo tenemos que contar?" },
 
   // ------------------------------------------------------- Textos legales
   {

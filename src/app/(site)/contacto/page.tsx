@@ -8,8 +8,10 @@ import ContactForm from "@/components/booking/ContactForm";
 import { useContent } from "@/components/content/ContentProvider";
 
 function FormWithArea() {
-  const area = useSearchParams().get("area") ?? undefined;
-  return <ContactForm key={area} initialArea={area} />;
+  const params = useSearchParams();
+  const area = params.get("area") ?? undefined;
+  const budget = params.get("motivo") === "presupuesto";
+  return <ContactForm key={`${area}-${budget}`} initialArea={area} budget={budget} />;
 }
 
 export default function ContactoPage() {

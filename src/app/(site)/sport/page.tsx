@@ -2,19 +2,33 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
+import BudgetCTA from "@/components/sections/BudgetCTA";
 import { getSiteContent } from "@/lib/content/get";
 
 export const metadata: Metadata = {
-  title: "G-creatiON Sport — Fotografía, vídeo y dron para carreras y deporte · Pirineo",
+  title: "G-creatiON Sport — Fotografía y vídeo deportivo · Pirineo y Catalunya",
   description:
-    "Contamos la preparación, la salida, el esfuerzo y la llegada. Fotografía, vídeo, dron y cobertura en directo para carreras de montaña, clubes, marcas deportivas y competición.",
+    "Fotografía, vídeo, dron y cobertura en directo para clubes, torneos y carreras: golf, BTT, patinaje, básquet, fútbol, trail y obstáculos. Pide presupuesto.",
+  openGraph: {
+    title: "G-creatiON Sport",
+    description: "El esfuerzo también merece ser contado.",
+    images: [{ url: "/images/sport-celebracion-equipo.jpg", alt: "Equipo celebrando tras una carrera de obstáculos" }],
+  },
 };
 
-// Universo Sport (Laly, 2026-10-12): igual que Weddings tiene su página, el
-// deporte tiene la suya. Identidad: el naranja del estudio "a sangre", ritmo
-// de carrera (km, salida, meta) y Anton grande. Todo el texto y las fotos son
-// editables desde /admin/contenido → "Página Sport". Sin fotos, la página se
-// sostiene solo con tipografía (nada de imágenes de stock).
+// Universo Sport (Laly, 2026-10-12): todos los deportes, no solo montaña.
+// Identidad: el naranja del estudio "a sangre", ritmo de competición y Anton
+// grande. Textos y fotos de portada/galería editables en /admin/contenido →
+// "Página Sport". Las disciplinas usan fotos reales de G-creatiON.
+const DISCIPLINES = [
+  { name: "Golf", src: "/images/sport-golf-swing.jpg", alt: "Golfista en pleno swing con el Pirineo detrás" },
+  { name: "BTT & bici", src: "/images/sport-btt-sendero.jpg", alt: "Ciclista de BTT bajando por un sendero entre árboles" },
+  { name: "Patinaje", src: "/images/sport-patinaje-pareja.jpg", alt: "Dos patinadoras haciendo una figura en el pabellón" },
+  { name: "Básquet", src: "/images/sport-basquet.jpg", alt: "Jugador sujetando un balón de básquet" },
+  { name: "Fútbol", src: "/images/sport-futbol.jpg", alt: "Detalle de botas y balón en un partido de fútbol" },
+  { name: "Carreras & obstáculos", src: "/images/sport-obstaculos.jpg", alt: "Corredor colgado de las anillas en una carrera de obstáculos" },
+];
+
 export default async function SportPage() {
   const content = await getSiteContent();
   const t = (k: string) => content[k] ?? "";
@@ -33,7 +47,7 @@ export default async function SportPage() {
     return { name: name.trim(), detail: rest.join(" ").trim() };
   });
   const heroImage = t("sport.hero.image");
-  const gallery = [1, 2, 3, 4].map((n) => t(`sport.gallery.${n}`)).filter(Boolean);
+  const gallery = [1, 2, 3, 4, 5].map((n) => t(`sport.gallery.${n}`)).filter(Boolean);
 
   return (
     <main>
@@ -45,8 +59,15 @@ export default async function SportPage() {
       >
         {heroImage && (
           <>
-            <Image src={heroImage} alt="" fill priority sizes="100vw" className="kenburns object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/10" />
+            <Image
+              src={heroImage}
+              alt="Equipo celebrando al terminar la prueba"
+              fill
+              priority
+              sizes="100vw"
+              className="kenburns object-cover object-[center_30%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/55 to-bg/20" />
           </>
         )}
         <div className="relative z-10">
@@ -75,29 +96,26 @@ export default async function SportPage() {
               </p>
               <div className="flex flex-wrap items-center gap-4 md:col-span-6 md:justify-end">
                 <Link
-                  href="/contacto?area=sport"
+                  href="/contacto?area=sport&motivo=presupuesto"
                   className={`slate group inline-flex items-center gap-3 px-7 py-4 transition-transform duration-300 hover:-translate-y-0.5 ${
                     heroImage ? "bg-accent text-bg" : "bg-bg text-fg"
                   }`}
                 >
-                  Cuéntanos tu prueba
+                  Pedir presupuesto
                   <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
-                <a href="#historias" className="slate link-quiet">
-                  Ver historias
+                <a href="#disciplinas" className="slate link-quiet">
+                  Ver deportes
                 </a>
               </div>
             </div>
           </Reveal>
         </div>
 
-        {/* Tira de tiempos, como un dorsal / cronometraje */}
-        <div
-          aria-hidden
-          className={`slate relative z-10 mt-14 flex justify-between ${heroImage ? "text-muted" : "text-bg/60"}`}
-        >
-          <span>Km 0 · Salida</span>
-          <span className="hidden sm:inline">Avituallamiento</span>
+        {/* Tira de tiempos, como un cronometraje */}
+        <div aria-hidden className={`slate relative z-10 mt-14 flex justify-between ${heroImage ? "text-muted" : "text-bg/60"}`}>
+          <span>00:00 · Salida</span>
+          <span className="hidden sm:inline">Juego</span>
           <span>Meta</span>
         </div>
       </section>
@@ -119,13 +137,62 @@ export default async function SportPage() {
         </section>
       )}
 
+      {/* Deportes que cubrimos */}
+      <section id="disciplinas" className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
+        <Reveal>
+          <p className="slate mb-10 flex items-center gap-3 text-muted">
+            <span className="text-accent">01</span>
+            <span className="h-px w-6 bg-fg/25" />
+            Deportes que contamos
+          </p>
+        </Reveal>
+        <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
+          {DISCIPLINES.map((d, i) => (
+            <li key={d.name}>
+              <Reveal delay={(i % 3) * 0.06}>
+                <figure className="group">
+                  <div className="viewfinder relative aspect-[4/5] overflow-hidden md:aspect-[4/3]">
+                    <Image
+                      src={d.src}
+                      alt={d.alt}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 50vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg/85 to-transparent p-4 pt-16 md:p-6 md:pt-20">
+                      <figcaption className="poster text-[clamp(1.5rem,3vw,2.6rem)]">{d.name}</figcaption>
+                    </div>
+                  </div>
+                </figure>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
+        <Reveal className="mt-8">
+          <p className="max-w-xl text-muted">
+            ¿Tu deporte no está aquí? También lo contamos. Lo que nos importa es la historia, no la disciplina.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Corte a mitad de página: presupuesto */}
+      <BudgetCTA
+        compact
+        area="sport"
+        tone="sport"
+        kicker="Clubes, torneos y carreras"
+        title="¿Tienes una competición a la vista?"
+        text="Cuéntanos qué deporte, cuándo y dónde. Te preparamos una propuesta con lo que vamos a producir y su presupuesto, sin compromiso."
+        whatsappText="Hola G-creatiON, quiero pedir presupuesto para cubrir un evento deportivo. Deporte: … Fecha: … Lugar: …"
+      />
+
       {/* Lo que contamos: el recorrido */}
       <section className="bg-surface px-5 py-24 md:px-12 md:py-32 lg:px-20">
         <div className="grid gap-12 md:grid-cols-12 md:gap-8">
           <Reveal className="md:col-span-4">
-            <p className="slate mb-6 text-accent">Lo que contamos</p>
+            <p className="slate mb-6 text-accent">02 · Lo que contamos</p>
             <p className="poster text-[clamp(2.2rem,4.4vw,3.8rem)]">
-              De la salida <span className="text-accent">a la meta.</span>
+              Del calentamiento <span className="text-accent">a la meta.</span>
             </p>
           </Reveal>
           <ol className="md:col-span-7 md:col-start-6">
@@ -133,7 +200,7 @@ export default async function SportPage() {
               <li key={m} className="border-t border-fg/15 last:border-b">
                 <Reveal delay={i * 0.04}>
                   <div className="flex items-baseline gap-6 py-5">
-                    <span className="slate w-14 shrink-0 text-accent">CP {String(i + 1).padStart(2, "0")}</span>
+                    <span className="slate w-14 shrink-0 text-accent">{String(i + 1).padStart(2, "0")}</span>
                     <span className="poster text-[clamp(1.6rem,3vw,2.4rem)]">{m}</span>
                   </div>
                 </Reveal>
@@ -147,7 +214,7 @@ export default async function SportPage() {
       <section className="px-5 py-24 md:px-12 md:py-32 lg:px-20">
         <div className="grid gap-px bg-fg/15 md:grid-cols-2">
           <Reveal className="bg-bg p-8 md:p-12">
-            <p className="slate mb-6 text-accent">Desde arriba y desde el suelo</p>
+            <p className="slate mb-6 text-accent">El instante</p>
             <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">{t("sport.how")}</p>
           </Reveal>
           <Reveal delay={0.08} className="bg-bg p-8 md:p-12">
@@ -157,17 +224,27 @@ export default async function SportPage() {
         </div>
       </section>
 
-      {/* Galería (solo si hay fotos subidas) */}
+      {/* Galería */}
       {gallery.length > 0 && (
         <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
-          <div className="grid gap-4 md:grid-cols-2 md:gap-6">
-            {gallery.map((src, i) => (
-              <Reveal key={src} delay={i * 0.05} className={i === 0 && gallery.length % 2 === 1 ? "md:col-span-2" : ""}>
-                <div className={`viewfinder relative overflow-hidden ${i === 0 && gallery.length % 2 === 1 ? "aspect-[21/9]" : "aspect-[4/3]"}`}>
-                  <Image src={src} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-                </div>
-              </Reveal>
-            ))}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-6 md:gap-5">
+            {gallery.map((src, i) => {
+              // Ritmo: una ancha, dos medianas, repetir.
+              const wide = i % 3 === 0;
+              return (
+                <Reveal key={src} delay={(i % 3) * 0.05} className={wide ? "col-span-2 md:col-span-4" : "md:col-span-2"}>
+                  <div className={`viewfinder relative overflow-hidden ${wide ? "aspect-[16/10]" : "aspect-[3/4]"}`}>
+                    <Image
+                      src={src}
+                      alt="Fotografía deportiva de G-creatiON"
+                      fill
+                      sizes={wide ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 50vw"}
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </section>
       )}
@@ -199,23 +276,15 @@ export default async function SportPage() {
         </div>
       </section>
 
-      {/* Cierre */}
-      <section className="grain relative overflow-hidden bg-accent px-5 py-24 text-bg md:px-12 md:py-36 lg:px-20">
-        <div className="relative z-10">
-          <Reveal>
-            <h2 className="poster max-w-[14ch] text-[clamp(3rem,9vw,8rem)]">{t("sport.cta")}</h2>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <Link
-              href="/contacto?area=sport"
-              className="slate group mt-12 inline-flex items-center gap-3 bg-bg px-8 py-5 text-fg transition-transform duration-300 hover:-translate-y-0.5"
-            >
-              Cuéntanos tu prueba
-              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
+      {/* Cierre: presupuesto */}
+      <BudgetCTA
+        area="sport"
+        tone="sport"
+        kicker="Pide presupuesto"
+        title={t("sport.cta")}
+        text="Clubes, escuelas, torneos, carreras o marcas deportivas: cuéntanos qué tienes entre manos y te respondemos con una propuesta."
+        whatsappText="Hola G-creatiON, quiero pedir presupuesto para cubrir un evento deportivo. Deporte: … Fecha: … Lugar: …"
+      />
     </main>
   );
 }

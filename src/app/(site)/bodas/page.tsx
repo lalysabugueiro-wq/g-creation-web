@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
+import BudgetCTA from "@/components/sections/BudgetCTA";
 import { weddingDetails, weddings } from "@/lib/mock/seed";
 import { getSiteContent } from "@/lib/content/get";
 
@@ -20,6 +21,20 @@ export const metadata: Metadata = {
 // Garamond, ritmo lento, fundidos de 1.2s. Todo el contenido sale de
 // investigacion.md — bodas reales, entregables reales, fotos reales.
 const STYLE = ["Natural", "Emocional", "Cinematográfico", "Espontáneo"];
+
+// Fotogramas en blanco y negro (fotos nuevas de Guille, 2026-10-12).
+// `tall` = vertical; el resto horizontales. Orden pensado como un día de boda.
+const FRAMES = [
+  { src: "/images/boda-novio-perfume-bn.jpg", alt: "El novio se pone perfume antes de la ceremonia", tall: true },
+  { src: "/images/boda-novio-padrinos-bn.jpg", alt: "El novio con sus padrinos, todos de traje", tall: false },
+  { src: "/images/boda-zapatos-bn.jpg", alt: "Los zapatos del novio en sus manos", tall: true },
+  { src: "/images/boda-miradas-bn.jpg", alt: "Los novios se miran frente a frente", tall: false },
+  { src: "/images/boda-anillos-bn.jpg", alt: "Las alianzas sobre la mesa junto al ramo", tall: false },
+  { src: "/images/boda-beso-frente-bn.jpg", alt: "El novio besa la frente de la novia", tall: false },
+  { src: "/images/boda-invitado-risa-bn.jpg", alt: "Un invitado se ríe con gafas de sol durante la ceremonia", tall: false },
+  { src: "/images/boda-baile-pareja-bn.jpg", alt: "Los novios bailan y se sonríen", tall: true },
+  { src: "/images/boda-novio-ventana-bn.jpg", alt: "El novio junto a la ventana, mirando hacia abajo", tall: true },
+];
 
 export default async function BodasPage() {
   // Textos editables desde /admin/contenido (sección "Página Weddings").
@@ -48,10 +63,10 @@ export default async function BodasPage() {
             <Reveal slow delay={0.35}>
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link
-                  href="/contacto?area=bodas"
+                  href="/contacto?area=bodas&motivo=presupuesto"
                   className="slate bg-accent px-7 py-4 text-bg transition-opacity duration-500 hover:opacity-90"
                 >
-                  Contadnos vuestra boda
+                  Pedir presupuesto
                 </Link>
                 <a href="#historias" className="slate link-quiet text-muted">
                   Ver historias reales
@@ -161,6 +176,39 @@ export default async function BodasPage() {
         </div>
       </section>
 
+      {/* Fotogramas en blanco y negro */}
+      <section className="px-5 py-24 md:px-12 md:py-36 lg:px-20">
+        <Reveal slow>
+          <p className="slate mb-4 text-accent">Fotogramas</p>
+          <h2 className="max-w-3xl font-serif text-[clamp(2.2rem,4.6vw,4rem)] leading-[1.05]">
+            Lo que pasa demasiado rápido, <em className="text-accent">en blanco y negro.</em>
+          </h2>
+        </Reveal>
+        <div className="mt-14 columns-2 gap-3 md:columns-3 md:gap-5 [&>*]:mb-3 md:[&>*]:mb-5">
+          {FRAMES.map((f, i) => (
+            <Reveal key={f.src} slow delay={(i % 3) * 0.08} className="break-inside-avoid">
+              <div className={`relative overflow-hidden ${f.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
+                <Image src={f.src} alt={f.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <BudgetCTA
+        compact
+        area="bodas"
+        tone="wedding"
+        kicker="¿Ya tenéis fecha?"
+        title={
+          <>
+            Contadnos vuestra boda <em className="text-accent">y os enviamos una propuesta.</em>
+          </>
+        }
+        text="Fecha, lugar y cómo os imagináis el día. Os respondemos con una propuesta y su presupuesto, sin compromiso."
+        whatsappText="Hola G-creatiON, nos casamos y queremos pedir presupuesto. Fecha: … Lugar: …"
+      />
+
       {/* Historias reales */}
       <section id="historias" className="px-5 py-24 md:px-12 md:py-36 lg:px-20">
         <Reveal slow>
@@ -247,12 +295,24 @@ export default async function BodasPage() {
           <p className="mx-auto mt-6 max-w-lg text-muted">
             Trabajamos en toda Catalunya y nos desplazamos allí donde nos lleve vuestra boda — como a Beaucaire.
           </p>
-          <Link
-            href="/contacto?area=bodas"
-            className="slate mt-10 inline-flex bg-accent px-8 py-4 text-bg transition-opacity duration-500 hover:opacity-90"
-          >
-            Contadnos vuestra boda
-          </Link>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/contacto?area=bodas&motivo=presupuesto"
+              className="slate inline-flex bg-accent px-8 py-4 text-bg transition-opacity duration-500 hover:opacity-90"
+            >
+              Pedir presupuesto
+            </Link>
+            <a
+              href={`https://wa.me/${t("contact.whatsapp").replace(/\D/g, "")}?text=${encodeURIComponent(
+                "Hola G-creatiON, nos casamos y queremos pedir presupuesto."
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+              className="slate inline-flex border border-fg/30 px-8 py-4 transition-colors duration-500 hover:border-accent hover:text-accent"
+            >
+              Escribir por WhatsApp
+            </a>
+          </div>
         </Reveal>
       </section>
     </main>
