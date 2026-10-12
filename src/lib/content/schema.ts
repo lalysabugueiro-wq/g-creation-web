@@ -26,6 +26,8 @@ export const SECTIONS = [
   "Qué hacemos",
   "Cómo trabajamos",
   "Cifras",
+  "Página Sport",
+  "Textos legales",
   "Quiénes somos",
   "Filosofía",
   "Galería",
@@ -50,7 +52,7 @@ export const FIELDS: Field[] = [
     label: "El texto debajo del titular",
     type: "textarea",
     default:
-      "Somos Guille y Laly, un estudio creativo y digital de Camprodon. Creamos fotografía, vídeo, webs y contenido para marcas, experiencias, eventos y bodas.",
+      "Somos Guille y Laly, un estudio creativo y digital de Camprodon. Creamos fotografía, vídeo, webs y contenido para marcas, turismo, eventos, deporte y bodas.",
   },
   {
     key: "home.hero.imageA",
@@ -140,7 +142,7 @@ export const FIELDS: Field[] = [
     label: "Lo que hacemos (línea corta)",
     help: "Una palabra o dos por renglón.",
     type: "lines",
-    default: L("Contenido audiovisual", "Fotografía", "Web", "Redes"),
+    default: L("Contenido audiovisual", "Fotografía", "Dron", "Web", "Redes"),
   },
   ...(
     [
@@ -152,8 +154,7 @@ export const FIELDS: Field[] = [
         tags: L("Vídeo", "Fotografía", "Reels", "Campañas", "Dron"),
         cases: L(
           "A'BRASA'M — Gastronomía, producto y marca",
-          "Benpolit — Automoción y detailing",
-          "Riera Racing — Competición"
+          "Benpolit — Automoción y detailing"
         ),
       },
       {
@@ -169,13 +170,29 @@ export const FIELDS: Field[] = [
       {
         id: "eventos",
         name: "Eventos & experiencias",
-        claim: "No documentamos solo lo que pasó. Contamos cómo se vivió.",
-        tags: L("Foto", "Vídeo", "Dron"),
+        claim:
+          "Una fiesta, una feria, una experiencia: contamos el ambiente, a la gente y lo que se queda cuando todo termina.",
+        tags: L("Foto", "Vídeo", "Stories", "Dron"),
         cases: L(
-          "BTT / Isard Atac Bike — Una carrera de montaña contada",
+          "Fira de la Galeta — Un evento local, en directo y después",
           "BBQ Clandestina / A'BRASA'M — Experiencia gastronómica",
           "La Festa dels Jocs / Esplai — Actividades y eventos"
         ),
+      },
+      {
+        id: "sport",
+        name: "G-creatiON Sport",
+        claim: "Contamos la preparación, el esfuerzo, la montaña y la llegada. Lo que se siente cuando todo termina.",
+        tags: L("Foto", "Vídeo", "Dron", "Cobertura en directo"),
+        cases: L("BTT / Isard Atac Bike — Una carrera de montaña, de la salida a la meta", "Riera Racing — Competición"),
+      },
+      {
+        id: "web",
+        name: "Web & presencia digital",
+        claim:
+          "Laly diseña y desarrolla webs que presentan tu negocio con la misma mirada que tus imágenes: claras, rápidas y pensadas para que quien llega entienda qué haces y cómo escribirte. Así lo que producimos no se queda en un reel: tiene un lugar donde vivir.",
+        tags: L("Diseño web", "Desarrollo", "Presencia digital", "Redes"),
+        cases: L("G-creatiON — Esta web también es nuestra"),
       },
     ] as const
   ).flatMap((a): Field[] => [
@@ -193,10 +210,26 @@ export const FIELDS: Field[] = [
   {
     key: "home.areas.bigline",
     section: "Qué hacemos",
-    label: "Frase gigante",
+    label: "Frase gigante (opcional)",
+    help: "Dos renglones. El segundo sale en naranja. Déjalo vacío para no mostrarla.",
+    type: "lines",
+    default: "",
+  },
+  {
+    key: "home.areas.production.title",
+    section: "Qué hacemos",
+    label: "Bloque «cómo cobramos»: titular",
     help: "Dos renglones. El segundo sale en naranja.",
     type: "lines",
-    default: L("No documentamos.", "Hacemos sentir."),
+    default: L("No vendemos horas.", "Producimos historias."),
+  },
+  {
+    key: "home.areas.production.text",
+    section: "Qué hacemos",
+    label: "Bloque «cómo cobramos»: texto",
+    type: "textarea",
+    default:
+      "La pregunta no es cuántas horas vamos a grabar, sino qué necesitas contar. A partir de ahí pensamos la idea, la producción y las piezas que vas a usar, y te proponemos una inversión por proyecto: no por hora de cámara.",
   },
 
   // ------------------------------------------------------ Cómo trabajamos
@@ -229,18 +262,21 @@ export const FIELDS: Field[] = [
     key: "home.highlights",
     section: "Cifras",
     label: "Las cifras",
-    help: "Una por renglón, así: número | explicación",
+    help: "Opcional. Una por renglón, así: número | explicación. Vacío = la sección no se muestra.",
     type: "lines",
-    default: L(
-      "350 | fotos editadas en la boda de Dani & Anderson",
-      "10 h | de cobertura en Beaucaire, Francia",
-      "2 | bodas ya contadas, una de ellas en Francia"
-    ),
+    default: "",
   },
 
   // -------------------------------------------------------- Quiénes somos
   { key: "home.about.subtitle", section: "Quiénes somos", label: "Subtítulo gris", type: "text", default: "Dos miradas, un estudio." },
   { key: "home.about.lead", section: "Quiénes somos", label: "Frase grande", type: "text", default: "Somos Guille y Laly." },
+  {
+    key: "home.about.roles",
+    section: "Quiénes somos",
+    label: "Qué hace cada uno",
+    type: "textarea",
+    default: "Guille pone la mirada detrás de la cámara. Laly diseña el lugar digital donde todo eso vive.",
+  },
   {
     key: "home.about.p1",
     section: "Quiénes somos",
@@ -351,7 +387,7 @@ export const FIELDS: Field[] = [
     label: "Texto de \"Se vuelve memoria\"",
     type: "textarea",
     default:
-      "Eso cambia por completo la forma de producirla. No entregamos simplemente 500 fotos y un vídeo: contamos una historia.",
+      "Eso cambia por completo la forma de producirla. No se trata de cuántas fotos entregamos, sino de que dentro de muchos años podáis volver a ese día.",
   },
   {
     key: "bodas.moments",
@@ -393,7 +429,130 @@ export const FIELDS: Field[] = [
     label: "Dani & Anderson: texto",
     type: "textarea",
     default:
-      "Una producción completa de unas diez horas, con desplazamiento desde Camprodon hasta Beaucaire. Del primer botón de la camisa al último baile.",
+      "Una producción completa, con desplazamiento desde Camprodon hasta Beaucaire. Del primer botón de la camisa al último baile.",
+  },
+
+  {
+    key: "bodas.behind",
+    section: "Página Weddings",
+    label: "«Lo que no se ve»: texto",
+    type: "textarea",
+    default:
+      "Llegamos con lo necesario para no perder nada: varias cámaras para estar en dos sitios a la vez, sonido real para que volváis a oír vuestros votos, dron cuando el lugar lo merece y luz cuando la noche la pide. El equipo está al servicio de la historia, no al revés.",
+  },
+
+  // ---------------------------------------------------------- Página Sport
+  {
+    key: "sport.hero.title",
+    section: "Página Sport",
+    label: "Titular de la página",
+    help: "Una línea por renglón. La última sale en naranja.",
+    type: "lines",
+    default: L("El esfuerzo", "también merece", "ser contado."),
+  },
+  {
+    key: "sport.hero.sub",
+    section: "Página Sport",
+    label: "Texto debajo del titular",
+    type: "textarea",
+    default: "La preparación, la salida, la montaña, la llegada. Y lo que se siente cuando todo termina.",
+  },
+  {
+    key: "sport.hero.image",
+    section: "Página Sport",
+    label: "Foto de portada",
+    help: "Mejor horizontal, con acción o dron. Si está vacía, la portada se ve solo con tipografía.",
+    type: "image",
+    maxWidth: 2400,
+    default: "",
+  },
+  {
+    key: "sport.statement",
+    section: "Página Sport",
+    label: "Frase grande",
+    help: "Dos renglones. El segundo sale en naranja.",
+    type: "lines",
+    default: L("Una carrera dura unas horas.", "Lo que se vivió, mucho más."),
+  },
+  {
+    key: "sport.moments",
+    section: "Página Sport",
+    label: "Lo que contamos",
+    help: "Uno por renglón.",
+    type: "lines",
+    default: L(
+      "La preparación",
+      "Los nervios de la salida",
+      "El esfuerzo",
+      "La montaña",
+      "El barro",
+      "La llegada",
+      "El equipo",
+      "La gente que anima"
+    ),
+  },
+  {
+    key: "sport.how",
+    section: "Página Sport",
+    label: "Cómo lo contamos",
+    type: "textarea",
+    default:
+      "El dron no está para hacer paisajes bonitos: está para mostrar la escala del recorrido y lo pequeño que se ve un corredor frente a la montaña. Desde el suelo buscamos lo que no se ve desde arriba: la cara, las manos, el abrazo en meta.",
+  },
+  {
+    key: "sport.live",
+    section: "Página Sport",
+    label: "Durante y después",
+    type: "textarea",
+    default:
+      "Mantenemos viva la prueba mientras ocurre, con stories, reels y fotos para los participantes, y la cerramos con un resumen que se queda.",
+  },
+  {
+    key: "sport.for",
+    section: "Página Sport",
+    label: "Para quién",
+    help: "Uno por renglón.",
+    type: "lines",
+    default: L("Carreras y pruebas de montaña", "Clubes y equipos", "Marcas deportivas", "Competición de motor"),
+  },
+  {
+    key: "sport.stories",
+    section: "Página Sport",
+    label: "Historias",
+    help: "Una por renglón, así: Nombre — detalle",
+    type: "lines",
+    default: L("Isard Atac Bike — Una carrera de montaña, de la salida a la meta", "Riera Racing — Competición"),
+  },
+  ...[1, 2, 3, 4].map(
+    (n): Field => ({
+      key: `sport.gallery.${n}`,
+      section: "Página Sport",
+      label: `Foto de la galería ${n}`,
+      help: "Opcional. Las fotos vacías no se muestran.",
+      type: "image",
+      maxWidth: 1800,
+      default: "",
+    })
+  ),
+  { key: "sport.cta", section: "Página Sport", label: "Pregunta final", type: "text", default: "¿Qué prueba tenemos que contar?" },
+
+  // ------------------------------------------------------- Textos legales
+  {
+    key: "legal.owner",
+    section: "Textos legales",
+    label: "Titular de la web (nombre y apellidos o empresa)",
+    help: "Obligatorio para el aviso legal.",
+    type: "text",
+    default: "[Nombre del titular]",
+  },
+  { key: "legal.nif", section: "Textos legales", label: "NIF / DNI", type: "text", default: "[NIF]" },
+  { key: "legal.address", section: "Textos legales", label: "Dirección fiscal", type: "text", default: "[Dirección], Camprodon (Girona)" },
+  {
+    key: "legal.email",
+    section: "Textos legales",
+    label: "Email para temas legales y de privacidad",
+    type: "text",
+    default: "guillermo.creation@gmail.com",
   },
 
   // ------------------------------------------------------ Contacto y redes

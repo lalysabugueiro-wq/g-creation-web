@@ -23,12 +23,6 @@ export const openingHours: { day: string; hours: string }[] = [];
 export type Review = { quote: string; author: string; source: string };
 export const reviews: Review[] = [];
 
-// "Por qué elegirnos" — solo datos del blueprint.
-export const BUSINESS_HIGHLIGHTS = [
-  { value: "350", label: "fotos editadas en la boda de Dani & Anderson" },
-  { value: "10 h", label: "de cobertura en Beaucaire, Francia" },
-  { value: "2", label: "bodas ya contadas, una de ellas en Francia" },
-];
 
 // ------------------------------------------------------------ áreas (sección propia)
 
@@ -51,8 +45,8 @@ export const areas: Area[] = [
     claim: "Fotografía, cine, narrativa y emoción. Contamos una boda como una historia.",
     tags: ["Fotografía", "Cine", "Reel", "Dron"],
     cases: [
-      { name: "Judith & Steven", detail: "Nuestra primera boda" },
-      { name: "Dani & Anderson", detail: "Beaucaire, Francia · 10 h de cobertura" },
+      { name: "Judith & Steven", detail: "Fotografía y vídeo emocional" },
+      { name: "Dani & Anderson", detail: "Beaucaire, Francia" },
     ],
   },
   {
@@ -65,7 +59,6 @@ export const areas: Area[] = [
     cases: [
       { name: "A'BRASA'M", detail: "Gastronomía, producto y marca" },
       { name: "Benpolit", detail: "Automoción y detailing" },
-      { name: "Riera Racing", detail: "Competición" },
     ],
   },
   {
@@ -83,13 +76,36 @@ export const areas: Area[] = [
     id: "eventos",
     number: "04",
     name: "Eventos & experiencias",
-    claim: "No documentamos solo lo que pasó. Contamos cómo se vivió.",
-    tags: ["Foto", "Vídeo", "Dron"],
+    claim:
+      "Una fiesta, una feria, una experiencia: contamos el ambiente, a la gente y lo que se queda cuando todo termina.",
+    tags: ["Foto", "Vídeo", "Stories", "Dron"],
     cases: [
-      { name: "BTT / Isard Atac Bike", detail: "Una carrera de montaña contada" },
+      { name: "Fira de la Galeta", detail: "Un evento local, en directo y después" },
       { name: "BBQ Clandestina / A'BRASA'M", detail: "Experiencia gastronómica" },
       { name: "La Festa dels Jocs / Esplai", detail: "Actividades y eventos" },
     ],
+  },
+  {
+    // Universo propio con página aparte (/sport), como Weddings.
+    id: "sport",
+    number: "05",
+    name: "G-creatiON Sport",
+    claim: "Contamos la preparación, el esfuerzo, la montaña y la llegada. Lo que se siente cuando todo termina.",
+    tags: ["Foto", "Vídeo", "Dron", "Cobertura en directo"],
+    cases: [
+      { name: "BTT / Isard Atac Bike", detail: "Una carrera de montaña, de la salida a la meta" },
+      { name: "Riera Racing", detail: "Competición" },
+    ],
+  },
+  {
+    // Área de Laly (blueprint §3: diseño y desarrollo web y presencia digital).
+    id: "web",
+    number: "06",
+    name: "Web & presencia digital",
+    claim:
+      "Laly diseña y desarrolla webs que presentan tu negocio con la misma mirada que tus imágenes: claras, rápidas y pensadas para que quien llega entienda qué haces y cómo escribirte. Así lo que producimos no se queda en un reel: tiene un lugar donde vivir.",
+    tags: ["Diseño web", "Desarrollo", "Presencia digital", "Redes"],
+    cases: [{ name: "G-creatiON", detail: "Esta web también es nuestra" }],
   },
 ];
 
@@ -102,7 +118,7 @@ export const eventStory = [
 
 // Posicionamiento (Laly, 2026-09-23): "Estudio creativo & digital".
 export const POSITIONING = "Estudio creativo & digital";
-export const DISCIPLINES_LINE = ["Contenido audiovisual", "Fotografía", "Web", "Redes"];
+export const DISCIPLINES_LINE = ["Contenido audiovisual", "Fotografía", "Dron", "Web", "Redes"];
 
 // "No vendemos horas de cámara. Vendemos producción."
 export const formats = [
@@ -113,15 +129,6 @@ export const formats = [
   { name: "Bodas", detail: "Experiencias audiovisuales completas." },
 ];
 
-export const gear = [
-  "Cámaras profesionales",
-  "Distintas focales",
-  "Audio profesional",
-  "Micrófonos inalámbricos",
-  "Dron",
-  "Iluminación cuando el proyecto lo pide",
-  "Smartphone como recurso complementario",
-];
 
 // --------------------------------------------------------------------- bodas
 
@@ -141,7 +148,7 @@ export const weddings = [
   {
     id: "judith-steven",
     couple: "Judith & Steven",
-    place: "Nuestra primera boda",
+    place: "Fotografía + vídeo emocional",
     summary:
       "Pensada para combinar fotografía, vídeo emocional y momentos espontáneos. Trabajamos con varias cámaras para no perder ni lo principal ni lo que pasa alrededor.",
     moments: ["Preparativos", "Ceremonia", "Celebración", "Pareja", "Familia", "Fiesta"],
@@ -157,9 +164,9 @@ export const weddings = [
   {
     id: "dani-anderson",
     couple: "Dani & Anderson",
-    place: "Beaucaire, Francia · 10 h de cobertura",
+    place: "Beaucaire, Francia",
     summary:
-      "Una producción completa de unas diez horas, con desplazamiento desde Camprodon hasta Beaucaire. Del primer botón de la camisa al último baile.",
+      "Una producción completa, con desplazamiento desde Camprodon hasta Beaucaire. Del primer botón de la camisa al último baile.",
     moments: [
       "Preparativos",
       "Ceremonia civil",
@@ -172,11 +179,11 @@ export const weddings = [
       "Fiesta",
     ],
     deliverables: [
-      "350 fotografías editadas",
+      "Fotografía de todo el día",
       "Vídeo cinematográfico de 4–6 min",
       "Reel vertical",
       "Dron",
-      "Impresiones instantáneas durante el evento",
+      "Fotos instantáneas durante la fiesta",
     ],
     images: [
       { src: "/images/da-ceremonia-dron.jpg", alt: "Ceremonia al aire libre de Dani y Anderson vista desde el dron" },

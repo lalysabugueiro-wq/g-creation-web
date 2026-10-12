@@ -69,6 +69,11 @@ export default function About() {
           <Reveal>
             <p className="poster text-[clamp(2.4rem,4.6vw,4rem)]">{t("home.about.lead")}</p>
           </Reveal>
+          {t("home.about.roles") && (
+            <Reveal delay={0.03}>
+              <p className="text-xl leading-relaxed text-accent md:text-2xl">{t("home.about.roles")}</p>
+            </Reveal>
+          )}
           <Reveal delay={0.05}>
             <p className="text-xl leading-relaxed md:text-2xl">{t("home.about.p1")}</p>
           </Reveal>

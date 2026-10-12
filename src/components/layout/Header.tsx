@@ -4,11 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Wordmark from "@/components/ui/Wordmark";
+import { useContent } from "@/components/content/ContentProvider";
 
 const NAV = [
   { href: "/#areas", label: "Qué hacemos" },
   { href: "/#estudio", label: "Quiénes somos" },
   { href: "/bodas", label: "Weddings" },
+  { href: "/sport", label: "Sport" },
   { href: "/#donde", label: "Dónde" },
 ];
 
@@ -19,25 +21,39 @@ const NAV_WEDDINGS = [
   { href: "/", label: "G-creatiON estudio" },
 ];
 
+// Sport, igual: su propio menú.
+const NAV_SPORT = [
+  { href: "/sport#historias", label: "Historias" },
+  { href: "/contacto?area=sport", label: "Contacto" },
+  { href: "/", label: "G-creatiON estudio" },
+];
+
 export default function Header() {
   const pathname = usePathname();
   const onWeddings = pathname.startsWith("/bodas");
+  const onSport = pathname.startsWith("/sport");
+  // Sin foto de portada, /sport abre sobre naranja: el header pasa a tinta oscura.
+  const { t } = useContent();
+  const sportOnOrange = onSport && !t("sport.hero.image");
   const [open, setOpen] = useState(false);
-  const nav = onWeddings ? NAV_WEDDINGS : NAV;
+  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : NAV;
+  const ctaHref = onWeddings ? "/contacto?area=bodas" : onSport ? "/contacto?area=sport" : "/contacto";
+  const ctaLabel = onWeddings ? "Contadnos vuestra boda" : onSport ? "Cuéntanos tu prueba" : "Cuéntanos tu idea";
 
   return (
-    <header className="absolute inset-x-0 top-0 z-50 text-fg">
+    <header className={`absolute inset-x-0 top-0 z-50 ${sportOnOrange ? "text-bg" : "text-fg"}`}>
       <div className="flex items-center justify-between gap-6 px-5 py-6 md:px-12 lg:px-20">
         <Link href="/" className="text-2xl md:text-[1.7rem]" onClick={() => setOpen(false)}>
-          <Wordmark />
+          <Wordmark mono={sportOnOrange} />
           {onWeddings && (
             <span className="ml-2 font-serif text-lg normal-case italic tracking-normal text-muted">weddings</span>
           )}
+          {onSport && <span className={`poster ml-2 text-lg ${sportOnOrange ? "" : "text-muted"}`}>sport</span>}
         </Link>
 
-        <nav className="slate hidden items-center gap-9 text-fg/75 lg:flex">
+        <nav className={`slate hidden items-center gap-9 lg:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className="link-quiet hover:text-fg">
+            <Link key={item.href} href={item.href} className={`link-quiet ${sportOnOrange ? "hover:text-bg" : "hover:text-fg"}`}>
               {item.label}
             </Link>
           ))}
@@ -45,18 +61,20 @@ export default function Header() {
 
         <div className="flex items-center gap-4">
           <Link
-            href={onWeddings ? "/contacto?area=bodas" : "/contacto"}
-            className="slate hidden items-center gap-2.5 bg-accent px-5 py-3 text-bg transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
+            href={ctaHref}
+            className={`slate hidden items-center gap-2.5 px-5 py-3 transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex ${
+              sportOnOrange ? "bg-bg text-fg" : "bg-accent text-bg"
+            }`}
           >
-            {!onWeddings && <span className="rec bg-bg!" />}
-            {onWeddings ? "Contadnos vuestra boda" : "Cuéntanos tu idea"}
+            {!onWeddings && <span className={`rec ${sportOnOrange ? "" : "bg-bg!"}`} />}
+            {ctaLabel}
           </Link>
           <button
             type="button"
             aria-expanded={open}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             onClick={() => setOpen((o) => !o)}
-            className="slate border border-fg/25 px-3 py-2.5 lg:hidden"
+            className={`slate border px-3 py-2.5 lg:hidden ${sportOnOrange ? "border-bg/30" : "border-fg/25"}`}
           >
             {open ? "Cerrar" : "Menú"}
           </button>
@@ -64,7 +82,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="mx-5 flex flex-col border border-fg/15 bg-bg lg:hidden">
+        <nav className="mx-5 flex flex-col border border-fg/15 bg-bg text-fg lg:hidden">
           {nav.map((item) => (
             <Link
               key={item.href}
@@ -75,12 +93,8 @@ export default function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href={onWeddings ? "/contacto?area=bodas" : "/contacto"}
-            onClick={() => setOpen(false)}
-            className="slate bg-accent px-5 py-4 text-bg"
-          >
-            {onWeddings ? "Contadnos vuestra boda" : "Cuéntanos tu idea"}
+          <Link href={ctaHref} onClick={() => setOpen(false)} className="slate bg-accent px-5 py-4 text-bg">
+            {ctaLabel}
           </Link>
         </nav>
       )}

@@ -32,6 +32,7 @@ function Dots({ items, className = "" }: { items: string[]; className?: string }
 export default function ServicesCredentials() {
   const { t, lines, pairs } = useContent();
   const big = lines("home.areas.bigline");
+  const prod = lines("home.areas.production.title");
   return (
     <section id="areas" className="px-5 py-24 md:px-12 md:py-36 lg:px-20">
       <SectionHeading
@@ -47,6 +48,7 @@ export default function ServicesCredentials() {
       <ol className="mt-16 md:mt-24">
         {studioAreas.map((area, i) => {
           const isWeddings = area.id === "bodas";
+          const isSport = area.id === "sport";
           const isEvents = area.id === "eventos";
           return (
             <li key={area.id} className="border-t border-fg/15 last:border-b">
@@ -75,10 +77,17 @@ export default function ServicesCredentials() {
                         Entrar en Weddings →
                       </Link>
                     )}
+                    {isSport && (
+                      <Link href="/sport" className="slate link-quiet mt-8 inline-flex items-center gap-3 text-accent">
+                        Entrar en G-creatiON Sport →
+                      </Link>
+                    )}
                   </div>
 
                   <div className="md:col-span-4 md:col-start-9">
-                    <p className="slate mb-4 text-muted">{isWeddings ? "Historias que ya contamos" : "Hemos trabajado con"}</p>
+                    <p className="slate mb-4 text-muted">
+                      {isWeddings || isSport ? "Historias que ya contamos" : "Hemos trabajado con"}
+                    </p>
                     <ul className="space-y-3">
                       {pairs(`area.${area.id}.cases`, /\s+[—–-]\s+/).map(([name, detail]) => (
                         <li key={name}>
@@ -95,31 +104,30 @@ export default function ServicesCredentials() {
         })}
       </ol>
 
-      {/* El hilo conductor: turismo, eventos y bodas dicen lo mismo. */}
-      <Reveal className="mt-24 md:mt-32">
-        <p className="poster text-center text-[clamp(2.8rem,9vw,8rem)]">
-          {big[0]}
-          {big[1] && (
-            <>
-              <br />
-              <span className="text-accent">{big[1]}</span>
-            </>
-          )}
-        </p>
-      </Reveal>
+      {/* Frase gigante opcional (editable; vacía = no se muestra). */}
+      {big.length > 0 && (
+        <Reveal className="mt-24 md:mt-32">
+          <p className="poster text-center text-[clamp(2.8rem,9vw,8rem)]">
+            {big[0]}
+            {big[1] && (
+              <>
+                <br />
+                <span className="text-accent">{big[1]}</span>
+              </>
+            )}
+          </p>
+        </Reveal>
+      )}
 
-      {/* Vendemos producción, no horas */}
+      {/* Producimos historias: se cobra por proyecto, no por hora (blueprint §10). */}
       <div className="mt-24 grid gap-8 border-t border-fg/15 pt-10 md:grid-cols-12">
         <Reveal className="md:col-span-7">
           <p className="poster text-[clamp(2rem,4.4vw,3.6rem)]">
-            No vendemos horas de cámara. <span className="text-accent">Vendemos producción.</span>
+            {prod[0]} {prod[1] && <span className="text-accent">{prod[1]}</span>}
           </p>
         </Reveal>
         <Reveal delay={0.08} className="md:col-span-4 md:col-start-9">
-          <p className="leading-relaxed text-muted">
-            La pregunta no es cuánto cuesta que vengamos a grabar tres horas. Es: necesito contar esto, ¿cómo lo
-            producimos?
-          </p>
+          <p className="leading-relaxed text-muted">{t("home.areas.production.text")}</p>
           <Dots items={formats.map((f) => f.name)} className="mt-6 text-fg/80" />
         </Reveal>
       </div>

@@ -1,0 +1,221 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import Reveal from "@/components/ui/Reveal";
+import { getSiteContent } from "@/lib/content/get";
+
+export const metadata: Metadata = {
+  title: "G-creatiON Sport — Fotografía, vídeo y dron para carreras y deporte · Pirineo",
+  description:
+    "Contamos la preparación, la salida, el esfuerzo y la llegada. Fotografía, vídeo, dron y cobertura en directo para carreras de montaña, clubes, marcas deportivas y competición.",
+};
+
+// Universo Sport (Laly, 2026-10-12): igual que Weddings tiene su página, el
+// deporte tiene la suya. Identidad: el naranja del estudio "a sangre", ritmo
+// de carrera (km, salida, meta) y Anton grande. Todo el texto y las fotos son
+// editables desde /admin/contenido → "Página Sport". Sin fotos, la página se
+// sostiene solo con tipografía (nada de imágenes de stock).
+export default async function SportPage() {
+  const content = await getSiteContent();
+  const t = (k: string) => content[k] ?? "";
+  const lines = (k: string) =>
+    t(k)
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter(Boolean);
+
+  const title = lines("sport.hero.title");
+  const [s1, s2] = lines("sport.statement");
+  const moments = lines("sport.moments");
+  const audiences = lines("sport.for");
+  const stories = lines("sport.stories").map((l) => {
+    const [name, ...rest] = l.split(/\s+[—–-]\s+/);
+    return { name: name.trim(), detail: rest.join(" ").trim() };
+  });
+  const heroImage = t("sport.hero.image");
+  const gallery = [1, 2, 3, 4].map((n) => t(`sport.gallery.${n}`)).filter(Boolean);
+
+  return (
+    <main>
+      {/* Portada */}
+      <section
+        className={`grain relative flex min-h-svh flex-col justify-end overflow-hidden px-5 pb-14 pt-32 md:px-12 md:pb-20 lg:px-20 ${
+          heroImage ? "bg-bg" : "bg-accent text-bg"
+        }`}
+      >
+        {heroImage && (
+          <>
+            <Image src={heroImage} alt="" fill priority sizes="100vw" className="kenburns object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/10" />
+          </>
+        )}
+        <div className="relative z-10">
+          <Reveal>
+            <p className={`slate mb-8 flex items-center gap-3 ${heroImage ? "text-accent" : ""}`}>
+              <span className={`rec ${heroImage ? "" : "bg-bg!"}`} /> G-creatiON Sport
+            </p>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h1 className="poster text-[clamp(3.2rem,11vw,10rem)]">
+              {title.map((l, i) => (
+                <span key={l} className={`block ${i === title.length - 1 && heroImage ? "text-accent" : ""}`}>
+                  {l}
+                </span>
+              ))}
+            </h1>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div
+              className={`mt-10 grid gap-8 border-t pt-8 md:grid-cols-12 md:items-end ${
+                heroImage ? "border-fg/20" : "border-bg/25"
+              }`}
+            >
+              <p className={`max-w-xl text-xl leading-relaxed md:col-span-6 ${heroImage ? "text-fg/85" : "text-bg/85"}`}>
+                {t("sport.hero.sub")}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 md:col-span-6 md:justify-end">
+                <Link
+                  href="/contacto?area=sport"
+                  className={`slate group inline-flex items-center gap-3 px-7 py-4 transition-transform duration-300 hover:-translate-y-0.5 ${
+                    heroImage ? "bg-accent text-bg" : "bg-bg text-fg"
+                  }`}
+                >
+                  Cuéntanos tu prueba
+                  <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </Link>
+                <a href="#historias" className="slate link-quiet">
+                  Ver historias
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Tira de tiempos, como un dorsal / cronometraje */}
+        <div
+          aria-hidden
+          className={`slate relative z-10 mt-14 flex justify-between ${heroImage ? "text-muted" : "text-bg/60"}`}
+        >
+          <span>Km 0 · Salida</span>
+          <span className="hidden sm:inline">Avituallamiento</span>
+          <span>Meta</span>
+        </div>
+      </section>
+
+      {/* Frase grande */}
+      {s1 && (
+        <section className="px-5 py-28 md:px-12 md:py-40 lg:px-20">
+          <Reveal>
+            <p className="poster text-[clamp(2.6rem,8vw,7.5rem)]">
+              {s1}
+              {s2 && (
+                <>
+                  <br />
+                  <span className="text-accent">{s2}</span>
+                </>
+              )}
+            </p>
+          </Reveal>
+        </section>
+      )}
+
+      {/* Lo que contamos: el recorrido */}
+      <section className="bg-surface px-5 py-24 md:px-12 md:py-32 lg:px-20">
+        <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+          <Reveal className="md:col-span-4">
+            <p className="slate mb-6 text-accent">Lo que contamos</p>
+            <p className="poster text-[clamp(2.2rem,4.4vw,3.8rem)]">
+              De la salida <span className="text-accent">a la meta.</span>
+            </p>
+          </Reveal>
+          <ol className="md:col-span-7 md:col-start-6">
+            {moments.map((m, i) => (
+              <li key={m} className="border-t border-fg/15 last:border-b">
+                <Reveal delay={i * 0.04}>
+                  <div className="flex items-baseline gap-6 py-5">
+                    <span className="slate w-14 shrink-0 text-accent">CP {String(i + 1).padStart(2, "0")}</span>
+                    <span className="poster text-[clamp(1.6rem,3vw,2.4rem)]">{m}</span>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Cómo lo contamos */}
+      <section className="px-5 py-24 md:px-12 md:py-32 lg:px-20">
+        <div className="grid gap-px bg-fg/15 md:grid-cols-2">
+          <Reveal className="bg-bg p-8 md:p-12">
+            <p className="slate mb-6 text-accent">Desde arriba y desde el suelo</p>
+            <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">{t("sport.how")}</p>
+          </Reveal>
+          <Reveal delay={0.08} className="bg-bg p-8 md:p-12">
+            <p className="slate mb-6 text-accent">Durante y después</p>
+            <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">{t("sport.live")}</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Galería (solo si hay fotos subidas) */}
+      {gallery.length > 0 && (
+        <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
+          <div className="grid gap-4 md:grid-cols-2 md:gap-6">
+            {gallery.map((src, i) => (
+              <Reveal key={src} delay={i * 0.05} className={i === 0 && gallery.length % 2 === 1 ? "md:col-span-2" : ""}>
+                <div className={`viewfinder relative overflow-hidden ${i === 0 && gallery.length % 2 === 1 ? "aspect-[21/9]" : "aspect-[4/3]"}`}>
+                  <Image src={src} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Para quién + historias */}
+      <section id="historias" className="border-t border-fg/15 px-5 py-24 md:px-12 md:py-32 lg:px-20">
+        <div className="grid gap-16 md:grid-cols-12 md:gap-8">
+          <Reveal className="md:col-span-5">
+            <p className="slate mb-6 text-muted">Para quién</p>
+            <ul className="space-y-2">
+              {audiences.map((a) => (
+                <li key={a} className="poster text-[clamp(1.6rem,2.8vw,2.2rem)]">
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+          <Reveal delay={0.08} className="md:col-span-6 md:col-start-7">
+            <p className="slate mb-6 text-muted">Historias que ya contamos</p>
+            <ul className="divide-y divide-fg/15 border-y border-fg/15">
+              {stories.map((s) => (
+                <li key={s.name} className="py-6">
+                  <p className="poster text-[clamp(1.8rem,3.2vw,2.6rem)]">{s.name}</p>
+                  {s.detail && <p className="mt-2 text-muted">{s.detail}</p>}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Cierre */}
+      <section className="grain relative overflow-hidden bg-accent px-5 py-24 text-bg md:px-12 md:py-36 lg:px-20">
+        <div className="relative z-10">
+          <Reveal>
+            <h2 className="poster max-w-[14ch] text-[clamp(3rem,9vw,8rem)]">{t("sport.cta")}</h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <Link
+              href="/contacto?area=sport"
+              className="slate group mt-12 inline-flex items-center gap-3 bg-bg px-8 py-5 text-fg transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              Cuéntanos tu prueba
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+    </main>
+  );
+}

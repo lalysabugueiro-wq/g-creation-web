@@ -208,7 +208,11 @@ function FieldEditor({
       {field.type === "image" ? (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end">
           <div className="relative aspect-[4/3] w-full overflow-hidden bg-bg sm:w-56">
-            <Image src={current} alt={field.label} fill sizes="224px" className="object-cover" />
+            {current ? (
+              <Image src={current} alt={field.label} fill sizes="224px" className="object-cover" />
+            ) : (
+              <p className="slate absolute inset-0 grid place-items-center text-muted">Sin foto</p>
+            )}
           </div>
           <div className="flex flex-wrap gap-2">
             <label className="slate cursor-pointer bg-accent px-5 py-3 text-bg">
@@ -246,7 +250,7 @@ function FieldEditor({
           <div className="mt-3 flex flex-wrap items-center gap-2">
             <button
               type="button"
-              disabled={!dirty || status?.kind === "busy" || !value.trim()}
+              disabled={!dirty || status?.kind === "busy" || (!value.trim() && field.default !== "")}
               onClick={() => save(value)}
               className="slate bg-accent px-5 py-3 text-bg disabled:opacity-40"
             >

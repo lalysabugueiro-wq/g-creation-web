@@ -2,13 +2,18 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
-import { gear, weddingDetails, weddings } from "@/lib/mock/seed";
+import { weddingDetails, weddings } from "@/lib/mock/seed";
 import { getSiteContent } from "@/lib/content/get";
 
 export const metadata: Metadata = {
   title: "G-creatiON Weddings — Fotografía y cine de boda · Catalunya",
   description:
     "Contamos una boda como una historia: fotografía, cinematografía, narrativa y emoción. Desde Camprodon a toda Catalunya y más allá.",
+  openGraph: {
+    title: "G-creatiON Weddings",
+    description: "No queremos que recuerdes solo cómo se veía tu boda. Queremos que puedas volver a sentir cómo se vivió.",
+    images: [{ url: "/images/js-novios.jpg", alt: "Judith & Steven" }],
+  },
 };
 
 // Sub-marca Weddings (branding.md): paleta piedra + eucalipto, Cormorant
@@ -160,7 +165,7 @@ export default async function BodasPage() {
       <section id="historias" className="px-5 py-24 md:px-12 md:py-36 lg:px-20">
         <Reveal slow>
           <p className="slate mb-4 text-accent">Historias reales</p>
-          <h2 className="font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-none">Dos historias que ya contamos</h2>
+          <h2 className="font-serif text-[clamp(2.4rem,5vw,4.4rem)] leading-none">Historias que ya contamos</h2>
           <p className="mt-6 font-serif text-2xl italic text-muted">Cada boda es diferente. Nuestra forma de contarla también.</p>
         </Reveal>
 
@@ -223,15 +228,11 @@ export default async function BodasPage() {
               contamos con el equipo que haga falta.
             </p>
           </Reveal>
-          <Reveal slow delay={0.1} className="md:col-span-5 md:col-start-8">
-            <p className="slate mb-4 text-muted">Con qué trabajamos</p>
-            <ul className="divide-y divide-rose/50 border-y border-rose/50">
-              {gear.map((g) => (
-                <li key={g} className="py-3 font-serif text-xl">
-                  {g}
-                </li>
-              ))}
-            </ul>
+          <Reveal slow delay={0.1} className="md:col-span-5 md:col-start-8 md:self-center">
+            <p className="slate mb-4 text-muted">Lo que no se ve</p>
+            <p className="border-l border-rose pl-6 font-serif text-[clamp(1.4rem,2.2vw,1.8rem)] leading-snug">
+              {t("bodas.behind")}
+            </p>
           </Reveal>
         </div>
       </section>

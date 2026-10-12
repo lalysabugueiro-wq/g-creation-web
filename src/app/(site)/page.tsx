@@ -11,18 +11,17 @@ import Gallery from "@/components/sections/Gallery";
 import LocationHours from "@/components/sections/LocationHours";
 import FinalCTA from "@/components/sections/FinalCTA";
 
-// La sección propia lee del mock store en vivo ("use client") — así editar
-// un dato en /admin se ve reflejado acá dentro de la misma sesión, sin
-// necesitar props del servidor. El resto del orden es fijo para los 4
-// arquetipos (modulos/03-sitio-base.md).
+// Orden (octubre 2026): primero las tres puertas y qué hace el estudio; el
+// bloque de Weddings va después, para que una marca o un hotel vea sus
+// servicios antes que la novia. Weddings sigue teniendo su puerta arriba.
 export default function Home() {
   return (
     <main>
       <Hero />
       <TwoWorlds />
-      <WeddingsFeature />
       <ServicesCredentials />
       <HowWeWork />
+      <WeddingsFeature />
       <WhyUs />
       <About />
       <Philosophy />

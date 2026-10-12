@@ -6,6 +6,7 @@
 // confirmar, ofrece mandar el mismo brief por WhatsApp — ese canal sí es real.
 // Sin promesas de tiempo de respuesta: G-creatiON no dio ninguna.
 import { useState } from "react";
+import Link from "next/link";
 import { submitInquiry } from "@/lib/inquiries";
 import { areas, formats } from "@/lib/mock/seed";
 import { useContent } from "@/components/content/ContentProvider";
@@ -18,7 +19,7 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
   const startArea = areas.find((a) => a.id === (initialArea ?? "marcas")) ?? areas[0];
   const [form, setForm] = useState({
     areaId: startArea.id,
-    projectFormat: startArea.id === "bodas" ? "Bodas" : formats[0].name,
+    projectFormat: startArea.id === "bodas" ? "Bodas" : startArea.id === "sport" ? "Coberturas" : formats[0].name,
     eventDate: "",
     location: "",
     name: "",
@@ -27,6 +28,7 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
     message: "",
     preferredContact: "whatsapp" as Contact,
     website: "", // honeypot
+    consent: false,
   });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
@@ -48,7 +50,9 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
     const { ok } = await submitInquiry({
       name: form.name,
       email: form.email,
-      phone: form.phone,
+      // La tabla exige teléfono; si no lo dejan, se guarda así (ver
+      // supabase/migrations/0002_telefono_opcional.sql para quitar la exigencia).
+      phone: form.phone.trim() || "No indicado",
       message: form.message,
       reason: area.name,
       projectFormat: form.projectFormat,
@@ -200,8 +204,10 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
           <input type="email" required autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} className={input} />
         </label>
         <label className="block">
-          <span className={label}>Teléfono</span>
-          <input type="tel" required autoComplete="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} className={input} />
+          <span className={label}>
+            Teléfono <span className="normal-case tracking-normal opacity-70">(opcional)</span>
+          </span>
+          <input type="tel" autoComplete="tel" value={form.phone} onChange={(e) => set("phone", e.target.value)} className={input} />
         </label>
       </div>
 
@@ -227,6 +233,23 @@ export default function ContactForm({ initialArea }: { initialArea?: string }) {
           ))}
         </div>
       </fieldset>
+
+      <label className="flex items-start gap-3 text-sm leading-relaxed text-muted">
+        <input
+          type="checkbox"
+          required
+          checked={form.consent}
+          onChange={(e) => set("consent", e.target.checked)}
+          className="mt-1 h-4 w-4 shrink-0 accent-[var(--color-accent)]"
+        />
+        <span>
+          He leído la{" "}
+          <Link href="/privacidad" target="_blank" className="underline hover:text-fg">
+            política de privacidad
+          </Link>{" "}
+          y acepto que G-creatiON use estos datos solo para responder a mi consulta.
+        </span>
+      </label>
 
       {failed && (
         <p className="text-sm text-accent">

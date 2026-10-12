@@ -8,7 +8,9 @@ import { BUSINESS_NAME, BUSINESS_TAGLINE } from "@/lib/mock/seed";
 import { useContent } from "@/components/content/ContentProvider";
 
 export default function Footer() {
-  const C = useContent().contact;
+  const { t, contact: C } = useContent();
+  // El crédito de Unsplash solo mientras la portada siga siendo una foto de stock.
+  const heroIsStock = t("home.hero.imageA").includes("unsplash.com");
   return (
     <footer className="border-t border-fg/15 bg-bg text-fg">
       <div className="px-5 py-16 md:px-12 lg:px-20">
@@ -45,12 +47,20 @@ export default function Footer() {
             <Link href="/bodas" className="link-quiet block w-fit text-muted hover:text-fg">
               G-creatiON Weddings
             </Link>
+            <Link href="/sport" className="link-quiet block w-fit text-muted hover:text-fg">
+              G-creatiON Sport
+            </Link>
           </div>
         </div>
 
         <div className="slate mt-16 flex flex-col gap-2 border-t border-fg/10 pt-6 text-muted md:flex-row md:justify-between">
           <p>© {new Date().getFullYear()} {BUSINESS_NAME} · Guille & Laly</p>
-          <p>Fotos: G-creatiON · Imagen de cabecera: Unsplash</p>
+          <nav className="flex flex-wrap gap-x-6 gap-y-2">
+            <Link href="/aviso-legal" className="link-quiet hover:text-fg">Aviso legal</Link>
+            <Link href="/privacidad" className="link-quiet hover:text-fg">Privacidad</Link>
+            <Link href="/cookies" className="link-quiet hover:text-fg">Cookies</Link>
+          </nav>
+          <p>Fotos: G-creatiON{heroIsStock ? " · Imagen de cabecera: Unsplash" : ""}</p>
         </div>
       </div>
     </footer>

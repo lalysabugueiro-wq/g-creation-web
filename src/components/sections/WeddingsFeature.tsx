@@ -48,7 +48,7 @@ export default function WeddingsFeature() {
           </Reveal>
 
           <Reveal slow delay={0.25}>
-            <p className="slate mt-12 mb-2 text-accent">Dos historias que ya contamos</p>
+            <p className="slate mt-12 mb-2 text-accent">Historias que ya contamos</p>
             <ul className="divide-y divide-rose/50 border-y border-rose/50">
               {weddings.map((w) => (
                 <li key={w.id} className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4">
