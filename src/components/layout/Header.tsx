@@ -11,6 +11,7 @@ const NAV = [
   { href: "/#estudio", label: "Quiénes somos" },
   { href: "/bodas", label: "Weddings" },
   { href: "/sport", label: "Sport" },
+  { href: "/eventos", label: "Eventos" },
   { href: "/#donde", label: "Dónde" },
 ];
 
@@ -18,6 +19,13 @@ const NAV = [
 const NAV_WEDDINGS = [
   { href: "/bodas#historias", label: "Historias" },
   { href: "/contacto?area=bodas", label: "Contacto" },
+  { href: "/", label: "G-creatiON estudio" },
+];
+
+// Eventos, igual.
+const NAV_EVENTOS = [
+  { href: "/eventos#fotos", label: "Fotos" },
+  { href: "/contacto?area=eventos", label: "Contacto" },
   { href: "/", label: "G-creatiON estudio" },
 ];
 
@@ -32,16 +40,23 @@ export default function Header() {
   const pathname = usePathname();
   const onWeddings = pathname.startsWith("/bodas");
   const onSport = pathname.startsWith("/sport");
+  const onEventos = pathname.startsWith("/eventos");
   // Sin foto de portada, /sport abre sobre naranja: el header pasa a tinta oscura.
   const { t } = useContent();
   const sportOnOrange = onSport && !t("sport.hero.image");
   const [open, setOpen] = useState(false);
-  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : NAV;
-  const ctaHref = onWeddings ? "/contacto?area=bodas" : onSport ? "/contacto?area=sport" : "/contacto";
-  const ctaLabel = onWeddings ? "Contadnos vuestra boda" : onSport ? "Cuéntanos tu prueba" : "Cuéntanos tu idea";
+  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : onEventos ? NAV_EVENTOS : NAV;
+  const ctaHref = onWeddings
+    ? "/contacto?area=bodas&motivo=presupuesto"
+    : onSport
+      ? "/contacto?area=sport&motivo=presupuesto"
+      : onEventos
+        ? "/contacto?area=eventos&motivo=presupuesto"
+        : "/contacto";
+  const ctaLabel = onWeddings || onSport || onEventos ? "Pedir presupuesto" : "Cuéntanos tu idea";
 
   return (
-    <header className={`absolute inset-x-0 top-0 z-50 ${sportOnOrange ? "text-bg" : "text-fg"}`}>
+    <header className={`absolute inset-x-0 top-0 z-50 ${onWeddings ? "on-photo" : ""} ${sportOnOrange ? "text-bg" : "text-fg"}`}>
       <div className="flex items-center justify-between gap-6 px-5 py-6 md:px-12 lg:px-20">
         <Link href="/" className="text-2xl md:text-[1.7rem]" onClick={() => setOpen(false)}>
           <Wordmark mono={sportOnOrange} />
@@ -49,6 +64,7 @@ export default function Header() {
             <span className="ml-2 font-serif text-lg normal-case italic tracking-normal text-muted">weddings</span>
           )}
           {onSport && <span className={`poster ml-2 text-lg ${sportOnOrange ? "" : "text-muted"}`}>sport</span>}
+          {onEventos && <span className="poster ml-2 text-lg text-muted">eventos</span>}
         </Link>
 
         <nav className={`slate hidden items-center gap-9 lg:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>
@@ -82,7 +98,11 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="mx-5 flex flex-col border border-fg/15 bg-bg text-fg lg:hidden">
+        <nav
+          className={`mx-5 flex flex-col border border-fg/15 lg:hidden ${
+            onWeddings ? "bg-[#1f2420] text-[#f4f2ee]" : "bg-bg text-fg"
+          }`}
+        >
           {nav.map((item) => (
             <Link
               key={item.href}

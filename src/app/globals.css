@@ -171,3 +171,20 @@ html.lenis body {
     animation: none;
   }
 }
+
+/* Header sobre una portada con foto oscura (Weddings, Eventos): texto claro
+ * aunque la página use una paleta clara. */
+.on-photo {
+  --color-fg: #f4f2ee;
+  --color-muted: #d6d3cd;
+}
+
+/* Universo Eventos: escenario, noche, luces frías. Mismo naranja del estudio
+ * como acento para que siga siendo G-creatiON. */
+.theme-live {
+  --color-bg: #0b0a12;
+  --color-surface: #15131f;
+  --color-muted: #a19cb3;
+  background: var(--color-bg);
+  color: var(--color-fg);
+}

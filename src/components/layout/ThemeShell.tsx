@@ -8,5 +8,6 @@ import { usePathname } from "next/navigation";
 export default function ThemeShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const weddings = pathname.startsWith("/bodas");
-  return <div className={weddings ? "theme-wed" : undefined}>{children}</div>;
+  const live = pathname.startsWith("/eventos");
+  return <div className={weddings ? "theme-wed" : live ? "theme-live" : undefined}>{children}</div>;
 }

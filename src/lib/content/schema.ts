@@ -27,6 +27,7 @@ export const SECTIONS = [
   "Cómo trabajamos",
   "Cifras",
   "Página Sport",
+  "Página Eventos",
   "Textos legales",
   "Quiénes somos",
   "Filosofía",
@@ -79,14 +80,14 @@ export const FIELDS: Field[] = [
     section: "Bloque de bodas (portada)",
     label: "Frase grande",
     type: "textarea",
-    default: "No queremos que recuerdes solo cómo se veía tu boda.",
+    default: "No queremos que recordéis solo cómo se veía vuestra boda.",
   },
   {
     key: "home.weddings.titleAccent",
     section: "Bloque de bodas (portada)",
     label: "Continuación en verde (cursiva)",
     type: "textarea",
-    default: "Queremos que puedas volver a sentir cómo se vivió.",
+    default: "Queremos que podáis volver a sentir cómo se vivió.",
   },
   {
     key: "home.weddings.text",
@@ -171,7 +172,7 @@ export const FIELDS: Field[] = [
         id: "eventos",
         name: "Eventos & experiencias",
         claim:
-          "Una fiesta, una feria, una experiencia: contamos el ambiente, a la gente y lo que se queda cuando todo termina.",
+          "Conciertos, actos institucionales, eventos públicos y fiestas: el ambiente, la gente y lo que se queda cuando todo termina.",
         tags: L("Foto", "Vídeo", "Stories", "Dron"),
         cases: L(
           "Fira de la Galeta — Un evento local, en directo y después",
@@ -370,14 +371,14 @@ export const FIELDS: Field[] = [
     section: "Página Weddings",
     label: "Titular de la página",
     type: "textarea",
-    default: "No queremos que recuerdes solo cómo se veía tu boda.",
+    default: "No queremos que recordéis solo cómo se veía vuestra boda.",
   },
   {
     key: "bodas.hero.subtitle",
     section: "Página Weddings",
-    label: "Continuación (verde, cursiva)",
+    label: "Continuación (cursiva)",
     type: "textarea",
-    default: "Queremos que puedas volver a sentir cómo se vivió.",
+    default: "Queremos que podáis volver a sentir cómo se vivió.",
   },
   { key: "bodas.hero.image", section: "Página Weddings", label: "Foto de la portada", type: "image", maxWidth: 1400, default: "/images/js-espejo.jpg" },
   { key: "bodas.hero.caption", section: "Página Weddings", label: "Pie de la foto", type: "text", default: "Judith, minutos antes" },
@@ -456,7 +457,7 @@ export const FIELDS: Field[] = [
     label: "Texto debajo del titular",
     type: "textarea",
     default:
-      "Golf, bici, patinaje, básquet, fútbol, carreras. La preparación, el gesto, el equipo, la llegada. Y lo que se siente cuando todo termina.",
+      "Golf, bici, patinaje, básquet, fútbol, carreras.",
   },
   {
     key: "sport.hero.image",
@@ -548,6 +549,36 @@ export const FIELDS: Field[] = [
     })
   ),
   { key: "sport.cta", section: "Página Sport", label: "Pregunta final", type: "text", default: "¿Qué partido, carrera o torneo tenemos que contar?" },
+
+  // -------------------------------------------------------- Página Eventos
+  {
+    key: "eventos.hero.title",
+    section: "Página Eventos",
+    label: "Titular",
+    help: "Una línea por renglón. La última sale en naranja.",
+    type: "lines",
+    default: L("Pasa una vez.", "Lo contamos", "para siempre."),
+  },
+  {
+    key: "eventos.hero.sub",
+    section: "Página Eventos",
+    label: "Texto debajo del titular",
+    type: "text",
+    default: "Conciertos, actos institucionales y eventos públicos.",
+  },
+  {
+    key: "eventos.types",
+    section: "Página Eventos",
+    label: "Tipos de evento",
+    help: "Uno por renglón, así: Nombre | frase corta",
+    type: "lines",
+    default: L(
+      "Conciertos y festivales | El directo, la luz y el público.",
+      "Institucionales | Actos, presentaciones y aniversarios.",
+      "Eventos públicos y políticos | Mítines, ruedas de prensa y campañas.",
+      "Fiestas y ferias | El pueblo, la gente y lo que se queda."
+    ),
+  },
 
   // ------------------------------------------------------- Textos legales
   {

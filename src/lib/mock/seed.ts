@@ -77,7 +77,7 @@ export const areas: Area[] = [
     number: "04",
     name: "Eventos & experiencias",
     claim:
-      "Una fiesta, una feria, una experiencia: contamos el ambiente, a la gente y lo que se queda cuando todo termina.",
+      "Conciertos, actos institucionales, eventos públicos y fiestas: el ambiente, la gente y lo que se queda cuando todo termina.",
     tags: ["Foto", "Vídeo", "Stories", "Dron"],
     cases: [
       { name: "Fira de la Galeta", detail: "Un evento local, en directo y después" },

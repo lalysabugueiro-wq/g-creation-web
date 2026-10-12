@@ -19,7 +19,7 @@ export default function ContactForm({ initialArea, budget = false }: { initialAr
   const startArea = areas.find((a) => a.id === (initialArea ?? "marcas")) ?? areas[0];
   const [form, setForm] = useState({
     areaId: startArea.id,
-    projectFormat: startArea.id === "bodas" ? "Bodas" : startArea.id === "sport" ? "Coberturas" : formats[0].name,
+    projectFormat: startArea.id === "bodas" ? "Bodas" : startArea.id === "sport" || startArea.id === "eventos" ? "Coberturas" : formats[0].name,
     eventDate: "",
     location: "",
     name: "",

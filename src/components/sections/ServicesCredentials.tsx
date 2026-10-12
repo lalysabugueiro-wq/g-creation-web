@@ -77,6 +77,11 @@ export default function ServicesCredentials() {
                         Entrar en Weddings →
                       </Link>
                     )}
+                    {isEvents && (
+                      <Link href="/eventos" className="slate link-quiet mt-8 inline-flex items-center gap-3 text-accent">
+                        Entrar en Eventos →
+                      </Link>
+                    )}
                     {isSport && (
                       <Link href="/sport" className="slate link-quiet mt-8 inline-flex items-center gap-3 text-accent">
                         Entrar en G-creatiON Sport →

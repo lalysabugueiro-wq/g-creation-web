@@ -40,8 +40,6 @@ export default async function SportPage() {
 
   const title = lines("sport.hero.title");
   const [s1, s2] = lines("sport.statement");
-  const moments = lines("sport.moments");
-  const audiences = lines("sport.for");
   const stories = lines("sport.stories").map((l) => {
     const [name, ...rest] = l.split(/\s+[—–-]\s+/);
     return { name: name.trim(), detail: rest.join(" ").trim() };
@@ -169,9 +167,7 @@ export default async function SportPage() {
           ))}
         </ul>
         <Reveal className="mt-8">
-          <p className="max-w-xl text-muted">
-            ¿Tu deporte no está aquí? También lo contamos. Lo que nos importa es la historia, no la disciplina.
-          </p>
+          <p className="text-muted">¿Tu deporte no está? También lo contamos.</p>
         </Reveal>
       </section>
 
@@ -182,46 +178,17 @@ export default async function SportPage() {
         tone="sport"
         kicker="Clubes, torneos y carreras"
         title="¿Tienes una competición a la vista?"
-        text="Cuéntanos qué deporte, cuándo y dónde. Te preparamos una propuesta con lo que vamos a producir y su presupuesto, sin compromiso."
+        text="Dinos deporte, fecha y lugar. Te enviamos una propuesta sin compromiso."
         whatsappText="Hola G-creatiON, quiero pedir presupuesto para cubrir un evento deportivo. Deporte: … Fecha: … Lugar: …"
       />
 
-      {/* Lo que contamos: el recorrido */}
-      <section className="bg-surface px-5 py-24 md:px-12 md:py-32 lg:px-20">
-        <div className="grid gap-12 md:grid-cols-12 md:gap-8">
-          <Reveal className="md:col-span-4">
-            <p className="slate mb-6 text-accent">02 · Lo que contamos</p>
-            <p className="poster text-[clamp(2.2rem,4.4vw,3.8rem)]">
-              Del calentamiento <span className="text-accent">a la meta.</span>
-            </p>
-          </Reveal>
-          <ol className="md:col-span-7 md:col-start-6">
-            {moments.map((m, i) => (
-              <li key={m} className="border-t border-fg/15 last:border-b">
-                <Reveal delay={i * 0.04}>
-                  <div className="flex items-baseline gap-6 py-5">
-                    <span className="slate w-14 shrink-0 text-accent">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="poster text-[clamp(1.6rem,3vw,2.4rem)]">{m}</span>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* Cómo lo contamos */}
-      <section className="px-5 py-24 md:px-12 md:py-32 lg:px-20">
-        <div className="grid gap-px bg-fg/15 md:grid-cols-2">
-          <Reveal className="bg-bg p-8 md:p-12">
-            <p className="slate mb-6 text-accent">El instante</p>
-            <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">{t("sport.how")}</p>
-          </Reveal>
-          <Reveal delay={0.08} className="bg-bg p-8 md:p-12">
-            <p className="slate mb-6 text-accent">Durante y después</p>
-            <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">{t("sport.live")}</p>
-          </Reveal>
-        </div>
+      {/* Durante y después, en una línea */}
+      <section className="px-5 py-20 md:px-12 md:py-28 lg:px-20">
+        <Reveal>
+          <p className="poster max-w-5xl text-[clamp(2rem,5vw,4.4rem)]">
+            Stories mientras pasa. <span className="text-accent">Resumen cuando termina.</span>
+          </p>
+        </Reveal>
       </section>
 
       {/* Galería */}
@@ -252,17 +219,7 @@ export default async function SportPage() {
       {/* Para quién + historias */}
       <section id="historias" className="border-t border-fg/15 px-5 py-24 md:px-12 md:py-32 lg:px-20">
         <div className="grid gap-16 md:grid-cols-12 md:gap-8">
-          <Reveal className="md:col-span-5">
-            <p className="slate mb-6 text-muted">Para quién</p>
-            <ul className="space-y-2">
-              {audiences.map((a) => (
-                <li key={a} className="poster text-[clamp(1.6rem,2.8vw,2.2rem)]">
-                  {a}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={0.08} className="md:col-span-6 md:col-start-7">
+          <Reveal className="md:col-span-12">
             <p className="slate mb-6 text-muted">Historias que ya contamos</p>
             <ul className="divide-y divide-fg/15 border-y border-fg/15">
               {stories.map((s) => (
@@ -282,7 +239,7 @@ export default async function SportPage() {
         tone="sport"
         kicker="Pide presupuesto"
         title={t("sport.cta")}
-        text="Clubes, escuelas, torneos, carreras o marcas deportivas: cuéntanos qué tienes entre manos y te respondemos con una propuesta."
+        text="Clubes, escuelas, torneos, carreras y marcas deportivas."
         whatsappText="Hola G-creatiON, quiero pedir presupuesto para cubrir un evento deportivo. Deporte: … Fecha: … Lugar: …"
       />
     </main>
