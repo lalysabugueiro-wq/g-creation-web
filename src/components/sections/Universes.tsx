@@ -42,7 +42,7 @@ const UNIVERSES = [
     href: "/diseno-web",
     name: "Diseño & Web",
     line: "Páginas web, identidad y piezas gráficas.",
-    src: "/images/laly-retrato.jpg",
+    src: "/images/laly-diseno.jpg",
     alt: "Laly, de G-creatiON",
     serif: false,
   },

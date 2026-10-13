@@ -38,7 +38,7 @@ const NAV_MARCAS = [
 
 // Diseño & Web, igual.
 const NAV_DISENO = [
-  { href: "/diseno-web#ejemplo", label: "Ejemplo" },
+  { href: "/diseno-web#trabajos", label: "Trabajos" },
   { href: "/contacto?area=web", label: "Contacto" },
   { href: "/", label: "G-creatiON estudio" },
 ];
