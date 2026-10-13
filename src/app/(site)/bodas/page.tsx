@@ -22,6 +22,15 @@ export const metadata: Metadata = {
 // titular editables en /admin/contenido → "Página Weddings".
 const STYLE = ["Natural", "Emocional", "Cinematográfico", "Espontáneo"];
 
+// Portada: tres fotos que se funden despacio.
+const HERO_SLIDES = [
+  { src: "/images/boda-beso-frente-bn.jpg", alt: "El novio besa la frente de la novia", pos: "object-[center_35%]" },
+  { src: "/images/boda-baile-pareja-bn.jpg", alt: "Los novios bailan y se sonríen", pos: "object-[center_30%]" },
+  { src: "/images/boda-novio-perfume-bn.jpg", alt: "El novio se pone perfume antes de la ceremonia", pos: "object-[center_25%]" },
+];
+
+const MOMENTS = ["Las miradas", "Los nervios", "Las palabras", "Las risas", "Los abrazos", "La familia", "La fiesta", "Los pequeños detalles"];
+
 const FRAMES = [
   { src: "/images/boda-novio-perfume-bn.jpg", alt: "El novio se pone perfume antes de la ceremonia", tall: true },
   { src: "/images/boda-novio-padrinos-bn.jpg", alt: "El novio con sus padrinos, todos de traje", tall: false },
@@ -42,14 +51,22 @@ export default async function BodasPage() {
     <main>
       {/* Portada en blanco y negro */}
       <section className="relative flex min-h-svh items-end overflow-hidden bg-paper px-5 pb-16 pt-32 md:px-12 md:pb-20 lg:px-20">
-        <Image
-          src="/images/boda-beso-frente-bn.jpg"
-          alt="El novio besa la frente de la novia"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_35%]"
-        />
+        {HERO_SLIDES.map((h, i) => (
+          <div
+            key={h.src}
+            className={`absolute inset-0 ${i === 0 ? "" : "slow-fade opacity-0"}`}
+            style={i === 0 ? undefined : { animationDelay: `${i * 6 - 18}s` }}
+          >
+            <Image
+              src={h.src}
+              alt={h.alt}
+              fill
+              priority={i === 0}
+              sizes="100vw"
+              className={`kenburns object-cover ${h.pos}`}
+            />
+          </div>
+        ))}
         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-black/10" />
         <div className="relative z-10 max-w-3xl text-[#f4f2ee]">
           <Reveal slow>
@@ -81,10 +98,52 @@ export default async function BodasPage() {
         </div>
       </section>
 
-      {/* Blanco y negro */}
-      <section id="fotogramas" className="px-5 py-20 md:px-12 md:py-28 lg:px-20">
+      {/* Cinta de momentos */}
+      <div aria-hidden className="overflow-hidden border-y border-rose/50 bg-bg py-5 md:py-7">
+        <div className="marquee">
+          {[0, 1].map((k) => (
+            <p key={k} className="flex shrink-0 items-center font-serif text-[clamp(1.6rem,3vw,2.6rem)] italic">
+              {MOMENTS.map((m) => (
+                <span key={m} className="flex items-center">
+                  <span className="px-6 md:px-10">{m}</span>
+                  <span className="text-rose">✦</span>
+                </span>
+              ))}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      {/* Blanco y negro (1) */}
+      <section id="fotogramas" className="px-5 pt-20 pb-12 md:px-12 md:pt-28 lg:px-20">
         <div className="columns-2 gap-3 md:columns-3 md:gap-5 [&>*]:mb-3 md:[&>*]:mb-5">
-          {FRAMES.map((f, i) => (
+          {FRAMES.slice(0, 3).map((f, i) => (
+            <Reveal key={f.src} slow delay={(i % 3) * 0.08} className="break-inside-avoid">
+              <div className={`relative overflow-hidden ${f.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
+                <Image src={f.src} alt={f.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Plano de cine con frase */}
+      <section className="relative flex min-h-[70svh] items-center justify-center overflow-hidden px-5 text-center md:min-h-[80svh]">
+        <Image src="/images/boda-miradas-bn.jpg" alt="Los novios se miran frente a frente" fill sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-black/45" />
+        <Reveal slow className="relative z-10 max-w-4xl text-[#f4f2ee]">
+          <p className="font-serif text-[clamp(2.2rem,5.6vw,5rem)] leading-[1.05]">
+            Lo que pasa demasiado rápido,
+            <br />
+            <em>lo guardamos nosotros.</em>
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Blanco y negro (2) */}
+      <section className="px-5 pt-12 pb-20 md:px-12 md:pb-28 lg:px-20">
+        <div className="columns-2 gap-3 md:columns-3 md:gap-5 [&>*]:mb-3 md:[&>*]:mb-5">
+          {FRAMES.slice(3).filter((f) => !f.src.includes("miradas")).map((f, i) => (
             <Reveal key={f.src} slow delay={(i % 3) * 0.08} className="break-inside-avoid">
               <div className={`relative overflow-hidden ${f.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}>
                 <Image src={f.src} alt={f.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" />
@@ -133,6 +192,23 @@ export default async function BodasPage() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      {/* 5 · 15 · 30 años */}
+      <section className="px-5 py-20 md:px-12 md:py-28 lg:px-20">
+        <Reveal slow>
+          <div className="grid grid-cols-3 border-y border-rose/60 text-center">
+            {["5", "15", "30"].map((y) => (
+              <div key={y} className="border-r border-rose/60 py-10 last:border-r-0 md:py-14">
+                <p className="font-serif text-[clamp(3rem,9vw,7rem)] leading-none">{y}</p>
+                <p className="slate mt-4 text-muted">años después</p>
+              </div>
+            ))}
+          </div>
+          <p className="mt-10 text-center font-serif text-[clamp(1.6rem,3vw,2.4rem)] italic text-accent">
+            Para que podáis volver a ese día.
+          </p>
+        </Reveal>
       </section>
 
       {/* Cierre */}

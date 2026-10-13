@@ -199,3 +199,28 @@ html.lenis body {
   background: var(--color-bg);
   color: var(--color-fg);
 }
+
+/* Weddings: portada que funde entre 3 fotos, como una película lenta. */
+@keyframes slow-fade {
+  0%, 28% { opacity: 1; }
+  34%, 94% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.slow-fade {
+  animation: slow-fade 18s ease-in-out infinite;
+}
+
+/* Cinta que se desliza (momentos de boda). */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slow-fade, .marquee { animation: none; }
+}
