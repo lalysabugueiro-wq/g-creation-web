@@ -33,9 +33,17 @@ const UNIVERSES = [
   {
     href: "/marcas",
     name: "Marcas",
-    line: "Video, reels, fotografía, webs y redes.",
+    line: "Video, reels, fotografía y redes.",
     src: "/images/guille-camara.jpg",
     alt: "Guille grabando con la cámara",
+    serif: false,
+  },
+  {
+    href: "/diseno-web",
+    name: "Diseño & Web",
+    line: "Páginas web, identidad y piezas gráficas.",
+    src: "/images/laly-retrato.jpg",
+    alt: "Laly, de G-creatiON",
     serif: false,
   },
 ];
@@ -50,10 +58,14 @@ export default function Universes() {
       </Reveal>
       <ul className="grid gap-3 sm:grid-cols-2 md:gap-5">
         {UNIVERSES.map((u, i) => (
-          <li key={u.href}>
+          <li key={u.href} className={i === UNIVERSES.length - 1 && UNIVERSES.length % 2 === 1 ? "sm:col-span-2" : ""}>
             <Reveal delay={(i % 2) * 0.06}>
               <Link href={u.href} className="group block">
-                <div className="viewfinder relative aspect-[4/3] overflow-hidden md:aspect-[16/11]">
+                <div
+                  className={`viewfinder relative aspect-[4/3] overflow-hidden ${
+                    i === UNIVERSES.length - 1 && UNIVERSES.length % 2 === 1 ? "md:aspect-[21/8]" : "md:aspect-[16/11]"
+                  }`}
+                >
                   <Image
                     src={u.src}
                     alt={u.alt}

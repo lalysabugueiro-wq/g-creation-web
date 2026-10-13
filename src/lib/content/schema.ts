@@ -607,7 +607,7 @@ export const FIELDS: Field[] = [
     section: "Página Marcas",
     label: "Texto debajo del titular",
     type: "text",
-    default: "Video, reels, fotografía, webs y redes para marcas y negocios.",
+    default: "Video, reels, fotografía y redes para marcas y negocios.",
   },
   {
     key: "marcas.brands",

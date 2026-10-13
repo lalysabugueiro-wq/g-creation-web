@@ -50,6 +50,15 @@ export default function Footer() {
             <Link href="/sport" className="link-quiet block w-fit text-muted hover:text-fg">
               G-creatiON Sport
             </Link>
+            <Link href="/eventos" className="link-quiet block w-fit text-muted hover:text-fg">
+              G-creatiON Eventos
+            </Link>
+            <Link href="/marcas" className="link-quiet block w-fit text-muted hover:text-fg">
+              G-creatiON Marcas
+            </Link>
+            <Link href="/diseno-web" className="link-quiet block w-fit text-muted hover:text-fg">
+              G-creatiON Diseño & Web
+            </Link>
           </div>
         </div>
 

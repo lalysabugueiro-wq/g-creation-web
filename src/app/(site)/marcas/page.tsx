@@ -22,9 +22,7 @@ export const metadata: Metadata = {
 const SERVICES = [
   { name: "Video & reels", line: "Piezas pensadas para dónde se van a ver." },
   { name: "Fotografía", line: "Producto, espacios, equipo y oficio." },
-  { name: "Diseño web", line: "Webs claras, rápidas y con tu contenido dentro." },
   { name: "Redes & métricas", line: "Instagram con intención, y números para decidir." },
-  { name: "Diseño gráfico", line: "Piezas, campañas y tarjetas que se recuerdan." },
 ];
 
 export default async function MarcasPage() {
@@ -138,9 +136,9 @@ export default async function MarcasPage() {
           </p>
         </Reveal>
         <Reveal delay={0.08}>
-          <p className="mt-8 max-w-lg text-lg text-muted">
-            Y la web también la hacemos nosotros. Esta, por ejemplo.
-          </p>
+          <Link href="/diseno-web" className="slate link-quiet mt-8 inline-flex items-center gap-3 text-accent">
+            ¿También necesitas web o diseño? Entra en Diseño & Web →
+          </Link>
         </Reveal>
       </section>
 

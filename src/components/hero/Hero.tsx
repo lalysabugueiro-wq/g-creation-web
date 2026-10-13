@@ -31,6 +31,7 @@ const UNIVERSE_LINKS = [
   { href: "/sport", label: "Sport" },
   { href: "/eventos", label: "Eventos" },
   { href: "/marcas", label: "Marcas" },
+  { href: "/diseno-web", label: "Diseño & Web" },
 ];
 
 export default function Hero() {

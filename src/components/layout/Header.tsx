@@ -11,6 +11,7 @@ const NAV = [
   { href: "/sport", label: "Sport" },
   { href: "/eventos", label: "Eventos" },
   { href: "/marcas", label: "Marcas" },
+  { href: "/diseno-web", label: "Diseño & Web" },
   { href: "/#estudio", label: "Nosotros" },
 ];
 
@@ -35,6 +36,13 @@ const NAV_MARCAS = [
   { href: "/", label: "G-creatiON estudio" },
 ];
 
+// Diseño & Web, igual.
+const NAV_DISENO = [
+  { href: "/diseno-web#ejemplo", label: "Ejemplo" },
+  { href: "/contacto?area=web", label: "Contacto" },
+  { href: "/", label: "G-creatiON estudio" },
+];
+
 // Sport, igual: su propio menú.
 const NAV_SPORT = [
   { href: "/sport#historias", label: "Historias" },
@@ -48,11 +56,12 @@ export default function Header() {
   const onSport = pathname.startsWith("/sport");
   const onEventos = pathname.startsWith("/eventos");
   const onMarcas = pathname.startsWith("/marcas");
+  const onDiseno = pathname.startsWith("/diseno-web");
   // Sin foto de portada, /sport abre sobre naranja: el header pasa a tinta oscura.
   const { t } = useContent();
   const sportOnOrange = onSport && !t("sport.hero.image");
   const [open, setOpen] = useState(false);
-  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : onEventos ? NAV_EVENTOS : onMarcas ? NAV_MARCAS : NAV;
+  const nav = onWeddings ? NAV_WEDDINGS : onSport ? NAV_SPORT : onEventos ? NAV_EVENTOS : onMarcas ? NAV_MARCAS : onDiseno ? NAV_DISENO : NAV;
   const ctaHref = onWeddings
     ? "/contacto?area=bodas&motivo=presupuesto"
     : onSport
@@ -61,8 +70,10 @@ export default function Header() {
         ? "/contacto?area=eventos&motivo=presupuesto"
         : onMarcas
           ? "/contacto?area=marcas&motivo=presupuesto"
-          : "/contacto";
-  const ctaLabel = onWeddings || onSport || onEventos || onMarcas ? "Pedir presupuesto" : "Cuéntanos tu idea";
+          : onDiseno
+            ? "/contacto?area=web&motivo=presupuesto"
+            : "/contacto";
+  const ctaLabel = onWeddings || onSport || onEventos || onMarcas || onDiseno ? "Pedir presupuesto" : "Cuéntanos tu idea";
 
   return (
     <header className={`absolute inset-x-0 top-0 z-50 ${onWeddings ? "on-photo" : ""} ${sportOnOrange ? "text-bg" : "text-fg"}`}>
@@ -75,6 +86,7 @@ export default function Header() {
           {onSport && <span className={`poster ml-2 text-lg ${sportOnOrange ? "" : "text-muted"}`}>sport</span>}
           {onEventos && <span className="poster ml-2 text-lg text-muted">eventos</span>}
           {onMarcas && <span className="poster ml-2 text-lg text-muted">marcas</span>}
+          {onDiseno && <span className="poster ml-2 text-lg text-muted">diseño & web</span>}
         </Link>
 
         <nav className={`slate hidden items-center gap-9 lg:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>

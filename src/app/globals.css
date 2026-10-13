@@ -224,3 +224,15 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .slow-fade, .marquee { animation: none; }
 }
+
+/* Universo Diseño & Web: cuadrícula de plano (blueprint) sobre negro. */
+.theme-design {
+  --color-bg: #0e0f10;
+  --color-surface: #17181a;
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(rgb(244 242 238 / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(244 242 238 / 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: var(--color-fg);
+}
