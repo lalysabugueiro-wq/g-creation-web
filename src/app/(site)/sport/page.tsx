@@ -6,9 +6,9 @@ import BudgetCTA from "@/components/sections/BudgetCTA";
 import { getSiteContent } from "@/lib/content/get";
 
 export const metadata: Metadata = {
-  title: "G-creatiON Sport — Fotografía y vídeo deportivo · Pirineo y Catalunya",
+  title: "G-creatiON Sport — Fotografía y video deportivo · Pirineo y Catalunya",
   description:
-    "Fotografía, vídeo, dron y cobertura en directo para clubes, torneos y carreras: golf, BTT, patinaje, básquet, fútbol, trail y obstáculos. Pide presupuesto.",
+    "Fotografía, video, dron y cobertura en vivo para clubes, torneos y carreras: golf, BTT, patinaje, básquet, fútbol, trail y obstáculos. Pide presupuesto.",
   openGraph: {
     title: "G-creatiON Sport",
     description: "El esfuerzo también merece ser contado.",

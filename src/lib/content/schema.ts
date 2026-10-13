@@ -81,14 +81,14 @@ export const FIELDS: Field[] = [
     section: "Bloque de bodas (portada)",
     label: "Frase grande",
     type: "textarea",
-    default: "No queremos que recordéis solo cómo se veía vuestra boda.",
+    default: "No queremos que solo recuerden cómo se veía su boda.",
   },
   {
     key: "home.weddings.titleAccent",
     section: "Bloque de bodas (portada)",
     label: "Continuación en verde (cursiva)",
     type: "textarea",
-    default: "Queremos que podáis volver a sentir cómo se vivió.",
+    default: "Queremos que puedan volver a sentir cómo se vivió.",
   },
   {
     key: "home.weddings.text",
@@ -96,7 +96,7 @@ export const FIELDS: Field[] = [
     label: "Texto debajo",
     type: "textarea",
     default:
-      "Fotografía, cine, narrativa y emoción. No entregamos 500 fotos y un vídeo: contamos vuestra historia, para dentro de 5, 15 y 30 años.",
+      "Fotografía, cine, narrativa y emoción. No entregamos 500 fotos y un video: contamos su historia, para dentro de 5, 15 y 30 años.",
   },
   {
     key: "home.weddings.closing",
@@ -153,7 +153,7 @@ export const FIELDS: Field[] = [
         name: "Marcas & empresas",
         claim:
           "Creamos contenido audiovisual para empresas que necesitan mostrar lo que hacen, lanzar algo nuevo o construir una comunicación visual sólida.",
-        tags: L("Vídeo", "Fotografía", "Reels", "Campañas", "Dron"),
+        tags: L("Video", "Fotografía", "Reels", "Campañas", "Dron"),
         cases: L(
           "A'BRASA'M — Gastronomía, producto y marca",
           "Benpolit — Automoción y detailing"
@@ -174,9 +174,9 @@ export const FIELDS: Field[] = [
         name: "Eventos & experiencias",
         claim:
           "Conciertos, actos institucionales, eventos públicos y fiestas: el ambiente, la gente y lo que se queda cuando todo termina.",
-        tags: L("Foto", "Vídeo", "Stories", "Dron"),
+        tags: L("Foto", "Video", "Stories", "Dron"),
         cases: L(
-          "Fira de la Galeta — Un evento local, en directo y después",
+          "Fira de la Galeta — Un evento local, en vivo y después",
           "BBQ Clandestina / A'BRASA'M — Experiencia gastronómica",
           "La Festa dels Jocs / Esplai — Actividades y eventos"
         ),
@@ -185,7 +185,7 @@ export const FIELDS: Field[] = [
         id: "sport",
         name: "G-creatiON Sport",
         claim: "Contamos la preparación, el esfuerzo, la montaña y la llegada. Lo que se siente cuando todo termina.",
-        tags: L("Foto", "Vídeo", "Dron", "Cobertura en directo"),
+        tags: L("Foto", "Video", "Dron", "Cobertura en vivo"),
         cases: L("BTT / Isard Atac Bike — Una carrera de montaña, de la salida a la meta", "Riera Racing — Competición"),
       },
       {
@@ -372,14 +372,14 @@ export const FIELDS: Field[] = [
     section: "Página Weddings",
     label: "Titular de la página",
     type: "textarea",
-    default: "No queremos que recordéis solo cómo se veía vuestra boda.",
+    default: "No queremos que solo recuerden cómo se veía su boda.",
   },
   {
     key: "bodas.hero.subtitle",
     section: "Página Weddings",
     label: "Continuación (cursiva)",
     type: "textarea",
-    default: "Queremos que podáis volver a sentir cómo se vivió.",
+    default: "Queremos que puedan volver a sentir cómo se vivió.",
   },
   { key: "bodas.hero.image", section: "Página Weddings", label: "Foto de la portada", type: "image", maxWidth: 1400, default: "/images/js-espejo.jpg" },
   { key: "bodas.hero.caption", section: "Página Weddings", label: "Pie de la foto", type: "text", default: "Judith, minutos antes" },
@@ -389,7 +389,7 @@ export const FIELDS: Field[] = [
     label: "Texto de \"Se vuelve memoria\"",
     type: "textarea",
     default:
-      "Eso cambia por completo la forma de producirla. No se trata de cuántas fotos entregamos, sino de que dentro de muchos años podáis volver a ese día.",
+      "Eso cambia por completo la forma de producirla. No se trata de cuántas fotos entregamos, sino de que dentro de muchos años puedan volver a ese día.",
   },
   {
     key: "bodas.moments",
@@ -415,7 +415,7 @@ export const FIELDS: Field[] = [
     label: "Nuestro estilo: texto",
     type: "textarea",
     default:
-      "No queremos que todo parezca una sesión de fotos. Queremos que viváis el día. Nosotros estamos ahí para observar, anticipar y contar.",
+      "No queremos que todo parezca una sesión de fotos. Queremos que vivan el día. Nosotros estamos ahí para observar, anticipar y contar.",
   },
   {
     key: "bodas.story.judith-steven",
@@ -423,7 +423,7 @@ export const FIELDS: Field[] = [
     label: "Judith & Steven: texto",
     type: "textarea",
     default:
-      "Pensada para combinar fotografía, vídeo emocional y momentos espontáneos. Trabajamos con varias cámaras para no perder ni lo principal ni lo que pasa alrededor.",
+      "Pensada para combinar fotografía, video emocional y momentos espontáneos. Trabajamos con varias cámaras para no perder ni lo principal ni lo que pasa alrededor.",
   },
   {
     key: "bodas.story.dani-anderson",
@@ -440,7 +440,7 @@ export const FIELDS: Field[] = [
     label: "«Lo que no se ve»: texto",
     type: "textarea",
     default:
-      "Llegamos con lo necesario para no perder nada: varias cámaras para estar en dos sitios a la vez, sonido real para que volváis a oír vuestros votos, dron cuando el lugar lo merece y luz cuando la noche la pide. El equipo está al servicio de la historia, no al revés.",
+      "Llegamos con lo necesario para no perder nada: varias cámaras para estar en dos sitios a la vez, sonido real para que vuelvan a escuchar sus votos, dron cuando el lugar lo merece y luz cuando la noche la pide. El equipo está al servicio de la historia, no al revés.",
   },
 
   // ---------------------------------------------------------- Página Sport
@@ -586,7 +586,7 @@ export const FIELDS: Field[] = [
     help: "Uno por renglón, así: Nombre | frase corta",
     type: "lines",
     default: L(
-      "Conciertos y festivales | El directo, la luz y el público.",
+      "Conciertos y festivales | El escenario, la luz y el público.",
       "Institucionales | Actos, presentaciones y aniversarios.",
       "Eventos públicos y políticos | Mítines, ruedas de prensa y campañas.",
       "Fiestas y ferias | El pueblo, la gente y lo que se queda."
@@ -607,7 +607,7 @@ export const FIELDS: Field[] = [
     section: "Página Marcas",
     label: "Texto debajo del titular",
     type: "text",
-    default: "Vídeo, reels, fotografía, webs y redes para marcas y negocios.",
+    default: "Video, reels, fotografía, webs y redes para marcas y negocios.",
   },
   {
     key: "marcas.brands",

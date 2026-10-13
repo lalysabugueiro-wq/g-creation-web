@@ -35,7 +35,7 @@ export default async function AvisoLegal() {
       <section>
         <h2>Propiedad intelectual</h2>
         <p>
-          Las fotografías, vídeos, textos y diseño de esta web son obra de G-creatiON o se usan con permiso de sus
+          Las fotografías, videos, textos y diseño de esta web son obra de G-creatiON o se usan con permiso de sus
           autores y de las personas que aparecen en ellos. No está permitido copiarlos, reproducirlos ni usarlos sin
           autorización por escrito.
         </p>

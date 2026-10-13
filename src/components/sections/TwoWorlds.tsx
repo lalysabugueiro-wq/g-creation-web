@@ -64,7 +64,7 @@ export default function TwoWorlds() {
             <Wordmark /> <span className="poster text-[0.8em] text-muted">eventos</span>
           </p>
           <p className="slate mt-4 flex items-center gap-2 text-accent">
-            <span className="rec" /> En directo
+            <span className="rec" /> En vivo
           </p>
           <p className="mt-6 max-w-sm leading-relaxed text-fg/80">{EVENTOS.join(" · ")}</p>
           <p className="slate mt-10 inline-flex items-center gap-3 text-accent">

@@ -6,9 +6,9 @@ import BudgetCTA from "@/components/sections/BudgetCTA";
 import { getSiteContent } from "@/lib/content/get";
 
 export const metadata: Metadata = {
-  title: "G-creatiON Eventos — Fotografía y vídeo de conciertos y eventos · Catalunya",
+  title: "G-creatiON Eventos — Fotografía y video de conciertos y eventos · Catalunya",
   description:
-    "Conciertos, actos institucionales, eventos públicos y fiestas: fotografía, vídeo y cobertura en directo. Pide presupuesto.",
+    "Conciertos, actos institucionales, eventos públicos y fiestas: fotografía, video y cobertura en vivo. Pide presupuesto.",
   openGraph: {
     title: "G-creatiON Eventos",
     description: "Pasa una vez. Lo contamos para siempre.",
@@ -66,7 +66,7 @@ export default async function EventosPage() {
         <div className="relative z-10">
           <Reveal>
             <p className="slate mb-8 flex items-center gap-3 text-accent">
-              <span className="rec" /> En directo
+              <span className="rec" /> En vivo
             </p>
           </Reveal>
           <Reveal delay={0.05}>

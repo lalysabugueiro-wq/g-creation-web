@@ -45,7 +45,7 @@ export const areas: Area[] = [
     claim: "Fotografía, cine, narrativa y emoción. Contamos una boda como una historia.",
     tags: ["Fotografía", "Cine", "Reel", "Dron"],
     cases: [
-      { name: "Judith & Steven", detail: "Fotografía y vídeo emocional" },
+      { name: "Judith & Steven", detail: "Fotografía y video emocional" },
       { name: "Dani & Anderson", detail: "Beaucaire, Francia" },
     ],
   },
@@ -55,7 +55,7 @@ export const areas: Area[] = [
     name: "Marcas & empresas",
     claim:
       "Creamos contenido audiovisual para empresas que necesitan mostrar lo que hacen, lanzar algo nuevo o construir una comunicación visual sólida.",
-    tags: ["Vídeo", "Fotografía", "Reels", "Campañas", "Dron"],
+    tags: ["Video", "Fotografía", "Reels", "Campañas", "Dron"],
     cases: [
       { name: "A'BRASA'M", detail: "Gastronomía, producto y marca" },
       { name: "Benpolit", detail: "Automoción y detailing" },
@@ -78,9 +78,9 @@ export const areas: Area[] = [
     name: "Eventos & experiencias",
     claim:
       "Conciertos, actos institucionales, eventos públicos y fiestas: el ambiente, la gente y lo que se queda cuando todo termina.",
-    tags: ["Foto", "Vídeo", "Stories", "Dron"],
+    tags: ["Foto", "Video", "Stories", "Dron"],
     cases: [
-      { name: "Fira de la Galeta", detail: "Un evento local, en directo y después" },
+      { name: "Fira de la Galeta", detail: "Un evento local, en vivo y después" },
       { name: "BBQ Clandestina / A'BRASA'M", detail: "Experiencia gastronómica" },
       { name: "La Festa dels Jocs / Esplai", detail: "Actividades y eventos" },
     ],
@@ -91,7 +91,7 @@ export const areas: Area[] = [
     number: "05",
     name: "G-creatiON Sport",
     claim: "Contamos la preparación, el esfuerzo, la montaña y la llegada. Lo que se siente cuando todo termina.",
-    tags: ["Foto", "Vídeo", "Dron", "Cobertura en directo"],
+    tags: ["Foto", "Video", "Dron", "Cobertura en vivo"],
     cases: [
       { name: "BTT / Isard Atac Bike", detail: "Una carrera de montaña, de la salida a la meta" },
       { name: "Riera Racing", detail: "Competición" },
@@ -148,11 +148,11 @@ export const weddings = [
   {
     id: "judith-steven",
     couple: "Judith & Steven",
-    place: "Fotografía + vídeo emocional",
+    place: "Fotografía + video emocional",
     summary:
-      "Pensada para combinar fotografía, vídeo emocional y momentos espontáneos. Trabajamos con varias cámaras para no perder ni lo principal ni lo que pasa alrededor.",
+      "Pensada para combinar fotografía, video emocional y momentos espontáneos. Trabajamos con varias cámaras para no perder ni lo principal ni lo que pasa alrededor.",
     moments: ["Preparativos", "Ceremonia", "Celebración", "Pareja", "Familia", "Fiesta"],
-    deliverables: ["Fotografía", "Vídeo emocional", "Momentos espontáneos"],
+    deliverables: ["Fotografía", "Video emocional", "Momentos espontáneos"],
     images: [
       { src: "/images/js-espejo.jpg", alt: "La novia se mira al espejo antes de la ceremonia" },
       { src: "/images/js-arco.jpg", alt: "Judith y Steven con sus amigos junto al arco floral" },
@@ -180,7 +180,7 @@ export const weddings = [
     ],
     deliverables: [
       "Fotografía de todo el día",
-      "Vídeo cinematográfico de 4–6 min",
+      "Video cinematográfico de 4–6 min",
       "Reel vertical",
       "Dron",
       "Fotos instantáneas durante la fiesta",

@@ -33,7 +33,7 @@ const UNIVERSES = [
   {
     href: "/marcas",
     name: "Marcas",
-    line: "Vídeo, reels, fotografía, webs y redes.",
+    line: "Video, reels, fotografía, webs y redes.",
     src: "/images/guille-camara.jpg",
     alt: "Guille grabando con la cámara",
     serif: false,

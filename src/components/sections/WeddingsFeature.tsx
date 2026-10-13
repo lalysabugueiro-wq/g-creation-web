@@ -69,7 +69,7 @@ export default function WeddingsFeature() {
                 Entrar en Weddings
               </Link>
               <Link href="/contacto?area=bodas" className="slate link-quiet text-fg">
-                Contadnos vuestra boda →
+                Cuéntennos su boda →
               </Link>
             </div>
           </Reveal>

@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     siteName: BUSINESS_NAME,
     title: `${BUSINESS_NAME} — Estudio creativo & digital`,
     description: BUSINESS_TAGLINE,
-    images: [{ url: "/images/da-ceremonia-dron.jpg", alt: "G-creatiON — fotografía y vídeo desde el Pirineo" }],
+    images: [{ url: "/images/da-ceremonia-dron.jpg", alt: "G-creatiON — fotografía y video desde el Pirineo" }],
   },
   twitter: { card: "summary_large_image" },
   robots: IS_DEMO

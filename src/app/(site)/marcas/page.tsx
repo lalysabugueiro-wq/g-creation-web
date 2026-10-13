@@ -8,7 +8,7 @@ import { getSiteContent } from "@/lib/content/get";
 export const metadata: Metadata = {
   title: "G-creatiON Marcas — Contenido, reels, webs y redes para marcas · Camprodon",
   description:
-    "Vídeo, reels, fotografía, diseño web, redes y métricas de Instagram para marcas y negocios. A'BRASA'M, Els Ocells, Visit Camprodon y más. Pide presupuesto.",
+    "Video, reels, fotografía, diseño web, redes y métricas de Instagram para marcas y negocios. A'BRASA'M, Els Ocells, Visit Camprodon y más. Pide presupuesto.",
   openGraph: {
     title: "G-creatiON Marcas",
     description: "Que tu marca se vea. Y se recuerde.",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 // Papel claro (`.theme-brand`), tinta negra y naranja. Poco texto; las marcas
 // reales en grande. Editable en /admin/contenido → "Página Marcas".
 const SERVICES = [
-  { name: "Vídeo & reels", line: "Piezas pensadas para dónde se van a ver." },
+  { name: "Video & reels", line: "Piezas pensadas para dónde se van a ver." },
   { name: "Fotografía", line: "Producto, espacios, equipo y oficio." },
   { name: "Diseño web", line: "Webs claras, rápidas y con tu contenido dentro." },
   { name: "Redes & métricas", line: "Instagram con intención, y números para decidir." },

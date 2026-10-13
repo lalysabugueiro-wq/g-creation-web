@@ -9,10 +9,10 @@ import { getSiteContent } from "@/lib/content/get";
 export const metadata: Metadata = {
   title: "G-creatiON Weddings — Fotografía y cine de boda · Catalunya",
   description:
-    "Fotografía y cine de boda natural, emocional y cinematográfico. Desde Camprodon a toda Catalunya y más allá. Pedid presupuesto.",
+    "Fotografía y cine de boda natural, emocional y cinematográfico. Desde Camprodon a toda Catalunya y más allá. Pidan su presupuesto.",
   openGraph: {
     title: "G-creatiON Weddings",
-    description: "No queremos que recordéis solo cómo se veía vuestra boda. Queremos que podáis volver a sentir cómo se vivió.",
+    description: "No queremos que solo recuerden cómo se veía su boda. Queremos que puedan volver a sentir cómo se vivió.",
     images: [{ url: "/images/boda-beso-frente-bn.jpg", alt: "El novio besa la frente de la novia" }],
   },
 };
@@ -171,14 +171,14 @@ export default async function BodasPage() {
         compact
         area="bodas"
         tone="wedding"
-        kicker="¿Ya tenéis fecha?"
+        kicker="¿Ya tienen fecha?"
         title={
           <>
-            Contadnos vuestra boda <em className="text-accent">y os enviamos una propuesta.</em>
+            Cuéntennos su boda <em className="text-accent">y les enviamos una propuesta.</em>
           </>
         }
-        text="Fecha, lugar y cómo os imagináis el día. Sin compromiso."
-        whatsappText="Hola G-creatiON, nos casamos y queremos pedir presupuesto. Fecha: … Lugar: …"
+        text="Fecha, lugar y cómo se imaginan el día. Sin compromiso."
+        whatsappText="Hola G-creatiON, nos casamos y queremos pedir un presupuesto. Fecha: … Lugar: …"
       />
 
       {/* Detalles en color */}
@@ -206,7 +206,7 @@ export default async function BodasPage() {
             ))}
           </div>
           <p className="mt-10 text-center font-serif text-[clamp(1.6rem,3vw,2.4rem)] italic text-accent">
-            Para que podáis volver a ese día.
+            Para que puedan volver a ese día.
           </p>
         </Reveal>
       </section>
@@ -215,7 +215,7 @@ export default async function BodasPage() {
       <section className="bg-surface px-5 py-28 text-center md:px-12 md:py-36 lg:px-20">
         <Reveal slow>
           <h2 className="mx-auto max-w-3xl font-serif text-[clamp(2.4rem,6vw,5rem)] leading-[1.05]">
-            ¿Os casáis? <em className="text-accent">Queremos ser parte de ese día.</em>
+            ¿Se casan? <em className="text-accent">Queremos ser parte de ese día.</em>
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
@@ -225,7 +225,7 @@ export default async function BodasPage() {
               Pedir presupuesto
             </Link>
             <a
-              href={`https://wa.me/${wa}?text=${encodeURIComponent("Hola G-creatiON, nos casamos y queremos pedir presupuesto.")}`}
+              href={`https://wa.me/${wa}?text=${encodeURIComponent("Hola G-creatiON, nos casamos y queremos pedir un presupuesto.")}`}
               target="_blank"
               rel="noreferrer"
               className="slate inline-flex border border-fg/30 px-8 py-4 transition-colors duration-500 hover:border-accent hover:text-accent"

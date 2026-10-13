@@ -188,7 +188,7 @@ export default function ContactForm({ initialArea, budget = false }: { initialAr
       </div>
 
       <label className="block">
-        <span className={label}>{isWedding ? "Contadnos vuestra boda" : "Cuéntanos la idea"}</span>
+        <span className={label}>{isWedding ? "Cuéntennos su boda" : "Cuéntanos la idea"}</span>
         <textarea
           rows={4}
           required
@@ -196,7 +196,7 @@ export default function ContactForm({ initialArea, budget = false }: { initialAr
           onChange={(e) => set("message", e.target.value)}
           placeholder={
             isWedding
-              ? "Cómo os imagináis el día, qué no queréis perderos…"
+              ? "Cómo se imaginan el día, qué no se quieren perder…"
               : "Qué necesitas comunicar, para quién y con qué objetivo."
           }
           className={input}

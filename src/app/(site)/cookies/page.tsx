@@ -9,7 +9,7 @@ export default function Cookies() {
       <section>
         <h2>Esta web no te sigue</h2>
         <p>
-          No usamos cookies de publicidad, de analítica ni de redes sociales, y no cargamos mapas ni vídeos de terceros
+          No usamos cookies de publicidad, de analítica ni de redes sociales, y no cargamos mapas ni videos de terceros
           que las instalen. Por eso no te mostramos ningún aviso de cookies al entrar.
         </p>
       </section>
