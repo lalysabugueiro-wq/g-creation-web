@@ -99,7 +99,7 @@ export default function Hero() {
     <section ref={rootRef} className="grain relative h-svh min-h-[680px] overflow-hidden bg-bg">
       {/* Tráiler de universos: la foto activa entra con un corte en barrido
           sobre la anterior. */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 isolate">
         {frames.map((f, i) => {
           const layer = seen.indexOf(i);
           const active = i === idx;
