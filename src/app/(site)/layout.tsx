@@ -2,6 +2,7 @@ import SmoothScroll from "@/components/providers/SmoothScroll";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ThemeShell from "@/components/layout/ThemeShell";
+import { UniverseTransitionProvider } from "@/components/universe/UniverseTransition";
 import { ContentProvider } from "@/components/content/ContentProvider";
 import { getSiteContent } from "@/lib/content/get";
 
@@ -12,11 +13,13 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   return (
     <ContentProvider content={content}>
       <SmoothScroll>
-        <ThemeShell>
-          <Header />
-          {children}
-          <Footer />
-        </ThemeShell>
+        <UniverseTransitionProvider>
+          <ThemeShell>
+            <Header />
+            {children}
+            <Footer />
+          </ThemeShell>
+        </UniverseTransitionProvider>
       </SmoothScroll>
     </ContentProvider>
   );

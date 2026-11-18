@@ -1,54 +1,30 @@
+"use client";
+
 // Los universos de G-creatiON (Laly, 2026-10-12): justo debajo de la portada,
 // una puerta con foto por universo para que cada persona vaya directa a lo
 // que necesita. Poco texto: nombre + una línea.
+import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
+import UniverseLink from "@/components/universe/UniverseLink";
+import { playUniverse } from "@/lib/sound";
+import { UNIVERSES as ALL } from "@/lib/universes";
 
-const UNIVERSES = [
-  {
-    href: "/bodas",
-    name: "Weddings",
-    line: "Fotografía y cine de boda.",
-    src: "/images/boda-beso-frente-bn.jpg",
-    alt: "El novio besa la frente de la novia",
-    serif: true,
-  },
-  {
-    href: "/sport",
-    name: "Sport",
-    line: "Golf, bici, patinaje, básquet, fútbol, carreras.",
-    src: "/images/sport-patinaje-pareja.jpg",
-    alt: "Dos patinadoras haciendo una figura",
-    serif: false,
-  },
-  {
-    href: "/eventos",
-    name: "Eventos",
-    line: "Conciertos, institucionales y eventos públicos.",
-    src: "/images/evento-cantante-escenario.jpg",
-    alt: "Cantante en el escenario con focos detrás",
-    serif: false,
-  },
-  {
-    href: "/marcas",
-    name: "Marcas",
-    line: "Video, reels, fotografía y redes.",
-    src: "/images/guille-camara.jpg",
-    alt: "Guille grabando con la cámara",
-    serif: false,
-  },
-  {
-    href: "/diseno-web",
-    name: "Diseño & Web",
-    line: "Páginas web, identidad y piezas gráficas.",
-    src: "/images/laly-diseno.jpg",
-    alt: "Laly, de G-creatiON",
-    serif: false,
-  },
-];
+// Las tarjetas usan sus fotos de siempre (Sport con las patinadoras).
+const UNIVERSES = ALL.map((u) =>
+  u.id === "sport" ? { ...u, src: "/images/sport-patinaje-pareja.jpg", alt: "Dos patinadoras haciendo una figura" } : u
+);
 
 export default function Universes() {
+  // Al pasar por una tarjeta suena su universo (con sonido encendido).
+  const last = useRef<{ id: string; at: number }>({ id: "", at: 0 });
+  const preview = (id: (typeof UNIVERSES)[number]["id"], now: number) => {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+    if (last.current.id === id && now - last.current.at < 2500 && now > last.current.at) return;
+    last.current = { id, at: now };
+    playUniverse(id);
+  };
+
   return (
     <section id="universos" className="px-5 py-16 md:px-12 md:py-24 lg:px-20">
       <Reveal>
@@ -60,7 +36,7 @@ export default function Universes() {
         {UNIVERSES.map((u, i) => (
           <li key={u.href} className={i === UNIVERSES.length - 1 && UNIVERSES.length % 2 === 1 ? "sm:col-span-2" : ""}>
             <Reveal delay={(i % 2) * 0.06}>
-              <Link href={u.href} className="group block">
+              <UniverseLink href={u.href} className="group block" onMouseEnter={(e) => preview(u.id, e.timeStamp)}>
                 <div
                   className={`viewfinder relative aspect-[4/3] overflow-hidden ${
                     i === UNIVERSES.length - 1 && UNIVERSES.length % 2 === 1 ? "md:aspect-[21/8]" : "md:aspect-[16/11]"
@@ -96,7 +72,7 @@ export default function Universes() {
                     </span>
                   </div>
                 </div>
-              </Link>
+              </UniverseLink>
             </Reveal>
           </li>
         ))}

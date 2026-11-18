@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Wordmark from "@/components/ui/Wordmark";
+import UniverseLink from "@/components/universe/UniverseLink";
+import SoundToggle from "@/components/universe/SoundToggle";
 import { useContent } from "@/components/content/ContentProvider";
 
 const NAV = [
@@ -91,13 +93,14 @@ export default function Header() {
 
         <nav className={`slate hidden items-center gap-9 lg:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>
           {nav.map((item) => (
-            <Link key={item.href} href={item.href} className={`link-quiet ${sportOnOrange ? "hover:text-bg" : "hover:text-fg"}`}>
+            <UniverseLink key={item.href} href={item.href} className={`link-quiet ${sportOnOrange ? "hover:text-bg" : "hover:text-fg"}`}>
               {item.label}
-            </Link>
+            </UniverseLink>
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 md:gap-4">
+          <SoundToggle className={sportOnOrange ? "text-bg" : ""} />
           <Link
             href={ctaHref}
             className={`slate hidden items-center gap-2.5 px-5 py-3 transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex ${
@@ -126,14 +129,14 @@ export default function Header() {
           }`}
         >
           {nav.map((item) => (
-            <Link
+            <UniverseLink
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
               className="slate border-b border-fg/10 px-5 py-4 last:border-b-0"
             >
               {item.label}
-            </Link>
+            </UniverseLink>
           ))}
           <Link href={ctaHref} onClick={() => setOpen(false)} className="slate bg-accent px-5 py-4 text-bg">
             {ctaLabel}

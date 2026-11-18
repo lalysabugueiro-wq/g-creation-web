@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import HeroCanvas from "./HeroCanvas";
 import { gsap } from "@/lib/animation";
 import { useContent } from "@/components/content/ContentProvider";
+import UniverseLink from "@/components/universe/UniverseLink";
+import { whenIntroDone } from "@/components/intro/IntroGate";
+import { playUniverse } from "@/lib/sound";
+import { UNIVERSES } from "@/lib/universes";
 
 // Timecode que corre como el de una cámara grabando: el "ON" de la marca.
 function Timecode() {
@@ -25,14 +27,11 @@ function Timecode() {
   );
 }
 
-
-const UNIVERSE_LINKS = [
-  { href: "/bodas", label: "Weddings" },
-  { href: "/sport", label: "Sport" },
-  { href: "/eventos", label: "Eventos" },
-  { href: "/marcas", label: "Marcas" },
-  { href: "/diseno-web", label: "Diseño & Web" },
-];
+// Portada viva (Laly, 2026-11-19): los cinco universos pasan uno detrás de
+// otro como un tráiler. Al pasar el ratón por un universo, la portada salta a
+// él y suena su firma (si la persona entró con sonido).
+const ORDER = ["sport", "weddings", "eventos", "marcas", "diseno"] as const;
+const HOLD = 3800;
 
 export default function Hero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -40,7 +39,27 @@ export default function Hero() {
   const { t, lines } = useContent();
   const LINES = lines("home.hero.headline");
   const heroImageA = t("home.hero.imageA");
-  const heroImageB = t("home.hero.imageB");
+  // La primera foto sigue siendo la que se elige en /admin (portada).
+  const frames = ORDER.map((id) => {
+    const u = UNIVERSES.find((x) => x.id === id)!;
+    return id === "sport" && heroImageA ? { ...u, src: heroImageA } : u;
+  });
+  const [idx, setIdx] = useState(0);
+  const [seen, setSeen] = useState<number[]>([0]);
+  const [paused, setPaused] = useState(false);
+  const lastSound = useRef(0);
+
+  const jump = useCallback((i: number) => {
+    setIdx(i);
+    setSeen((s) => (s.includes(i) ? [...s.filter((x) => x !== i), i] : [...s, i]));
+  }, []);
+
+  // Avanza solo, salvo cuando la persona está eligiendo.
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setTimeout(() => jump((idx + 1) % frames.length), HOLD);
+    return () => window.clearTimeout(id);
+  }, [idx, paused, jump, frames.length]);
 
   useEffect(() => {
     const headline = headlineRef.current;
@@ -50,7 +69,7 @@ export default function Hero() {
     let tl: gsap.core.Timeline | null = null;
     let cancelled = false;
 
-    document.fonts.ready.then(() => {
+    const start = () => {
       if (cancelled) return;
       gsap.set(headline, { visibility: "visible" });
       // Cortes secos, como un montaje (branding.md → Movimiento).
@@ -66,7 +85,9 @@ export default function Hero() {
         { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.07, ease: "power3.out" },
         "-=0.2"
       );
-    });
+    };
+    // Espera a que se abra la intro de cine (si la hay) y a las fuentes.
+    whenIntroDone(() => document.fonts.ready.then(start));
 
     return () => {
       cancelled = true;
@@ -76,18 +97,38 @@ export default function Hero() {
 
   return (
     <section ref={rootRef} className="grain relative h-svh min-h-[680px] overflow-hidden bg-bg">
+      {/* Tráiler de universos: la foto activa entra con un corte en barrido
+          sobre la anterior. */}
       <div className="absolute inset-0">
-        <Image
-          src={heroImageA}
-          alt="G-creatiON"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover kenburns"
-        />
+        {frames.map((f, i) => {
+          const layer = seen.indexOf(i);
+          const active = i === idx;
+          const prev = !active && layer === seen.length - 2;
+          if (!active && !prev && !(i === 0 && seen.length === 1)) return null;
+          return (
+            <div
+              key={f.id + (active ? "-on" : "")}
+              className={`absolute inset-0 overflow-hidden ${active && seen.length > 1 ? "reel-in" : ""}`}
+              style={{ zIndex: active ? 2 : 1 }}
+            >
+              <Image
+                src={f.src}
+                alt={f.alt}
+                fill
+                priority={i === 0}
+                sizes="100vw"
+                className={`object-cover kenburns ${f.id === "weddings" ? "grayscale" : ""}`}
+              />
+            </div>
+          );
+        })}
+        {/* Precarga silenciosa de las demás fotos */}
+        <div className="hidden">
+          {frames.slice(1).map((f) => (
+            <Image key={f.id} src={f.src} alt="" width={16} height={9} sizes="100vw" />
+          ))}
+        </div>
       </div>
-
-      <HeroCanvas imageA={heroImageA} imageB={heroImageB} className="absolute inset-0" />
 
       {/* Grading de branding.md: negro al 55% + tinte naranja en los altos */}
       <div className="absolute inset-0 bg-bg/55" />
@@ -123,15 +164,43 @@ export default function Hero() {
             {t("home.hero.sub")}
           </p>
 
-          <nav data-hero-fade aria-label="Universos" className="flex flex-wrap items-center gap-2">
-            {UNIVERSE_LINKS.map((u) => (
-              <Link
+          <nav
+            data-hero-fade
+            aria-label="Universos"
+            className="flex flex-wrap items-center gap-2"
+            onMouseLeave={() => setPaused(false)}
+          >
+            {frames.map((u, i) => (
+              <UniverseLink
                 key={u.href}
                 href={u.href}
-                className="slate border border-fg/30 px-4 py-3 text-fg transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-bg"
+                onMouseEnter={() => {
+                  setPaused(true);
+                  if (i !== idx) jump(i);
+                  const now = Date.now();
+                  if (now - lastSound.current > 350) {
+                    lastSound.current = now;
+                    playUniverse(u.id);
+                  }
+                }}
+                onFocus={() => {
+                  setPaused(true);
+                  jump(i);
+                }}
+                className={`slate relative overflow-hidden border px-4 py-3 transition-colors duration-300 hover:border-accent hover:bg-accent hover:text-bg ${
+                  i === idx ? "border-accent text-fg" : "border-fg/30 text-fg"
+                }`}
               >
-                {u.label}
-              </Link>
+                {u.name}
+                {i === idx && !paused && (
+                  <span
+                    key={`p-${idx}-${seen.length}`}
+                    aria-hidden
+                    className="absolute inset-x-0 bottom-0 h-[2px] origin-left bg-accent"
+                    style={{ animation: `reel-progress ${HOLD}ms linear both` }}
+                  />
+                )}
+              </UniverseLink>
             ))}
           </nav>
         </div>
@@ -139,9 +208,26 @@ export default function Hero() {
         <div
           data-hero-fade
           aria-hidden
-          className="slate pointer-events-none absolute right-5 top-28 hidden text-fg/55 md:block md:right-12 lg:right-20"
+          className="pointer-events-none absolute right-5 top-28 flex flex-col items-end gap-3 text-right md:right-12 lg:right-20"
         >
-          <Timecode />
+          <span className="slate hidden text-fg/55 md:block">
+            <Timecode />
+          </span>
+          <span className="slate text-fg/70">
+            Universo {String(idx + 1).padStart(2, "0")} / {String(frames.length).padStart(2, "0")}
+          </span>
+          <span className="block overflow-hidden">
+            <span
+              key={frames[idx].id}
+              className={`reel-name block text-accent ${
+                frames[idx].serif
+                  ? "font-serif italic text-[clamp(2.2rem,5vw,4.4rem)] leading-none"
+                  : "poster text-[clamp(2.2rem,5vw,4.4rem)]"
+              }`}
+            >
+              {frames[idx].name}
+            </span>
+          </span>
         </div>
       </div>
     </section>

@@ -1,4 +1,6 @@
+import IntroGate from "@/components/intro/IntroGate";
 import Hero from "@/components/hero/Hero";
+import ClientsReel from "@/components/sections/ClientsReel";
 import Universes from "@/components/sections/Universes";
 import HowWeWork from "@/components/sections/HowWeWork";
 import About from "@/components/sections/About";
@@ -12,8 +14,10 @@ import FinalCTA from "@/components/sections/FinalCTA";
 export default function Home() {
   return (
     <main>
+      <IntroGate />
       <Hero />
       <Universes />
+      <ClientsReel />
       <HowWeWork />
       <About />
       <Philosophy />
