@@ -19,7 +19,6 @@ export const metadata: Metadata = {
 // Universo Eventos (Laly, 2026-10-12): escenario y noche (`.theme-live`),
 // poco texto y mucha foto. Fotos reales de conciertos de G-creatiON.
 const PHOTOS = [
-  { src: "/images/evento-bajista-rock.jpg", alt: "Bajista cantando entre humo y luces rojas", tall: false },
   { src: "/images/evento-saxo.jpg", alt: "Detalle de un saxofón bajo luz violeta", tall: false },
   { src: "/images/evento-duo-voces.jpg", alt: "Dos cantantes comparten micrófono", tall: false },
   { src: "/images/evento-silueta.jpg", alt: "Silueta de un músico con gorra a contraluz", tall: true },

@@ -576,7 +576,7 @@ export const FIELDS: Field[] = [
     label: "Han confiado en nosotros",
     help: "Uno por renglón, así: Nombre — detalle",
     type: "lines",
-    default: L("Microclima — Conciertos", "Ajuntament de Camprodon — Actos institucionales"),
+    default: L("Microclima — Conciertos", "Ajuntament de Camprodon — Actos institucionales", "Cami y Cris — Revelación de género"),
   },
   {
     key: "eventos.types",
@@ -618,7 +618,8 @@ export const FIELDS: Field[] = [
       "A'BRASA'M — Gastronomía, fuego y oficio",
       "Els Ocells — Espacios y experiencias",
       "Bastiments Aventura — Aventura y actividades",
-      "Visit Camprodon — Turismo",
+      "Ajuntament de Camprodon — Turismo y comunicación",
+      "ForYou Camprodon — Diseño web",
       "La Tienda de Juli — Diseño y fidelización",
       "Ramaderia La Illa — Ganadería"
     ),
