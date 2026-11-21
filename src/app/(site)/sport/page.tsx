@@ -58,6 +58,26 @@ const CABALLOS_COLS: [number, string][][] = [
   [[7, "2 / 3"], [8, "3 / 2"]],
 ];
 
+// Isard Atac Bike (Laly, 2026-11-21): dos anchas arriba y tres columnas iguales.
+const ISARD = [
+  { src: "/images/sport-isard-dos-montana.jpg", alt: "Dos ciclistas pedalean con las montañas del Pirineo detrás" },
+  { src: "/images/sport-isard-montana-bn.jpg", alt: "Un ciclista solo frente a las montañas, en blanco y negro" },
+  { src: "/images/sport-isard-grupo-97.jpg", alt: "Grupo de corredores bajando entre árboles, el 97 delante" },
+  { src: "/images/sport-isard-caballito.jpg", alt: "Un corredor hace un caballito en la subida" },
+  { src: "/images/sport-isard-pueblo-111.jpg", alt: "El corredor 111 cruzando el pueblo" },
+  { src: "/images/sport-isard-bosque-98.jpg", alt: "El corredor 98 bajando por el bosque" },
+  { src: "/images/sport-isard-saludo-77.jpg", alt: "El corredor 77 saluda sonriendo en el prado" },
+  { src: "/images/sport-isard-puno-91.jpg", alt: "El corredor 91 levanta el puño al llegar" },
+  { src: "/images/sport-isard-sendero-196.jpg", alt: "El corredor 196 en un sendero entre musgo" },
+  { src: "/images/sport-isard-prado.jpg", alt: "Una ciclista en el prado con las montañas azules detrás" },
+  { src: "/images/sport-isard-bajada-169.jpg", alt: "El corredor 169 bajando a toda velocidad" },
+];
+const ISARD_COLS: [number, string][][] = [
+  [[2, "3 / 4"], [3, "4 / 3"], [4, "3 / 4"]],
+  [[7, "4 / 3"], [5, "3 / 4"], [6, "3 / 4"]],
+  [[9, "3 / 4"], [10, "3 / 4"], [8, "4 / 3"]],
+];
+
 const DISCIPLINES = [
   { name: "Golf", src: "/images/sport-golf-swing.jpg", alt: "Golfista en pleno swing con el Pirineo detrás" },
   { name: "BTT & bici", src: "/images/sport-btt-sendero.jpg", alt: "Ciclista de BTT bajando por un sendero entre árboles" },
@@ -315,6 +335,63 @@ export default async function SportPage() {
             <div key={c} className="flex flex-col gap-5">
               {col.map(([i, aspect]) => {
                 const f = CABALLOS[i];
+                return (
+                  <Reveal key={f.src} delay={c * 0.05}>
+                    <div className="viewfinder group relative overflow-hidden" style={{ aspectRatio: aspect }}>
+                      <Image
+                        src={f.src}
+                        alt={f.alt}
+                        fill
+                        sizes="33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Isard Atac Bike (Laly, 2026-11-21) */}
+      <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="slate mb-4 flex items-center gap-3 text-muted">
+                <span className="text-accent">04</span>
+                <span className="h-px w-6 bg-fg/25" />
+                Isard Atac Bike
+              </p>
+              <p className="poster text-[clamp(2.2rem,5.5vw,4.8rem)]">
+                De la salida a la meta. <span className="text-accent">Montaña arriba.</span>
+              </p>
+            </div>
+          </div>
+        </Reveal>
+        {/* Móvil: cuadrícula simple. Escritorio: tres columnas que terminan a la misma altura. */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {ISARD.map((f, i) => (
+            <div key={f.src} className={`viewfinder relative overflow-hidden ${i === 0 ? "col-span-2 aspect-[3/2]" : "aspect-[4/5]"}`}>
+              <Image src={f.src} alt={f.alt} fill sizes="50vw" className="object-cover" />
+            </div>
+          ))}
+        </div>
+        <div className="mb-5 hidden grid-cols-2 gap-5 md:grid">
+          {ISARD.slice(0, 2).map((f) => (
+            <Reveal key={f.src}>
+              <div className="viewfinder group relative aspect-[3/2] overflow-hidden">
+                <Image src={f.src} alt={f.alt} fill sizes="50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="hidden grid-cols-3 gap-5 md:grid">
+          {ISARD_COLS.map((col, c) => (
+            <div key={c} className="flex flex-col gap-5">
+              {col.map(([i, aspect]) => {
+                const f = ISARD[i];
                 return (
                   <Reveal key={f.src} delay={c * 0.05}>
                     <div className="viewfinder group relative overflow-hidden" style={{ aspectRatio: aspect }}>
