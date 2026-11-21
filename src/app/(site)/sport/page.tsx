@@ -83,7 +83,6 @@ export default async function SportPage() {
     return { name: name.trim(), detail: rest.join(" ").trim() };
   });
   const heroImage = t("sport.hero.image");
-  const gallery = [1, 2, 3, 4, 5].map((n) => t(`sport.gallery.${n}`)).filter(Boolean);
 
   return (
     <main>
@@ -286,7 +285,7 @@ export default async function SportPage() {
               <p className="slate mb-4 flex items-center gap-3 text-muted">
                 <span className="text-accent">03</span>
                 <span className="h-px w-6 bg-fg/25" />
-                Concurso comarcal de caballos
+                XIV Concurs Comarcal Cavall Pirinenc Català
               </p>
               <p className="poster text-[clamp(2.2rem,5.5vw,4.8rem)]">
                 La fuerza de la montaña. <span className="text-accent">Y un pueblo entero mirando.</span>
@@ -336,30 +335,6 @@ export default async function SportPage() {
         </div>
       </section>
 
-      {/* Galería */}
-      {gallery.length > 0 && (
-        <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-6 md:gap-5">
-            {gallery.map((src, i) => {
-              // Ritmo: una ancha, dos medianas, repetir.
-              const wide = i % 3 === 0;
-              return (
-                <Reveal key={src} delay={(i % 3) * 0.05} className={wide ? "col-span-2 md:col-span-4" : "md:col-span-2"}>
-                  <div className={`viewfinder relative overflow-hidden ${wide ? "aspect-[16/10]" : "aspect-[3/4]"}`}>
-                    <Image
-                      src={src}
-                      alt="Fotografía deportiva de G-creatiON"
-                      fill
-                      sizes={wide ? "(min-width: 768px) 66vw, 100vw" : "(min-width: 768px) 33vw, 50vw"}
-                      className="object-cover"
-                    />
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
-        </section>
-      )}
 
       {/* Para quién + historias */}
       <section id="historias" className="border-t border-fg/15 px-5 py-24 md:px-12 md:py-32 lg:px-20">

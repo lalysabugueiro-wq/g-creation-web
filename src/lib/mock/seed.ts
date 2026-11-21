@@ -58,7 +58,7 @@ export const areas: Area[] = [
     tags: ["Video", "Fotografía", "Reels", "Campañas", "Dron"],
     cases: [
       { name: "A'BRASA'M", detail: "Gastronomía, producto y marca" },
-      { name: "Benpolit", detail: "Automoción y detailing" },
+      { name: "Ramaderia La Illa", detail: "Ganadería" },
     ],
   },
   {

@@ -156,7 +156,7 @@ export const FIELDS: Field[] = [
         tags: L("Video", "Fotografía", "Reels", "Campañas", "Dron"),
         cases: L(
           "A'BRASA'M — Gastronomía, producto y marca",
-          "Benpolit — Automoción y detailing"
+          "Ramaderia La Illa — Ganadería"
         ),
       },
       {
@@ -620,7 +620,7 @@ export const FIELDS: Field[] = [
       "Bastiments Aventura — Aventura y actividades",
       "Visit Camprodon — Turismo",
       "La Tienda de Juli — Diseño y fidelización",
-      "Benpolit — Automoción y detailing"
+      "Ramaderia La Illa — Ganadería"
     ),
   },
 
