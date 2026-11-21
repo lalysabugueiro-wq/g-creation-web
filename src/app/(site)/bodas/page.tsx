@@ -42,6 +42,26 @@ const FRAMES = [
   { src: "/images/boda-novio-ventana-bn.jpg", alt: "El novio junto a la ventana, mirando hacia abajo", tall: true },
 ];
 
+// Más fotos de la misma boda que los detalles en color (Laly, 2026-11-21).
+// Escritorio: tres columnas (vertical + dos horizontales) que terminan iguales.
+const JS_COLS = [
+  [
+    { src: "/images/js-sonrisa-bn.jpg", alt: "La novia sonríe pegada al novio bajo las hojas", tall: true },
+    { src: "/images/js-reloj-bn.jpg", alt: "El novio se ajusta el reloj", tall: false },
+    { src: "/images/js-manos-anillo-bn.jpg", alt: "La mano de la novia con el anillo sobre la del novio", tall: false },
+  ],
+  [
+    { src: "/images/js-miradas-bn.jpg", alt: "Los novios se miran y sonríen", tall: true },
+    { src: "/images/js-chaleco-bn.jpg", alt: "El novio se abrocha el chaleco", tall: false },
+    { src: "/images/js-novio-amigos-bn.jpg", alt: "El novio con sus amigos frente a la pérgola", tall: false },
+  ],
+  [
+    { src: "/images/js-risa-bn.jpg", alt: "La novia acaricia la cara del novio, riéndose", tall: true },
+    { src: "/images/js-beso-bn.jpg", alt: "Beso de los novios con el ramo en la mano", tall: false },
+    { src: "/images/js-brazos-arriba.jpg", alt: "Los recién casados levantan los brazos con el ramo", tall: false },
+  ],
+];
+
 export default async function BodasPage() {
   const content = await getSiteContent();
   const t = (k: string) => content[k] ?? "";
@@ -190,6 +210,26 @@ export default async function BodasPage() {
                 <Image src={d.src} alt={d.alt} fill sizes="(min-width: 768px) 16vw, 33vw" className="object-cover" />
               </div>
             </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* Una boda, de cerca */}
+      <section className="px-5 pb-20 md:px-12 md:pb-28 lg:px-20">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
+          {JS_COLS.map((col, c) => (
+            <div key={c} className="contents md:flex md:flex-col md:gap-5">
+              {col.map((f, i) => {
+                const last = c === 2 && i === 2;
+                return (
+                  <Reveal key={f.src} slow delay={c * 0.08} className={last ? "col-span-2 md:col-span-1" : ""}>
+                    <div className={`relative overflow-hidden ${last ? "aspect-[3/2]" : "aspect-[4/5]"} ${f.tall ? "md:aspect-[3/4]" : "md:aspect-[4/3]"}`}>
+                      <Image src={f.src} alt={f.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover" />
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
           ))}
         </div>
       </section>
