@@ -20,12 +20,31 @@ export const metadata: Metadata = {
 // Identidad: el naranja del estudio "a sangre", ritmo de competición y Anton
 // grande. Textos y fotos de portada/galería editables en /admin/contenido →
 // "Página Sport". Las disciplinas usan fotos reales de G-creatiON.
+// Fútbol (Laly, 2026-11-21): fotos reales de partidos en Camprodon.
+const FUTBOL = [
+  { src: "/images/sport-futbol-abrazo-grupo.jpg", w: 1280, h: 1184, alt: "Cuatro jugadores se abrazan celebrando un gol" },
+  { src: "/images/sport-futbol-dorsal-16.jpg", w: 854, h: 1280, alt: "Jugador con el 16 de espaldas, montañas de otoño detrás" },
+  { src: "/images/sport-futbol-cabezazo.jpg", w: 1280, h: 854, alt: "Salto de cabeza en el área durante un partido de noche" },
+  { src: "/images/sport-futbol-companeros-bn.jpg", w: 1280, h: 854, alt: "Dos compañeros caminan abrazados, en blanco y negro" },
+  { src: "/images/sport-futbol-portero.jpg", w: 1280, h: 680, alt: "El portero despeja el balón de una patada" },
+  { src: "/images/sport-futbol-celebracion-salto.jpg", w: 854, h: 1280, alt: "Un jugador salta sobre sus compañeros para celebrar" },
+  { src: "/images/sport-futbol-perfil-bn.jpg", w: 1280, h: 854, alt: "Perfil de un jugador concentrado, en blanco y negro" },
+  { src: "/images/sport-futbol-abrazo-sonrisa.jpg", w: 1280, h: 854, alt: "Abrazo y sonrisa después de un gol" },
+];
+
+// Reparto en escritorio: [foto, proporción]. Las tres columnas suman lo mismo.
+const FUTBOL_COLS: [number, string][][] = [
+  [[0, "1 / 1"], [1, "2 / 3"]],
+  [[2, "5 / 3"], [3, "5 / 3"], [4, "5 / 3"], [6, "5 / 3"]],
+  [[5, "2 / 3"], [7, "1 / 1"]],
+];
+
 const DISCIPLINES = [
   { name: "Golf", src: "/images/sport-golf-swing.jpg", alt: "Golfista en pleno swing con el Pirineo detrás" },
   { name: "BTT & bici", src: "/images/sport-btt-sendero.jpg", alt: "Ciclista de BTT bajando por un sendero entre árboles" },
   { name: "Patinaje", src: "/images/sport-patinaje-pareja.jpg", alt: "Dos patinadoras haciendo una figura en el pabellón" },
   { name: "Básquet", src: "/images/sport-basquet.jpg", alt: "Jugador sujetando un balón de básquet" },
-  { name: "Fútbol", src: "/images/sport-futbol.jpg", alt: "Detalle de botas y balón en un partido de fútbol" },
+  { name: "Fútbol", src: "/images/sport-futbol-chut-luz.jpg", alt: "Jugador golpeando el balón con rayos de luz cruzando el campo" },
   { name: "Carreras & obstáculos", src: "/images/sport-obstaculos.jpg", alt: "Corredor colgado de las anillas en una carrera de obstáculos" },
 ];
 
@@ -189,6 +208,55 @@ export default async function SportPage() {
             Stories mientras pasa. <span className="text-accent">Resumen cuando termina.</span>
           </p>
         </Reveal>
+      </section>
+
+      {/* Fútbol: en el campo */}
+      <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="slate mb-4 flex items-center gap-3 text-muted">
+                <span className="text-accent">02</span>
+                <span className="h-px w-6 bg-fg/25" />
+                Fútbol
+              </p>
+              <p className="poster text-[clamp(2.2rem,5.5vw,4.8rem)]">
+                Noventa minutos. <span className="text-accent">Y un abrazo que queda.</span>
+              </p>
+            </div>
+            <p className="max-w-sm text-muted">El gol, la tensión, el esfuerzo y la gente que se queda a animar hasta el final.</p>
+          </div>
+        </Reveal>
+        {/* Móvil: cuadrícula simple. Escritorio: tres columnas que terminan a la misma altura. */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {FUTBOL.map((f) => (
+            <div key={f.src} className="viewfinder relative aspect-[4/5] overflow-hidden">
+              <Image src={f.src} alt={f.alt} fill sizes="50vw" className="object-cover" />
+            </div>
+          ))}
+        </div>
+        <div className="hidden grid-cols-3 gap-5 md:grid">
+          {FUTBOL_COLS.map((col, c) => (
+            <div key={c} className="flex flex-col gap-5">
+              {col.map(([i, aspect]) => {
+                const f = FUTBOL[i];
+                return (
+                  <Reveal key={f.src} delay={c * 0.05}>
+                    <div className="viewfinder group relative overflow-hidden" style={{ aspectRatio: aspect }}>
+                      <Image
+                        src={f.src}
+                        alt={f.alt}
+                        fill
+                        sizes="33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* Galería */}
