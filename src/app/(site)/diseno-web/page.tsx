@@ -160,20 +160,17 @@ export default function DisenoWebPage() {
               <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">Club Juli · La Tienda de Juli</p>
             </Reveal>
             <Reveal delay={0.06} className="md:col-span-5">
-              <p className="text-muted">Club de socios para una tienda de ropa: tarjetas, tarjeta Gold, gift cards, folletos y banners.</p>
+              <p className="text-muted">Club de socios para una tienda de ropa: tarjeta de socia, tarjeta Gold y banner.</p>
             </Reveal>
           </div>
           <Reveal>
-            <div className="grid gap-4 bg-[#1a0f16] p-5 md:grid-cols-12 md:gap-6 md:p-10">
-              <div className="grid gap-4 md:col-span-8 md:gap-6">
-                <div className="grid grid-cols-2 gap-4 md:gap-6">
-                  <Image src="/images/diseno-club-juli-neon.png" alt="Tarjeta Club Juli, versión neón fucsia" width={1200} height={757} className="h-auto w-full" />
-                  <Image src="/images/diseno-club-juli-gold.png" alt="Tarjeta Club Juli Gold, negra y dorada" width={1200} height={757} className="h-auto w-full" />
-                </div>
-                <Image src="/images/diseno-club-juli-gift.png" alt="Gift card de La Tienda de Juli con talón" width={1400} height={660} className="h-auto w-full" />
+            {/* Menos rosa (Laly, 2026-11-21): solo las dos tarjetas y el banner, sobre fondo neutro. */}
+            <div className="grid items-center gap-4 border border-fg/10 bg-fg/[0.03] p-5 md:grid-cols-12 md:gap-8 md:p-10">
+              <div className="grid grid-cols-2 gap-4 md:col-span-5 md:col-start-3 md:grid-cols-1 md:gap-6">
+                <Image src="/images/diseno-club-juli-neon.png" alt="Tarjeta Club Juli, versión neón fucsia" width={1200} height={757} className="h-auto w-full" />
+                <Image src="/images/diseno-club-juli-gold.png" alt="Tarjeta Club Juli Gold, negra y dorada" width={1200} height={757} className="h-auto w-full" />
               </div>
-              <div className="grid grid-cols-2 gap-4 md:col-span-4 md:gap-6">
-                <Image src="/images/diseno-club-juli-folleto.png" alt="Folleto del Club Juli" width={700} height={1050} className="h-auto w-full self-start" />
+              <div className="mx-auto w-3/5 md:col-span-3 md:w-full">
                 <Image src="/images/diseno-club-juli-rollup.png" alt="Banner roll-up de crédito personal Club Juli" width={700} height={1647} className="h-auto w-full" />
               </div>
             </div>

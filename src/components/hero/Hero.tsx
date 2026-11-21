@@ -137,6 +137,31 @@ export default function Hero() {
       <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/20 to-bg/40" />
 
       <div className="relative z-10 flex min-h-svh flex-col justify-end px-5 pb-10 pt-36 md:px-12 md:pb-14 md:pt-40 lg:px-20">
+        {/* En móvil va encima del texto (no flotando), para que nada se monte. */}
+        <div
+          data-hero-fade
+          aria-hidden
+          className="pointer-events-none mb-6 flex flex-col items-end gap-2 text-right md:absolute md:right-12 md:top-28 md:mb-0 md:gap-3 lg:right-20"
+        >
+          <span className="slate hidden text-fg/55 md:block">
+            <Timecode />
+          </span>
+          <span className="slate text-fg/70">
+            Universo {String(idx + 1).padStart(2, "0")} / {String(frames.length).padStart(2, "0")}
+          </span>
+          <span className="block overflow-hidden">
+            <span
+              key={frames[idx].id}
+              className={`reel-name block text-accent ${
+                frames[idx].serif
+                  ? "font-serif italic text-[clamp(2.2rem,5vw,4.4rem)] leading-none"
+                  : "poster text-[clamp(2.2rem,5vw,4.4rem)]"
+              }`}
+            >
+              {frames[idx].name}
+            </span>
+          </span>
+        </div>
         <p data-hero-fade className="slate mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-fg/80">
           <span className="inline-flex items-center gap-2 text-accent">
             <span className="rec" /> REC
@@ -201,30 +226,6 @@ export default function Hero() {
           </nav>
         </div>
 
-        <div
-          data-hero-fade
-          aria-hidden
-          className="pointer-events-none absolute right-5 top-28 flex flex-col items-end gap-3 text-right md:right-12 lg:right-20"
-        >
-          <span className="slate hidden text-fg/55 md:block">
-            <Timecode />
-          </span>
-          <span className="slate text-fg/70">
-            Universo {String(idx + 1).padStart(2, "0")} / {String(frames.length).padStart(2, "0")}
-          </span>
-          <span className="block overflow-hidden">
-            <span
-              key={frames[idx].id}
-              className={`reel-name block text-accent ${
-                frames[idx].serif
-                  ? "font-serif italic text-[clamp(2.2rem,5vw,4.4rem)] leading-none"
-                  : "poster text-[clamp(2.2rem,5vw,4.4rem)]"
-              }`}
-            >
-              {frames[idx].name}
-            </span>
-          </span>
-        </div>
       </div>
     </section>
   );
