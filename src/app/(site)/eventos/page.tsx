@@ -231,7 +231,8 @@ export default async function EventosPage() {
         </div>
         <Reveal>
           <p className="mx-auto mt-12 max-w-2xl text-center font-serif text-2xl italic leading-snug text-fg/90 md:mt-16 md:text-3xl">
-            Una tiara, un vestido lila y una noche entera para ella.
+            Quince años se cumplen una sola vez. Toda la familia reunida, un baile que emociona y una noche que se
+            queda para siempre.
           </p>
         </Reveal>
       </section>
