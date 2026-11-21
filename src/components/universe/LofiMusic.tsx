@@ -1,6 +1,6 @@
 "use client";
 
-// Enciende y apaga la música lo-fi según el botón de sonido. Va dentro del
+// Enciende y apaga la música de fondo según el botón de sonido. Va dentro del
 // menú, así está en todas las páginas.
 import { useEffect } from "react";
 import { isSoundOn, onSoundChange } from "@/lib/sound";

@@ -3,11 +3,9 @@
 // Los universos de G-creatiON (Laly, 2026-10-12): justo debajo de la portada,
 // una puerta con foto por universo para que cada persona vaya directa a lo
 // que necesita. Poco texto: nombre + una línea.
-import { useRef } from "react";
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import UniverseLink from "@/components/universe/UniverseLink";
-import { playUniverse } from "@/lib/sound";
 import { UNIVERSES as ALL } from "@/lib/universes";
 
 // Las tarjetas usan sus fotos de siempre (Sport con las patinadoras).
@@ -16,15 +14,6 @@ const UNIVERSES = ALL.map((u) =>
 );
 
 export default function Universes() {
-  // Al pasar por una tarjeta suena su universo (con sonido encendido).
-  const last = useRef<{ id: string; at: number }>({ id: "", at: 0 });
-  const preview = (id: (typeof UNIVERSES)[number]["id"], now: number) => {
-    if (!window.matchMedia("(hover: hover)").matches) return;
-    if (last.current.id === id && now - last.current.at < 2500 && now > last.current.at) return;
-    last.current = { id, at: now };
-    playUniverse(id);
-  };
-
   return (
     <section id="universos" className="px-5 py-16 md:px-12 md:py-24 lg:px-20">
       <Reveal>
@@ -36,7 +25,7 @@ export default function Universes() {
         {UNIVERSES.map((u, i) => (
           <li key={u.href} className={i === UNIVERSES.length - 1 && UNIVERSES.length % 2 === 1 ? "sm:col-span-2" : ""}>
             <Reveal delay={(i % 2) * 0.06}>
-              <UniverseLink href={u.href} className="group block" onMouseEnter={(e) => preview(u.id, e.timeStamp)}>
+              <UniverseLink href={u.href} className="group block">
                 <div
                   className={`viewfinder relative aspect-[4/3] overflow-hidden ${
                     i === UNIVERSES.length - 1 && UNIVERSES.length % 2 === 1 ? "md:aspect-[21/8]" : "md:aspect-[16/11]"

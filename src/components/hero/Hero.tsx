@@ -6,7 +6,6 @@ import { gsap } from "@/lib/animation";
 import { useContent } from "@/components/content/ContentProvider";
 import UniverseLink from "@/components/universe/UniverseLink";
 import { whenIntroDone } from "@/components/intro/IntroGate";
-import { playUniverse } from "@/lib/sound";
 import { UNIVERSES } from "@/lib/universes";
 
 // Timecode que corre como el de una cámara grabando: el "ON" de la marca.
@@ -31,7 +30,7 @@ function Timecode() {
 // pantalla y deja sitio arriba, para no taparse nunca con el menú.
 // Portada viva (Laly, 2026-11-19): los cinco universos pasan uno detrás de
 // otro como un tráiler. Al pasar el ratón por un universo, la portada salta a
-// él y suena su firma (si la persona entró con sonido).
+// él (sin sonido: Laly, 2026-11-21).
 const ORDER = ["sport", "weddings", "eventos", "marcas", "diseno"] as const;
 const HOLD = 3800;
 
@@ -49,7 +48,6 @@ export default function Hero() {
   const [idx, setIdx] = useState(0);
   const [seen, setSeen] = useState<number[]>([0]);
   const [paused, setPaused] = useState(false);
-  const lastSound = useRef(0);
 
   const jump = useCallback((i: number) => {
     setIdx(i);
@@ -179,11 +177,6 @@ export default function Hero() {
                 onMouseEnter={() => {
                   setPaused(true);
                   if (i !== idx) jump(i);
-                  const now = Date.now();
-                  if (now - lastSound.current > 350) {
-                    lastSound.current = now;
-                    playUniverse(u.id);
-                  }
                 }}
                 onFocus={() => {
                   setPaused(true);
