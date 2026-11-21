@@ -27,6 +27,12 @@ function audio() {
   return ctx;
 }
 
+/** Contexto de audio compartido (lo usa también la música lo-fi). */
+export function getAudio() {
+  const c = audio();
+  return c && master ? { c, out: master } : null;
+}
+
 export function isSoundOn() {
   if (typeof window === "undefined") return false;
   try {

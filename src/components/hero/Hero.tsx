@@ -27,6 +27,8 @@ function Timecode() {
   );
 }
 
+// Titular (Laly, 2026-11-21): su tamaño depende también del alto de la
+// pantalla y deja sitio arriba, para no taparse nunca con el menú.
 // Portada viva (Laly, 2026-11-19): los cinco universos pasan uno detrás de
 // otro como un tráiler. Al pasar el ratón por un universo, la portada salta a
 // él y suena su firma (si la persona entró con sonido).
@@ -96,7 +98,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={rootRef} className="grain relative h-svh min-h-[680px] overflow-hidden bg-bg">
+    <section ref={rootRef} className="grain relative min-h-svh overflow-hidden bg-bg">
       {/* Tráiler de universos: la foto activa entra con un corte en barrido
           sobre la anterior. */}
       <div className="absolute inset-0 isolate">
@@ -135,7 +137,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-accent/10 mix-blend-overlay" />
       <div className="absolute inset-0 bg-linear-to-t from-bg via-bg/20 to-bg/40" />
 
-      <div className="relative z-10 flex h-full flex-col justify-end px-5 pb-10 md:px-12 md:pb-14 lg:px-20">
+      <div className="relative z-10 flex min-h-svh flex-col justify-end px-5 pb-10 pt-36 md:px-12 md:pb-14 md:pt-40 lg:px-20">
         <p data-hero-fade className="slate mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-fg/80">
           <span className="inline-flex items-center gap-2 text-accent">
             <span className="rec" /> REC
@@ -148,7 +150,7 @@ export default function Hero() {
         <h1
           ref={headlineRef}
           style={{ visibility: "hidden" }}
-          className="poster max-w-[14ch] text-fg text-[clamp(2.9rem,8.4vw,7.6rem)]"
+          className="poster max-w-[14ch] text-fg text-[clamp(2.6rem,min(7.2vw,10.5svh),7rem)] md:max-w-[60%]"
         >
           {LINES.map((line, i) => (
             <span key={line} className="block overflow-hidden pb-[0.04em]">

@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import Wordmark from "@/components/ui/Wordmark";
 import UniverseLink from "@/components/universe/UniverseLink";
 import SoundToggle from "@/components/universe/SoundToggle";
+import LofiMusic from "@/components/universe/LofiMusic";
 import { useContent } from "@/components/content/ContentProvider";
 
 const NAV = [
@@ -91,7 +92,7 @@ export default function Header() {
           {onDiseno && <span className="poster ml-2 text-lg text-muted">diseño & web</span>}
         </Link>
 
-        <nav className={`slate hidden items-center gap-9 lg:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>
+        <nav className={`slate hidden items-center gap-9 xl:flex ${sportOnOrange ? "text-bg/75" : "text-fg/75"}`}>
           {nav.map((item) => (
             <UniverseLink key={item.href} href={item.href} className={`link-quiet ${sportOnOrange ? "hover:text-bg" : "hover:text-fg"}`}>
               {item.label}
@@ -100,6 +101,7 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3 md:gap-4">
+          <LofiMusic />
           <SoundToggle className={sportOnOrange ? "text-bg" : ""} />
           <Link
             href={ctaHref}
@@ -115,7 +117,7 @@ export default function Header() {
             aria-expanded={open}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             onClick={() => setOpen((o) => !o)}
-            className={`slate border px-3 py-2.5 lg:hidden ${sportOnOrange ? "border-bg/30" : "border-fg/25"}`}
+            className={`slate border px-3 py-2.5 xl:hidden ${sportOnOrange ? "border-bg/30" : "border-fg/25"}`}
           >
             {open ? "Cerrar" : "Menú"}
           </button>
@@ -124,7 +126,7 @@ export default function Header() {
 
       {open && (
         <nav
-          className={`mx-5 flex flex-col border border-fg/15 lg:hidden ${
+          className={`mx-5 flex flex-col border border-fg/15 xl:hidden ${
             onWeddings ? "bg-[#1f2420] text-[#f4f2ee]" : "bg-bg text-fg"
           }`}
         >
