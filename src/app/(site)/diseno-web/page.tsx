@@ -42,6 +42,19 @@ function BrowserFrame({ label, children }: { label: string; children: React.Reac
 
 const STEPS = ["Nos cuentas tu negocio.", "Diseñamos y te lo mostramos.", "Lo publicamos y lo dejamos funcionando."];
 
+// Fira de la Puríssima 2026 (Ajuntament de Camprodon): piezas impresas.
+const PURISSIMA_V = [
+  { src: "/images/diseno-purissima-cartell.jpg", alt: "Cartel principal de la Fira Artesana i de la Pagesia de Muntanya" },
+  { src: "/images/diseno-purissima-flyer.jpg", alt: "Flyer de conciertos y espectáculos de la Puríssima" },
+  { src: "/images/diseno-purissima-trenet.jpg", alt: "Cartel del trenecito gratuito de la feria" },
+  { src: "/images/diseno-purissima-activitats.jpg", alt: "Hoja de actividades en Camprodon durante el puente" },
+];
+const PURISSIMA_H = [
+  { src: "/images/diseno-purissima-diptic-fora.jpg", alt: "Díptico de la Puríssima, portada y mapa de la feria" },
+  { src: "/images/diseno-purissima-diptic-dins.jpg", alt: "Díptico de la Puríssima, programa por días" },
+  { src: "/images/diseno-purissima-totem.jpg", alt: "Tótem horizontal con el programa de la feria" },
+];
+
 export default function DisenoWebPage() {
   return (
     <main>
@@ -177,10 +190,40 @@ export default function DisenoWebPage() {
           </Reveal>
         </article>
 
-        {/* 3 · Esta web */}
+        {/* 3 · Fira de la Puríssima (Laly, 2026-11-21) */}
+        <article className="mt-24 md:mt-32">
+          <div className="mb-8 grid gap-4 md:grid-cols-12 md:items-end md:gap-10">
+            <Reveal className="md:col-span-7">
+              <p className="slate text-accent">03 · Cartelería y piezas impresas</p>
+              <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">Fira de la Puríssima 2026 · Camprodon</p>
+            </Reveal>
+            <Reveal delay={0.06} className="md:col-span-5">
+              <p className="text-muted">
+                Toda la comunicación del puente de la Puríssima: cartel principal, flyer de espectáculos, díptico con el
+                programa y el mapa, tótem y cartel del trenecito.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal>
+            <div className="grid gap-4 border border-fg/10 bg-fg/[0.03] p-5 md:gap-6 md:p-10">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+                {PURISSIMA_V.map((d) => (
+                  <Image key={d.src} src={d.src} alt={d.alt} width={1133} height={1600} sizes="(min-width: 768px) 25vw, 50vw" className="h-auto w-full shadow-2xl shadow-black/40" />
+                ))}
+              </div>
+              <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+                {PURISSIMA_H.map((d) => (
+                  <Image key={d.src} src={d.src} alt={d.alt} width={1600} height={1133} sizes="(min-width: 768px) 33vw, 100vw" className="h-auto w-full shadow-2xl shadow-black/40" />
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        </article>
+
+        {/* 4 · Esta web */}
         <article className="mt-24 grid items-center gap-8 md:mt-32 md:grid-cols-12 md:gap-10">
           <Reveal className="md:col-span-4 md:order-1">
-            <p className="slate text-accent">03 · Página web</p>
+            <p className="slate text-accent">04 · Página web</p>
             <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">
               Esta web <span className="text-accent">también es nuestra.</span>
             </p>
