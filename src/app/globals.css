@@ -99,24 +99,31 @@ body {
 .viewfinder {
   position: relative;
 }
+/* Esquinas de visor hechas con bordes (Laly, 2026-11-21): con degradados,
+   Safari/Brave en iPhone pintaban un rectángulo oscuro encima de las fotos. */
+.viewfinder::before,
 .viewfinder::after {
   content: "";
   position: absolute;
   inset: 14px;
   pointer-events: none;
   z-index: 2;
-  --c: rgb(244 242 238 / 0.85);
-  --l: 22px;
-  background:
-    linear-gradient(var(--c), var(--c)) top left / var(--l) 1px,
-    linear-gradient(var(--c), var(--c)) top left / 1px var(--l),
-    linear-gradient(var(--c), var(--c)) top right / var(--l) 1px,
-    linear-gradient(var(--c), var(--c)) top right / 1px var(--l),
-    linear-gradient(var(--c), var(--c)) bottom left / var(--l) 1px,
-    linear-gradient(var(--c), var(--c)) bottom left / 1px var(--l),
-    linear-gradient(var(--c), var(--c)) bottom right / var(--l) 1px,
-    linear-gradient(var(--c), var(--c)) bottom right / 1px var(--l);
-  background-repeat: no-repeat;
+  border: 0 solid rgb(244 242 238 / 0.85);
+  background: none;
+}
+/* Trazos verticales: izquierda y derecha, solo arriba y abajo */
+.viewfinder::before {
+  border-left-width: 1px;
+  border-right-width: 1px;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 22px, 0 22px, 0 calc(100% - 22px), 100% calc(100% - 22px), 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 22px, 0 22px, 0 calc(100% - 22px), 100% calc(100% - 22px), 100% 100%, 0 100%);
+}
+/* Trazos horizontales: arriba y abajo, solo en los extremos */
+.viewfinder::after {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  -webkit-clip-path: polygon(0 0, 22px 0, 22px 100%, calc(100% - 22px) 100%, calc(100% - 22px) 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 22px 0, 22px 100%, calc(100% - 22px) 100%, calc(100% - 22px) 0, 100% 0, 100% 100%, 0 100%);
 }
 
 /* Lenis recommended styles */
