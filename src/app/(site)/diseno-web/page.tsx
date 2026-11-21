@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "G-creatiON Diseño & Web",
     description: "Tu negocio, bien presentado.",
-    images: [{ url: "/images/laly-diseno.jpg", alt: "Laly, de G-creatiON" }],
+    images: [{ url: "/images/laly-americana.jpg", alt: "Laly, de G-creatiON" }],
   },
 };
 
@@ -83,12 +83,12 @@ export default function DisenoWebPage() {
             <figure>
               <div className="viewfinder relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/images/laly-diseno.jpg"
+                  src="/images/laly-americana.jpg"
                   alt="Laly, de G-creatiON"
                   fill
                   priority
                   sizes="(min-width: 768px) 40vw, 100vw"
-                  className="object-cover"
+                  className="object-cover object-[50%_20%]"
                 />
               </div>
               <figcaption className="slate mt-3 text-muted">Laly · Diseño y desarrollo web</figcaption>

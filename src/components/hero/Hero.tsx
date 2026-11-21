@@ -118,6 +118,7 @@ export default function Hero() {
                 priority={i === 0}
                 sizes="100vw"
                 className={`object-cover kenburns ${f.id === "weddings" ? "grayscale" : ""}`}
+                style={f.heroPos || f.pos ? { objectPosition: f.heroPos || f.pos } : undefined}
               />
             </div>
           );

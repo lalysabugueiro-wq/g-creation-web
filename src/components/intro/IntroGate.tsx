@@ -117,7 +117,7 @@ export default function IntroGate() {
       {phase === "count" && (
         <>
           <div key={frame.id} className="absolute inset-0 animate-[intro-cut_0.55s_ease-out]">
-            <Image src={frame.src} alt="" fill sizes="100vw" className="object-cover opacity-45" priority />
+            <Image src={frame.src} alt="" fill sizes="100vw" className="object-cover opacity-45" priority style={frame.heroPos || frame.pos ? { objectPosition: frame.heroPos || frame.pos } : undefined} />
             <div className="absolute inset-0 bg-bg/40" />
           </div>
           <div className="relative z-10 flex flex-1 flex-col items-center justify-center">

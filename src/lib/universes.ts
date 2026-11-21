@@ -15,6 +15,10 @@ export type Universe = {
   /** Texto de la cortinilla */
   ink: string;
   serif?: boolean;
+  /** Encuadre de la foto (object-position), p. ej. para retratos verticales */
+  pos?: string;
+  /** Encuadre en la portada (pantalla completa) */
+  heroPos?: string;
 };
 
 export const UNIVERSES: Universe[] = [
@@ -64,8 +68,10 @@ export const UNIVERSES: Universe[] = [
     href: "/diseno-web",
     name: "Diseño & Web",
     line: "Páginas web, identidad y piezas gráficas.",
-    src: "/images/laly-diseno.jpg",
+    src: "/images/laly-americana.jpg",
     alt: "Laly, de G-creatiON",
+    pos: "50% 22%",
+    heroPos: "50% 8%",
     bg: "#0e0f10",
     ink: "#ff5a1f",
   },

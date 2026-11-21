@@ -37,6 +37,7 @@ export default function Universes() {
                     fill
                     sizes="(min-width: 640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    style={u.pos ? { objectPosition: u.pos } : undefined}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-[#f4f2ee] md:p-8">

@@ -303,7 +303,7 @@ export const FIELDS: Field[] = [
   },
   { key: "home.about.photoPair", section: "Quiénes somos", label: "Foto de los dos", type: "image", maxWidth: 1400, default: "/images/guille-y-laly.jpg" },
   { key: "home.about.photoGuille", section: "Quiénes somos", label: "Retrato de Guille", type: "image", maxWidth: 900, default: "/images/guille-camara.jpg" },
-  { key: "home.about.photoLaly", section: "Quiénes somos", label: "Retrato de Laly", type: "image", maxWidth: 900, default: "/images/laly-retrato.jpg" },
+  { key: "home.about.photoLaly", section: "Quiénes somos", label: "Retrato de Laly", type: "image", maxWidth: 900, default: "/images/laly-americana-cuadrada.jpg" },
 
   // ------------------------------------------------------------ Filosofía
   {
