@@ -94,7 +94,6 @@ export const areas: Area[] = [
     tags: ["Foto", "Video", "Dron", "Cobertura en vivo"],
     cases: [
       { name: "BTT / Isard Atac Bike", detail: "Una carrera de montaña, de la salida a la meta" },
-      { name: "Riera Racing", detail: "Competición" },
     ],
   },
   {

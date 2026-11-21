@@ -186,7 +186,7 @@ export const FIELDS: Field[] = [
         name: "G-creatiON Sport",
         claim: "Contamos la preparación, el esfuerzo, la montaña y la llegada. Lo que se siente cuando todo termina.",
         tags: L("Foto", "Video", "Dron", "Cobertura en vivo"),
-        cases: L("BTT / Isard Atac Bike — Una carrera de montaña, de la salida a la meta", "Riera Racing — Competición"),
+        cases: L("BTT / Isard Atac Bike — Una carrera de montaña, de la salida a la meta"),
       },
       {
         id: "web",
@@ -532,8 +532,7 @@ export const FIELDS: Field[] = [
     type: "lines",
     default: L(
       "FEC Camprodon — Patinaje, fútbol y básquet",
-      "Isard Atac Bike — Una carrera de montaña, de la salida a la meta",
-      "Riera Racing — Competición"
+      "Isard Atac Bike — Una carrera de montaña, de la salida a la meta"
     ),
   },
   ...[
