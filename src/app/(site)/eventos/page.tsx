@@ -32,6 +32,19 @@ const PHOTOS = [
   { src: "/images/evento-cantante-banda.jpg", alt: "Cantante y guitarrista bajo los focos", tall: false },
 ];
 
+// Baby gender reveal (Laly, 2026-11-21): la primera es la grande.
+const REVEAL = [
+  { src: "/images/evento-reveal-silueta-manos.jpg", alt: "La pareja de la mano, a contraluz, frente a las letras iluminadas" },
+  { src: "/images/evento-reveal-sonrisa.jpg", alt: "La futura mamá sonríe abrazada a su pareja al atardecer" },
+  { src: "/images/evento-reveal-atardecer.jpg", alt: "La pareja de pie con el cielo rosa y las montañas detrás" },
+  { src: "/images/evento-reveal-nariz.jpg", alt: "Nariz con nariz, riéndose" },
+  { src: "/images/evento-reveal-barriga.jpg", alt: "Las manos de los dos sobre la barriga" },
+  { src: "/images/evento-reveal-ojos-cerrados.jpg", alt: "Ella cierra los ojos mientras él la abraza por detrás" },
+  { src: "/images/evento-reveal-risa-mariposa.jpg", alt: "Ella se ríe mirando al cielo junto a una mariposa de luz" },
+  { src: "/images/evento-reveal-carcajada.jpg", alt: "Los dos a carcajadas entre globos" },
+  { src: "/images/evento-reveal-abrazo-luces.jpg", alt: "Abrazo bajo una cortina de luces" },
+];
+
 export default async function EventosPage() {
   const content = await getSiteContent();
   const t = (k: string) => content[k] ?? "";
@@ -124,6 +137,47 @@ export default async function EventosPage() {
             </Reveal>
           ))}
         </div>
+      </section>
+
+      {/* Baby gender reveal */}
+      <section className="border-t border-fg/15 px-5 py-20 md:px-12 md:py-28 lg:px-20">
+        <Reveal>
+          <p className="slate mb-4 flex items-center gap-3 text-muted">
+            <span className="rec" /> Celebraciones
+          </p>
+          <p className="poster mb-10 text-[clamp(2.4rem,6vw,5.2rem)] md:mb-14">
+            Baby <span className="text-accent">gender reveal</span>
+          </p>
+        </Reveal>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+          {REVEAL.map((p, i) => (
+            <Reveal
+              key={p.src}
+              delay={(i % 4) * 0.05}
+              className={i === 0 ? "col-span-2 md:row-span-2" : ""}
+            >
+              <div
+                className={`viewfinder relative overflow-hidden ${
+                  i === 0 ? "aspect-[4/5] md:aspect-auto md:h-full" : "aspect-[2/3]"
+                }`}
+              >
+                <Image
+                  src={p.src}
+                  alt={p.alt}
+                  fill
+                  sizes={i === 0 ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
+                  className="object-cover"
+                />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <p className="mx-auto mt-12 max-w-2xl text-center font-serif text-2xl italic leading-snug text-fg/90 md:mt-16 md:text-3xl">
+            Dos manos sobre una barriga, un secreto a punto de decirse y una risa que ya no se olvida. Hay momentos que
+            empiezan antes de conocerse.
+          </p>
+        </Reveal>
       </section>
 
       {/* Clientes */}
