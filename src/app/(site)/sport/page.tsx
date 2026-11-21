@@ -291,7 +291,6 @@ export default async function SportPage() {
                 La fuerza de la montaña. <span className="text-accent">Y un pueblo entero mirando.</span>
               </p>
             </div>
-            <p className="max-w-sm text-muted">Criadores, caballos de montaña y una carpa llena: el trote, los nervios de la pista y la escarapela al final.</p>
           </div>
         </Reveal>
         {/* Móvil: cuadrícula simple. Escritorio: tres columnas que terminan a la misma altura. */}
