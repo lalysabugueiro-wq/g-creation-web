@@ -43,6 +43,20 @@ const REVEAL = [
   { src: "/images/evento-reveal-abrazo-luces.jpg", alt: "Abrazo bajo una cortina de luces" },
 ];
 
+// Fiesta de 15 (Laly, 2026-11-21).
+const QUINCE_V = [
+  { src: "/images/evento-15-ramo.jpg", alt: "La quinceañera sentada con su ramo lila frente a la hiedra" },
+  { src: "/images/evento-15-mano.jpg", alt: "La quinceañera sonríe con la mano en la barbilla" },
+  { src: "/images/evento-15-claveles.jpg", alt: "La quinceañera mira un ramo de claveles blancos" },
+];
+const QUINCE_H = [
+  { src: "/images/evento-15-mama.jpg", alt: "La quinceañera y su madre se miran sonriendo" },
+  { src: "/images/evento-15-baile-risa.jpg", alt: "La quinceañera baila y sonríe a la cámara" },
+  { src: "/images/evento-15-baile.jpg", alt: "La quinceañera baila con la mano en el hombro de su pareja de baile" },
+  { src: "/images/evento-15-risa-clavel.jpg", alt: "La quinceañera se ríe con un clavel en la mano" },
+  { src: "/images/evento-15-detalles.jpg", alt: "La tiara, el anillo, los tacones y las zapatillas" },
+];
+
 export default async function EventosPage() {
   const content = await getSiteContent();
   const t = (k: string) => content[k] ?? "";
@@ -174,6 +188,50 @@ export default async function EventosPage() {
           <p className="mx-auto mt-12 max-w-2xl text-center font-serif text-2xl italic leading-snug text-fg/90 md:mt-16 md:text-3xl">
             Dos manos sobre una barriga, un secreto a punto de decirse y una risa que ya no se olvida. Hay momentos que
             empiezan antes de conocerse.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Fiesta de 15 */}
+      <section className="border-t border-fg/15 px-5 py-20 md:px-12 md:py-28 lg:px-20">
+        <Reveal>
+          <p className="slate mb-4 flex items-center gap-3 text-muted">
+            <span className="rec" /> Celebraciones
+          </p>
+          <p className="poster mb-10 text-[clamp(2.4rem,6vw,5.2rem)] md:mb-14">
+            Fiesta de <span className="text-accent">15</span>
+          </p>
+        </Reveal>
+        <Reveal>
+          <div className="viewfinder relative mb-3 aspect-[3/2] overflow-hidden md:mb-5 md:aspect-[21/10]">
+            <Image src="/images/evento-15-arco.jpg" alt="La quinceañera bajo el arco de globos lilas" fill sizes="100vw" className="object-cover object-[center_45%]" />
+          </div>
+        </Reveal>
+        <div className="mb-3 grid grid-cols-2 gap-3 md:mb-5 md:grid-cols-3 md:gap-5">
+          {QUINCE_V.map((p, i) => (
+            <Reveal key={p.src} delay={i * 0.05} className={i === 2 ? "col-span-2 md:col-span-1" : ""}>
+              <div className={`viewfinder relative overflow-hidden ${i === 2 ? "aspect-[3/2] md:aspect-[4/5]" : "aspect-[4/5]"}`}>
+                <Image src={p.src} alt={p.alt} fill sizes="(min-width: 768px) 33vw, 50vw" className="object-cover object-top" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-6 md:gap-5">
+          {QUINCE_H.map((p, i) => (
+            <Reveal
+              key={p.src}
+              delay={(i % 3) * 0.05}
+              className={i < 3 ? (i === 0 ? "col-span-2 md:col-span-2" : "md:col-span-2") : "md:col-span-3"}
+            >
+              <div className="viewfinder relative aspect-[3/2] overflow-hidden">
+                <Image src={p.src} alt={p.alt} fill sizes="(min-width: 768px) 50vw, 50vw" className="object-cover" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <Reveal>
+          <p className="mx-auto mt-12 max-w-2xl text-center font-serif text-2xl italic leading-snug text-fg/90 md:mt-16 md:text-3xl">
+            Una tiara, un vestido lila y una noche entera para ella.
           </p>
         </Reveal>
       </section>
