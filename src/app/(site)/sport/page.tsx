@@ -39,6 +39,25 @@ const FUTBOL_COLS: [number, string][][] = [
   [[5, "2 / 3"], [7, "1 / 1"]],
 ];
 
+// Concurso comarcal de caballos (Laly, 2026-11-21).
+const CABALLOS = [
+  { src: "/images/sport-caballos-lazo.jpg", alt: "Un criador hace trotar a su caballo con el lazo en alto ante el público" },
+  { src: "/images/sport-caballos-carpa.jpg", alt: "Caballo de montaña bajo la carpa del concurso, con árboles de otoño" },
+  { src: "/images/sport-caballos-trote-frente.jpg", alt: "Caballo trotando de frente junto a su guía" },
+  { src: "/images/sport-caballos-cabeza.jpg", alt: "Cabeza de un caballo con cabezada de cuero" },
+  { src: "/images/sport-caballos-salto.jpg", alt: "Caballo levantando las patas en la pista" },
+  { src: "/images/sport-caballos-trote-2.jpg", alt: "Guía con el dorsal 2 corriendo junto a su caballo" },
+  { src: "/images/sport-caballos-ojo.jpg", alt: "Primer plano del ojo de un caballo" },
+  { src: "/images/sport-caballos-escarapela.jpg", alt: "Una criadora coloca la escarapela a su caballo" },
+  { src: "/images/sport-caballos-bn.jpg", alt: "Joven guiando a un caballo tordo, en blanco y negro" },
+];
+// Escritorio: dos anchas arriba y tres columnas que terminan a la misma altura.
+const CABALLOS_COLS: [number, string][][] = [
+  [[2, "2 / 3"], [3, "3 / 2"]],
+  [[4, "10 / 7"], [5, "10 / 7"], [6, "10 / 7"]],
+  [[7, "2 / 3"], [8, "3 / 2"]],
+];
+
 const DISCIPLINES = [
   { name: "Golf", src: "/images/sport-golf-swing.jpg", alt: "Golfista en pleno swing con el Pirineo detrás" },
   { name: "BTT & bici", src: "/images/sport-btt-sendero.jpg", alt: "Ciclista de BTT bajando por un sendero entre árboles" },
@@ -240,6 +259,64 @@ export default async function SportPage() {
             <div key={c} className="flex flex-col gap-5">
               {col.map(([i, aspect]) => {
                 const f = FUTBOL[i];
+                return (
+                  <Reveal key={f.src} delay={c * 0.05}>
+                    <div className="viewfinder group relative overflow-hidden" style={{ aspectRatio: aspect }}>
+                      <Image
+                        src={f.src}
+                        alt={f.alt}
+                        fill
+                        sizes="33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </div>
+                  </Reveal>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Caballos: concurso comarcal (Laly, 2026-11-21) */}
+      <section className="px-5 pb-24 md:px-12 md:pb-32 lg:px-20">
+        <Reveal>
+          <div className="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="slate mb-4 flex items-center gap-3 text-muted">
+                <span className="text-accent">03</span>
+                <span className="h-px w-6 bg-fg/25" />
+                Concurso comarcal de caballos
+              </p>
+              <p className="poster text-[clamp(2.2rem,5.5vw,4.8rem)]">
+                La fuerza de la montaña. <span className="text-accent">Y un pueblo entero mirando.</span>
+              </p>
+            </div>
+            <p className="max-w-sm text-muted">Criadores, caballos de montaña y una carpa llena: el trote, los nervios de la pista y la escarapela al final.</p>
+          </div>
+        </Reveal>
+        {/* Móvil: cuadrícula simple. Escritorio: tres columnas que terminan a la misma altura. */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {CABALLOS.map((f, i) => (
+            <div key={f.src} className={`viewfinder relative overflow-hidden ${i === 0 ? "col-span-2 aspect-[3/2]" : "aspect-[4/5]"}`}>
+              <Image src={f.src} alt={f.alt} fill sizes="50vw" className="object-cover" />
+            </div>
+          ))}
+        </div>
+        <div className="mb-5 hidden grid-cols-2 gap-5 md:grid">
+          {CABALLOS.slice(0, 2).map((f) => (
+            <Reveal key={f.src}>
+              <div className="viewfinder group relative aspect-[3/2] overflow-hidden">
+                <Image src={f.src} alt={f.alt} fill sizes="50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div className="hidden grid-cols-3 gap-5 md:grid">
+          {CABALLOS_COLS.map((col, c) => (
+            <div key={c} className="flex flex-col gap-5">
+              {col.map(([i, aspect]) => {
+                const f = CABALLOS[i];
                 return (
                   <Reveal key={f.src} delay={c * 0.05}>
                     <div className="viewfinder group relative overflow-hidden" style={{ aspectRatio: aspect }}>

@@ -44,16 +44,10 @@ const STEPS = ["Nos cuentas tu negocio.", "Diseñamos y te lo mostramos.", "Lo p
 
 // Fira de la Puríssima 2026 (Ajuntament de Camprodon): piezas impresas.
 const PURISSIMA_V = [
-  { src: "/images/diseno-purissima-cartell.jpg", alt: "Cartel principal de la Fira Artesana i de la Pagesia de Muntanya" },
+  { src: "/images/diseno-purissima-cartell.jpg", alt: "Cartel de la Fira Artesana i de la Pagesia de Muntanya" },
   { src: "/images/diseno-purissima-flyer.jpg", alt: "Flyer de conciertos y espectáculos de la Puríssima" },
-  { src: "/images/diseno-purissima-trenet.jpg", alt: "Cartel del trenecito gratuito de la feria" },
-  { src: "/images/diseno-purissima-activitats.jpg", alt: "Hoja de actividades en Camprodon durante el puente" },
 ];
-const PURISSIMA_H = [
-  { src: "/images/diseno-purissima-diptic-fora.jpg", alt: "Díptico de la Puríssima, portada y mapa de la feria" },
-  { src: "/images/diseno-purissima-diptic-dins.jpg", alt: "Díptico de la Puríssima, programa por días" },
-  { src: "/images/diseno-purissima-totem.jpg", alt: "Tótem horizontal con el programa de la feria" },
-];
+const PURISSIMA_MAPA = { src: "/images/diseno-purissima-diptic-fora.jpg", alt: "Díptico de la Puríssima con el mapa de la feria" };
 
 export default function DisenoWebPage() {
   return (
@@ -135,8 +129,34 @@ export default function DisenoWebPage() {
           </p>
         </Reveal>
 
-        {/* 1 · ForYou Camprodon */}
-        <article className="grid items-center gap-8 md:grid-cols-12 md:gap-10">
+        {/* 1 · Fira de la Puríssima (Laly, 2026-11-21) */}
+        <article>
+          <div className="mb-8 grid gap-4 md:grid-cols-12 md:items-end md:gap-10">
+            <Reveal className="md:col-span-7">
+              <p className="slate text-accent">01 · Cartelería y piezas impresas</p>
+              <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">Fira de la Puríssima 2026 · Camprodon</p>
+            </Reveal>
+            <Reveal delay={0.06} className="md:col-span-5">
+              <p className="text-muted">
+                La comunicación del puente de la Puríssima: el cartel de la Fira Artesana i de la Pagesia de Muntanya,
+                el flyer de conciertos y espectáculos, y el díptico con el mapa de la feria.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal>
+            <div className="grid gap-4 border border-fg/10 bg-fg/[0.03] p-5 md:gap-6 md:p-10">
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-12 md:items-center md:gap-6">
+                {PURISSIMA_V.map((d) => (
+                  <Image key={d.src} src={d.src} alt={d.alt} width={1133} height={1600} sizes="(min-width: 768px) 25vw, 50vw" className="h-auto w-full shadow-2xl shadow-black/40 md:col-span-3" />
+                ))}
+                <Image src={PURISSIMA_MAPA.src} alt={PURISSIMA_MAPA.alt} width={1600} height={1133} sizes="(min-width: 768px) 50vw, 100vw" className="col-span-2 h-auto w-full shadow-2xl shadow-black/40 md:col-span-6" />
+              </div>
+            </div>
+          </Reveal>
+        </article>
+
+        {/* 2 · ForYou Camprodon */}
+        <article className="mt-24 grid items-center gap-8 md:mt-32 md:grid-cols-12 md:gap-10">
           <Reveal className="md:col-span-8">
             <a href="https://foryou-camprodon-web.vercel.app" target="_blank" rel="noreferrer" className="group block">
               <BrowserFrame label="foryou-camprodon">
@@ -151,7 +171,7 @@ export default function DisenoWebPage() {
             </a>
           </Reveal>
           <Reveal delay={0.08} className="md:col-span-4">
-            <p className="slate text-accent">01 · Página web</p>
+            <p className="slate text-accent">02 · Página web</p>
             <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">ForYou Camprodon</p>
             <p className="mt-4 text-muted">Salón de belleza en Camprodon. Web en catalán con servicios, galería y reservas.</p>
             <a
@@ -165,65 +185,10 @@ export default function DisenoWebPage() {
           </Reveal>
         </article>
 
-        {/* 2 · Club Juli */}
-        <article className="mt-24 md:mt-32">
-          <div className="mb-8 grid gap-4 md:grid-cols-12 md:items-end md:gap-10">
-            <Reveal className="md:col-span-7">
-              <p className="slate text-accent">02 · Identidad y piezas gráficas</p>
-              <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">Club Juli · La Tienda de Juli</p>
-            </Reveal>
-            <Reveal delay={0.06} className="md:col-span-5">
-              <p className="text-muted">Club de socios para una tienda de ropa: tarjeta de socia, tarjeta Gold y banner.</p>
-            </Reveal>
-          </div>
-          <Reveal>
-            {/* Menos rosa (Laly, 2026-11-21): solo las dos tarjetas y el banner, sobre fondo neutro. */}
-            <div className="grid items-center gap-4 border border-fg/10 bg-fg/[0.03] p-5 md:grid-cols-12 md:gap-8 md:p-10">
-              <div className="grid grid-cols-2 gap-4 md:col-span-5 md:col-start-3 md:grid-cols-1 md:gap-6">
-                <Image src="/images/diseno-club-juli-neon.png" alt="Tarjeta Club Juli, versión neón fucsia" width={1200} height={757} className="h-auto w-full" />
-                <Image src="/images/diseno-club-juli-gold.png" alt="Tarjeta Club Juli Gold, negra y dorada" width={1200} height={757} className="h-auto w-full" />
-              </div>
-              <div className="mx-auto w-3/5 md:col-span-3 md:w-full">
-                <Image src="/images/diseno-club-juli-rollup.png" alt="Banner roll-up de crédito personal Club Juli" width={700} height={1647} className="h-auto w-full" />
-              </div>
-            </div>
-          </Reveal>
-        </article>
-
-        {/* 3 · Fira de la Puríssima (Laly, 2026-11-21) */}
-        <article className="mt-24 md:mt-32">
-          <div className="mb-8 grid gap-4 md:grid-cols-12 md:items-end md:gap-10">
-            <Reveal className="md:col-span-7">
-              <p className="slate text-accent">03 · Cartelería y piezas impresas</p>
-              <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">Fira de la Puríssima 2026 · Camprodon</p>
-            </Reveal>
-            <Reveal delay={0.06} className="md:col-span-5">
-              <p className="text-muted">
-                Toda la comunicación del puente de la Puríssima: cartel principal, flyer de espectáculos, díptico con el
-                programa y el mapa, tótem y cartel del trenecito.
-              </p>
-            </Reveal>
-          </div>
-          <Reveal>
-            <div className="grid gap-4 border border-fg/10 bg-fg/[0.03] p-5 md:gap-6 md:p-10">
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-                {PURISSIMA_V.map((d) => (
-                  <Image key={d.src} src={d.src} alt={d.alt} width={1133} height={1600} sizes="(min-width: 768px) 25vw, 50vw" className="h-auto w-full shadow-2xl shadow-black/40" />
-                ))}
-              </div>
-              <div className="grid gap-4 md:grid-cols-3 md:gap-6">
-                {PURISSIMA_H.map((d) => (
-                  <Image key={d.src} src={d.src} alt={d.alt} width={1600} height={1133} sizes="(min-width: 768px) 33vw, 100vw" className="h-auto w-full shadow-2xl shadow-black/40" />
-                ))}
-              </div>
-            </div>
-          </Reveal>
-        </article>
-
-        {/* 4 · Esta web */}
+        {/* 3 · Esta web */}
         <article className="mt-24 grid items-center gap-8 md:mt-32 md:grid-cols-12 md:gap-10">
           <Reveal className="md:col-span-4 md:order-1">
-            <p className="slate text-accent">04 · Página web</p>
+            <p className="slate text-accent">03 · Página web</p>
             <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">
               Esta web <span className="text-accent">también es nuestra.</span>
             </p>
@@ -251,6 +216,32 @@ export default function DisenoWebPage() {
             </Link>
           </Reveal>
         </article>
+
+        {/* 4 · Club Juli */}
+        <article className="mt-24 md:mt-32">
+          <div className="mb-8 grid gap-4 md:grid-cols-12 md:items-end md:gap-10">
+            <Reveal className="md:col-span-7">
+              <p className="slate text-accent">04 · Identidad y piezas gráficas</p>
+              <p className="poster mt-4 text-[clamp(2.2rem,4vw,3.6rem)]">Club Juli · La Tienda de Juli</p>
+            </Reveal>
+            <Reveal delay={0.06} className="md:col-span-5">
+              <p className="text-muted">Club de socios para una tienda de ropa: tarjeta de socia, tarjeta Gold y banner.</p>
+            </Reveal>
+          </div>
+          <Reveal>
+            {/* Menos rosa (Laly, 2026-11-21): solo las dos tarjetas y el banner, sobre fondo neutro. */}
+            <div className="grid items-center gap-4 border border-fg/10 bg-fg/[0.03] p-5 md:grid-cols-12 md:gap-8 md:p-10">
+              <div className="grid grid-cols-2 gap-4 md:col-span-5 md:col-start-3 md:grid-cols-1 md:gap-6">
+                <Image src="/images/diseno-club-juli-neon.png" alt="Tarjeta Club Juli, versión neón fucsia" width={1200} height={757} className="h-auto w-full" />
+                <Image src="/images/diseno-club-juli-gold.png" alt="Tarjeta Club Juli Gold, negra y dorada" width={1200} height={757} className="h-auto w-full" />
+              </div>
+              <div className="mx-auto w-3/5 md:col-span-3 md:w-full">
+                <Image src="/images/diseno-club-juli-rollup.png" alt="Banner roll-up de crédito personal Club Juli" width={700} height={1647} className="h-auto w-full" />
+              </div>
+            </div>
+          </Reveal>
+        </article>
+
       </section>
 
       {/* Cómo trabajamos, en 3 pasos */}
